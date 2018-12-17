@@ -11,8 +11,9 @@
 public protocol PositionProtocol{
     associatedtype Position : PositionProtocol
     //init: -> Position
-    //cree un position initialisee a Vide*Vide
-    init()
+    //cree un position
+    init(x : Int,y :Int)
+
 
     //Change_Position: Position*Position->Position
     //Prend en parametre une position finale et modifie la postion initiale par cette position finale
