@@ -1,13 +1,8 @@
 import Foundation
-import Hand
-import Joueur
-import Orientation
-import Piece
-import Plateau
-import Position
-import Reserve
-import TypePiece
+import Librairie
 
+
+/*
 
 
 func Saisir_Position_Finale()->Position {
@@ -133,7 +128,7 @@ while !fin_de_partie {
     //On crée le while pour vérifier que le tour est effectué (créé dans des cas où le joueur veut avoir accès à sa réserve mais qu'elle est vide), on redemandera alors le choix du début
     while(!tour_effectue){
         action=demander_action()
-        
+
         //Si le joueur veut se déplacer
         if action == "Deplacer" {
             repeat{
@@ -141,31 +136,31 @@ while !fin_de_partie {
                 positionFinale = Saisir_Position_Finale()
             } while(!plat.Est_Deplacement_Possible(piece:piece,pos:positionFinale))
             //Un deplacement n'est pas possible si la piece sort du plateau, si une piece nous appartenant est à cette place ou si ce deplacement n'est pas autorisé par les caractéristiques de la piece
-            
+
             if (adversaire.Give_Hand.Avoir_Piece(pos:positionFinale)){
                 //capturer une piece
                 piece_a_capturer = adversaire.Get_Piece(pos:positionFinale)
-                
+
                 //Suppression dans le jeu adverse
                 var tmp2: Hand = adversaire.Give_Hand()
                 tmp2.Supprimer_Piece(piece : piece_a_capturer)
                 adversaire.Set_Reserve(reserve : tmp2)
-                
-                
+
+
                 if Est_Kodama_Samourai(piece:piece_a_capturer){
-                    
+
                     piece_a_capturer.Transformer_Kodama()
                 }
-                
+
                 //Ajout dans notre Reserve
-                
+
                 var tmp : Reserve = joueur.Give_Reserve()
                 tmp.Ajouter_Piece(piece : piece_a_capturer)
                 joueur.Set_Reserve(reserve : tmp)
             }
-            
-            
-            
+
+
+
             piece.Deplacer_Piece(posFin:positionFinale)
             if piece.Est_Kodama(){
                 if (piece.Est_Au_Fond()){
@@ -173,9 +168,9 @@ while !fin_de_partie {
                 }
             }
             tour_effectue=true
-            
+
         }
-            
+
         else if action=="Parachuter"{
             if (!joueur.GiveReserve.est_vide()){
                 repeat{
@@ -187,18 +182,18 @@ while !fin_de_partie {
                 var tmp3 : Hand = joueur.Give_Hand()
                 tmp.Ajouter_Piece(piece : piece_a_capturer)
                 joueur.Set_Hand(newHand : tmp3)
-                
+
                 //On enleve de la reserve
                 var tmp4 : Reserve = joueur.Give_Reserve()
                 tmp.Supprimer_Piece(piece : piece_a_capturer)
                 joueur.Set_Reserve(reserve : tmp4)
-                
+
                 tour_effectue = true
             }
         }
     }
-    
-    
+
+
     if tour%2==1{
         plat.Set_Joueur1(joueur:joueur)
         plat.Set_Joueur2(joueur:adversaire)
@@ -215,8 +210,9 @@ print(annonce)
 exit()
 
 
-
-
-
-
-
+*/
+var test = PositionClass(x: 1, y: 1)
+var test2 = PositionClass(x: 2, y: 2)
+print(test.position.0)
+test = test.Change_Position(posfin: test2)
+print(test.position.0)
