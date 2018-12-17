@@ -1,9 +1,9 @@
 // Une piece est definie par un TypePiece, une position et une Orientation
 public protocol PieceProtocol{
 
-    associatedtype TypePiece: TypePieceProtocol
-    associatedtype Position: PositionProtocol
-    associatedtype Orientation: OrientationProtocol
+    associatedtype TypePieceA: TypePieceProtocol
+    associatedtype PositionA: PositionProtocol
+    associatedtype OrientationA: OrientationProtocol
 
     //init: -> Piece
     //creation d'une piece definie par son type, sa position et son orientation. On initialise cette piece a Vide.
@@ -14,37 +14,37 @@ public protocol PieceProtocol{
     //Pre: type est un Type existant
     //Post: On change le type de la piece, si le type n'existe pas on ne fait rien
     @discardableResult
-    mutating func Set_Type(type:TypePiece)->Self
+    mutating func Set_Type(newType : TypePieceA?)->Self
 
     //Set_Position: Piece*(Position|Vide) -> Piece
     //Modifie la position d'une piece
     //Pre: newPOS doit être sur le plateau
     //Post: Si la position est sur le plateau on modifie sa position sinon on ne fait rien
     @discardableResult
-    mutating func Set_Position(newPos:Position?)->Self
+    mutating func Set_Position(newPos : PositionA?)->Self
 
     //Set_Orientation: Piece*(Orientation|Vide) -> Piece
     //Modifie l'orientation d'une piece
     //Pre: newOrient doit etre une orientation existante (N/S)
     //Post: L'orientation est changee. Si newOrient n'existe pas on ne fait rien
     @discardableResult
-    mutating func Set_Orientation(newOrient:Orientation?)->Self
+    mutating func Set_Orientation(newOrient : OrientationA?)->Self
 
     //Give_Nom: Piece -> TypePiece
     //Retourne le nom (Type) d'une piece
     //Post: On a le TypePiece
-    func Give_Type()->TypePiece
+    func Give_Type()->TypePieceA?
 
     //Give_Position: Piece -> (Position|Vide)
     //Retourne la position d'une piece
     //Pre: La piece doit etre sur le plateau
     //Post: Si la piece est sur le plateau on retourne sa position sinon on retourne Vide(Si la piece est dans la reserve par exemple)
-    func Give_Position()->Position?
+    func Give_Position()->PositionA?
 
     //Give_Orientation: Piece -> Orientation
     //Retourne l'orientation d'une piece
     //Post: On a l'Orientation de la piece
-    func Give_Orientation()->Orientation
+    func Give_Orientation()->OrientationA?
 
     //Piece_Au_Fond: Piece -> Bool
     //Regarde si la piece est au fond
@@ -85,6 +85,6 @@ public protocol PieceProtocol{
     //Pre: La Position finale correspond ・une position sur laquelle la piece peut se deplacer
     //Post: La piece est deplacee. Si la piece ne peut pas se deplacer sur la position finale alors rien n'est fait
     @discardableResult
-    mutating func Deplacer_Piece(PosFin:Position)->Self
+    mutating func Deplacer_Piece(PosFin : PositionA)->Self
 
 }
