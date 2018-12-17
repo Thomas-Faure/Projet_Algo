@@ -1,21 +1,21 @@
 // Une piece est definie par un TypePiece, une position et une Orientation
 public protocol PieceProtocol{
-    
+
     associatedtype TypePiece: TypePieceProtocol
     associatedtype Position: PositionProtocol
     associatedtype Orientation: OrientationProtocol
-    
+
     //init: -> Piece
     //creation d'une piece definie par son type, sa position et son orientation. On initialise cette piece a Vide.
     init()
-    
+
     //Set_Nom: Piece*TypePiece -> Piece
     //Modifie le nom (Type) d'une piece
     //Pre: type est un Type existant
     //Post: On change le type de la piece, si le type n'existe pas on ne fait rien
     @discardableResult
     mutating func Set_Type(type:TypePiece)->Self
-    
+
     //Set_Position: Piece*(Position|Vide) -> Piece
     //Modifie la position d'une piece
     //Pre: newPOS doit être sur le plateau
@@ -34,7 +34,7 @@ public protocol PieceProtocol{
     //Retourne le nom (Type) d'une piece
     //Post: On a le TypePiece
     func Give_Type()->TypePiece
-    
+
     //Give_Position: Piece -> (Position|Vide)
     //Retourne la position d'une piece
     //Pre: La piece doit etre sur le plateau
@@ -82,7 +82,7 @@ public protocol PieceProtocol{
 
     //Deplacer_Piece: Piece*Position -> Piece
     //On deplace une piece jusqu'a une position finale.
-    //Pre: La Position finale correspond ・une position sur laquelle la piece peut se deplacer 
+    //Pre: La Position finale correspond ・une position sur laquelle la piece peut se deplacer
     //Post: La piece est deplacee. Si la piece ne peut pas se deplacer sur la position finale alors rien n'est fait
     @discardableResult
     mutating func Deplacer_Piece(PosFin:Position)->Self

@@ -13,7 +13,7 @@ public protocol PositionProtocol{
     //init: -> Position
     //cree un position initialisee a Vide*Vide
     init()
-    
+
     //Change_Position: Position*Position->Position
     //Prend en parametre une position finale et modifie la postion initiale par cette position finale
     //Pre: posfin est soit vide soit sur le plateau
