@@ -5,7 +5,9 @@ public class ReserveClass : ReserveProtocol{
 
   public typealias TypePiece = TypePieceClass
   public typealias Piece = PieceClass
-  var listePiece : [Piece]
+  public typealias IteratorPieceProtocol = IteratorProtocol
+
+  public var listePiece : [Piece]
 
 
   public required init?(){
@@ -23,23 +25,23 @@ public class ReserveClass : ReserveProtocol{
 
   public func Est_Dans_Reserve(piece:Piece)->Bool{
   var retour = false
-    for i in listePiece{
-        if(listePiece[i]==Piece){
-          retour=true
-        }
+  for i in 0...(self.listePiece.count-1){
+      if(self.listePiece[i] === piece){
+        retour = true
+      }
     }
     return retour
   }
 
 
-  public func Get_Piece(nom:TypePiece) -> Piece?{
+  public func Get_Piece(nom : TypePiece)->Piece?{
     var piece : Piece?
-    for i in listePiece{
-      if(listePiece.Give_Type() == nom.Give_Type){
-        piece=listePiece()
+    for i in 0...(self.listePiece.count-1){
+      if(self.listePiece[i].Give_Type() === nom){
+        piece = self.listePiece[i]
       }
     }
-    return
+    return piece
   }
 
 
@@ -49,6 +51,9 @@ public class ReserveClass : ReserveProtocol{
 
   public func Supprimer_Piece(piece:Piece)->Self{
     return self
+
+  }
+  public func makeIteratorPiece()->IteratorPieceProtocol{
 
   }
 
