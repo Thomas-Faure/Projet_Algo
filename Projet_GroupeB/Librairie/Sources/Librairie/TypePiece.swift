@@ -20,8 +20,7 @@ public struct TypePiece{
     //Modifie le nom du type de la piece
     //Pre: Le nom n'est pas Vide
     //Post le nom du Type a ete modifie
-    mutating func Set_Nom(nom:String)->TypePiece{
+    mutating func Set_Nom(nom:String){
         self.nom = nom
-        return self
     }
 }
