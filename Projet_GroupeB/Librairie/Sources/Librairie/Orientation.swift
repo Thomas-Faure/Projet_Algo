@@ -5,6 +5,7 @@ public class OrientationClass : OrientationProtocol{
     public required init(){
 
     }
+    
     public func recuperer_Orientation()->Orientation?{
       if let a = self.orient{
         return a

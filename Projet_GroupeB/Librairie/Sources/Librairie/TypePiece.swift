@@ -1,6 +1,5 @@
-//Un typePiece est defini par son nom
 public class TypePieceClass : TypePieceProtocol{
-
+    
     var nom : String
 
     public required init(){
@@ -11,9 +10,8 @@ public class TypePieceClass : TypePieceProtocol{
     public func Give_Nom()->String{
         return nom
     }
-
-
-    public func Set_Nom(nom:String)->Self{
+    
+    public func Set_Nom()->Self{
         self.nom = nom
         return self
     }
