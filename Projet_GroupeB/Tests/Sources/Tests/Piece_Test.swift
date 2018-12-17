@@ -49,7 +49,7 @@ func Set_Position_Test()->Int{
 
     do {
         try {
-            Set_Position(main,piece_sans_position,position_non_dispo)
+            main.piece_sans_position.Set_Position(newPos : position_non_dispo)
             print("Test si une piece peut etre ajouter en dehors du plateau a echoue")
             ret+=1
         }
@@ -103,7 +103,7 @@ func Set_Orientation_Test() -> Int {
 
 func Give_Nom_Test() -> Int {
 	var ret : Int = 0
-	var type_piece= TypePiece() //Crée un type inexistant
+	var type_piece = TypePiece() //Crée un type inexistant
 	type_piece.Set_Nom(nom : "KoKiKo")
 	var piece = Piece()
 	piece.Set_Type(type:name)
@@ -137,7 +137,8 @@ func Give_Position_Test() -> Int {
 
 func Give_Orientation_Test() -> Int {
 	var orientation = Orientation()
-	var piece = Piece()do {
+	var piece = Piece()
+    do {
         try main.Est_Dans_Main(type:type_piece_inexistant)
         print("Test type piece inexistant a echoue")
         ret+=1
@@ -166,22 +167,22 @@ func Est_Kodama_Test() -> Int {
 	var kodama = Piece()
 	var piece = Piece()
 	var type = TypePiece()
-	type.Set_Nom("Kodama")
-	piece.Set_Type(type)
-	if Est_Kodama(piece){
+    type.Set_Nom(nom:"Kodama")
+    piece.Set_Type(type:type)
+    if Est_Kodama(piece:piece){
 		print("OK test avec un Kodama reussi")
 	}
 	else {
-		print("ERREUR Test est Kodama avec Kodama)
+		print("ERREUR Test est Kodama avec Kodama")
 		ret =+ 1
 	}
-	type.Set_Nom("Test")
-	piece.Set_Type(type)
-	if !Est_Kodama(piece){
+    type.Set_Nom(nom:"Test")
+    piece.Set_Type(type:type)
+    if !Est_Kodama(piece:piece){
 		print("OK test avec non kodama reussi")
 	}
 	else {
-		print("ERREUR Test est Kodama avec non Kodama)
+		print("ERREUR Test est Kodama avec non Kodama")
 		ret =+ 1
 	}
 	return ret
@@ -194,22 +195,22 @@ func Est_Kodama_Samourai_Test() -> Int {
 	var kodama = Piece()
 	var piece = Piece()
 	var type = TypePiece()
-	type.Set_Nom("Kodama_Samourai")
-	piece.Set_Type(type)
-	if Est_Kodama_Samourai(piece){
+    type.Set_Nom(nom:"Kodama_Samourai")
+    piece.Set_Type(type:type)
+    if Est_Kodama_Samourai(piece:piece){
 		print("OK test avec un Kodama Samourai reussi")
 	}
 	else {
-		print("ERREUR Test est Kodama Samourai avec Kodama Samourai)
+		print("ERREUR Test est Kodama Samourai avec Kodama Samourai")
 		ret =+ 1
 	}
-	type.Set_Nom("Test")
-	piece.Set_Type(type)
-	if !Est_Kodama(piece){
+    type.Set_Nom(nom:"Test")
+    piece.Set_Type(type:type)
+    if !Est_Kodama(piece:piece){
 		print("OK test avec non kodama Samourai reussi")
 	}
 	else {
-		print("ERREUR Test est Kodama Samourai avec non Kodama Samourai)
+		print("ERREUR Test est Kodama Samourai avec non Kodama Samourai")
 		ret =+ 1
 	}
 	return ret
@@ -223,13 +224,14 @@ func Est_Roi_Test() -> Int {
 	var roi = Piece()
 	var piece = Piece()
 	var type = TypePiece()
-	type.Set_Nom("Koropokkuru")
-	piece.Set_Type(type)
-	if Est_Roi(piece){
+    type.Set_Nom(nom:"Koropokkuru")
+    piece.Set_Type(type:type)
+    if Est_Roi(piece:piece){
 		print("OK test avec un Roi reussi")
 	}
 	else {
-		print("ERREUR Test est Roi avec Roi)do {
+		print("ERREUR Test est Roi avec Roi")
+        do {
         try main.Est_Dans_Main(type:type_piece_inexistant)
         print("Test type piece inexistant a echoue")
         ret+=1
@@ -239,13 +241,13 @@ func Est_Roi_Test() -> Int {
 }
 		ret =+ 1
 	}
-	type.Set_Nom("Test")
-	piece.Set_Type(type)
-	if !Est_Roi(piece){
+type.Set_Nom(nom:"Test")
+piece.Set_Type(type:type)
+if !Est_Roi(piece:piece){
 		print("OK test avec non Roi reussi")
 	}
 	else {
-		print("ERREUR Test est Roi avec non Roi)
+		print("ERREUR Test est Roi avec non Roi")
 		ret =+ 1
 	}
 	return ret
@@ -257,10 +259,10 @@ func Transformer_Kodama_Samourai() -> Int {
 	var kodama = Piece()
 	var piece = Piece()
 	var type = TypePiece()
-	type.Set_Nom("Kodama")
-	kodama.Set_Type(type)
-	type.Set_Nom("Tanuki")
-	piece.Set_Type(type)
+    type.Set_Nom(nom:"Kodama")
+    kodama.Set_Type(type:type)
+    type.Set_Nom(nom:"Tanuki")
+    piece.Set_Type(type:type)
 	do {
 		try piece.Transformer_Kodama_Samourai()
 		print("ERREUR test test transformer non kodama a echoue")
@@ -270,8 +272,8 @@ func Transformer_Kodama_Samourai() -> Int {
 		print("OK si type est un autre")
 	}
 	
-	type.Set_Nom("Test")
-	piece.Set_Type(type)
+    type.Set_Nom(nom:"Test")
+    piece.Set_Type(type:type)
 	do {
 		try piece.Transformer_Kodama_Samourai()
 		print("ERREUR test type inexistant a echoue")
@@ -298,10 +300,10 @@ func Transformer_Kodama() -> Int {
 	var kodama = Piece()
 	var piece = Piece()
 	var type = TypePiece()
-	type.Set_Nom("Kodama_Samourai")
-	kodama.Set_Type(type)
-	type.Set_Nom("Tanuki")
-	piece.Set_Type(type)
+    type.Set_Nom(nom:"Kodama_Samourai")
+    kodama.Set_Type(type:type)
+    type.Set_Nom(nom:"Tanuki")
+    piece.Set_Type(type:type)
 	do {
 		try piece.Transformer_Kodama()
 		print("ERREUR test test transformer non kodama samourai a echoue")
@@ -311,8 +313,8 @@ func Transformer_Kodama() -> Int {
 		print("OK si type est un autre")
 	}
 	
-	type.Set_Nom("Test")
-	piece.Set_Type(type)
+    type.Set_Nom(nom:"Test")
+    piece.Set_Type(type:type)
 	do {
 		try piece.Transformer_Kodama()
 		print("ERREUR test type inexistant a echoue")
@@ -339,7 +341,7 @@ func Transformer_Kodama() -> Int {
 	
 	
 	
-var nb_erreur : Int =0
+var nb_erreur : Int = 0
 nb_erreur+=Set_Type_Test()
 nb_erreur+=Set_Position_Test()
 nb_erreur+=Set_Orientation_Test()

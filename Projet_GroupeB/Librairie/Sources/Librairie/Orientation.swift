@@ -1,5 +1,18 @@
-//L orientation est definie comme N pour Nord ou S pour Sud
-protocol Orientation{
+//L orientation est definie comme 'N' pour Nord ou 'S' pour Sud
+//
+//      x x x       Nord : "N"
+//      x x x
+//      x x x
+//      x x x       Sud : "S"
+//
+/////////////////////////////////////////////////////////////////
+
+public enum Orientation{
+    case N,S
+}
+
+
+public protocol OrientationProtocol{
     //init: -> Orientation
     //cree un orientation initialisee a Vide
     init()

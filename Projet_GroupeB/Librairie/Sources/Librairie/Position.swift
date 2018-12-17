@@ -1,8 +1,17 @@
 //Position indique l'emplacement d'une carte sur notre Plateau
-//Il est défini comme un couple x,y
-protocol Position{
+//Il est défini comme un couple x,y d'entier avec la disposition suivante:
+//
+//      x x x       (0,0)(0,1)(0,2)
+//      x x x   ==  (1,0)(1,1)(1,2)
+//      x x x   ==  (2,0)(2,1)(2,2)
+//      x x x       (3,0)(3,1)(3,2)
+//
+///////////////////////////////////////////////////////////////////
+
+public protocol PositionProtocol{
+    associatedtype Position : PositionProtocol
     //init: -> Position
-    //cree un position initialisee a Vide
+    //cree un position initialisee a Vide*Vide
     init()
     
     //Change_Position: Position*Position->Position

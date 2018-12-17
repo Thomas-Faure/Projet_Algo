@@ -1,8 +1,12 @@
 import Foundation
 //Hand est une collection de pieces, elle correspond aux pieces que nous avons sur le plateau
-protocol Hand:Sequence{
-    associatedtype IteratorPiece : IteratorProtocol
-        where IteratorPiece.Element == Piece
+public protocol HandProtocol:Sequence{
+
+    associatedtype Position: PositionProtocol
+    associatedtype TypePiece: TypePieceProtocol
+    associatedtype Piece: PieceProtocol
+    associatedtype IteratorPieceProtocol : IteratorProtocol
+        where IteratorPieceProtocol.Element == Piece
     
     // init : -> Hand
     // Creation d'une main, intialise a Vide
@@ -58,6 +62,11 @@ protocol Hand:Sequence{
     
     // makeIteratorPiece : Hand -> IteratorPiece
     // cree un iterateur sur la collection dans l'odre (?Comment on les tries)
-    func makeIteratorPiece()->IteratorPiece
+    func makeIteratorPiece()->IteratorPieceProtocol
     
+}
+
+public protocol IteratorPieceProtocol: IteratorProtocol{
+    associatedtype Piece:PieceProtocol
+    func next()->Piece?
 }

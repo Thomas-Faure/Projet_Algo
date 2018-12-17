@@ -1,0 +1,66 @@
+main ligne 39 erreur manque .main car afficherMain() est dans mainProtocol
+Ce print n’est pas autorisé 
+
+
+main ligne 51 erreur dans le nom de fonction déployer() qui est spécifiée comme deployerCarte()
+	   	Pareil pour la ligne 82
+
+
+main ligne 90, le fait que le type Joueur doit être en type référence doit être spécifier dans le protocole et non dans la main. On peut néanmoins accepter les type valeur en réaffectant la valeur dans l’autre sens a la fin de chaque tour
+
+
+
+main lignes 95 96 redéclaration variables joueurActuel et joueurAdverse dans le Else
+
+
+main ligne 101 la structure de donnée est imposée.  !!!!!!! aucune fonction champDeBataille(), l’attribut est donc donné sans type ni protocole, cela doit être dans notre structure de donnée ou créer un protocole mais cela ne peut pas être écrit dans le main comme ça
+
+
+
+
+Ligne 111 la fonction nbOccurences() ne renverra pas un entier <0 mais =0
+
+
+Ligne 225 L’utilisation de Int dans recupererCarte() nous est imposé et ne peut pas l’être dans le main. 
+
+
+Ligne 274 lors du déploiement, la carte n’est jamais retiré de la main. Il faudrait appeler la fonction de suppression de carte dans la main ou alors préciser si c’est à effectuer dans récupérer_carte.
+
+
+
+
+
+
+TOUS LES AFFICHAGES DOIVENT ETRE FAITS DANS LE MAIN, DANS LES PROTOCOLES ON NE PEUT PAS FAIRE DE FCT D’AFFICHAGE RENVOYANT UN STRING ET METTRE UN PRINT (en cas de version graphique il faudrait tout changer le protocole) 
+
+
+
+ProtocolMain ligne 18 recupererCarte() nous impose de définir une position en int, de plus le type de numérotation n’est pas spécifié (commence à 0 ou à 1) 
+
+
+
+coordonneeProtocol Int x Int imposé; il faut spécifier comment sont notées les coordonnées avec un schéma ou quelque chose nous permettant de repérer la bonne position
+
+
+
+JoueurProtocol déployerCarte fait une saisie utilisateur, il n’en faut pas dans les protocoles
+
+
+
+
+————————————————————————————————————————————————————————————————
+
+TEST
+
+test_cimtiere :
+	problème définition testCarte avec coordonnées (0,0) alors que définit comme impossible (Pareil dans royaume et à pleins d’endroits)
+
+Tests champs de bataille impose structure de donnée et deviendront faux si on implémente pas les fonctions pareil 
+
+
+
+
+
+
+
+

@@ -19,7 +19,7 @@ func Saisir_Position_Finale()->Position {
         x = Int(readLine() ?? "") ?? -1 //Force la saisie d'un entier et met la valeur -1 si ce n'en est pas un
         y = Int(readLine() ?? "") ?? -1 //Force la saisie d'un entier et met la valeur -1 si ce n'en est pas un
     }while(x<0 || y<0)
-    pos.Change_Position(x,y)
+    pos.Change_Position(posfin:(x,y))
     return pos
 }
 
@@ -49,8 +49,8 @@ func Saisir_Piece_A_Deplacer(main : Hand)->Piece{
             x = Int(readLine() ?? "") ?? -1 //Force la saisie d'un entier et met la valeur -1 si ce n'en est pas un
             y = Int(readLine() ?? "") ?? -1 //Force la saisie d'un entier et met la valeur -1 si ce n'en est pas un
         }while(x<0 || y<0)
-        position.Change_Position(x,y)
-    }while(!main.Avoir_Piece(position))
+        position.Change_Position(posfin:(x,y))
+    }while(!main.Avoir_Piece(pos: position))
     piece = main.Get_Piece(pos : position)
     return piece
 }
@@ -64,7 +64,7 @@ func Saisir_Piece_A_Parachuter(reserve : Reserve)->Piece{
     repeat {
         nom = ReadLine
         type.Set_Nom(nom:nom)
-    }while(!reserve.Est_Dans_Reserve(nom))
+    }while(!reserve.Est_Dans_Reserve(piece: nom))
     piece = reserve.Get_Piece(nom : type)
     return piece
 }
@@ -99,7 +99,7 @@ func Changer_Noms_Joueurs(plat:Plateau){
 
 
 
-var plat = Plateau()        //Initialisation du plateau
+var plat = Plateau(l:3,h:4)        //Initialisation du plateau de largeur 3 et de hauteur 4
 //Initialisation des joueurs :  A l'initialisation, les
 
 var action : String
@@ -127,7 +127,7 @@ while !fin_de_partie {
     }
     //Vérification que la partie n'est pas finie, donc les deux joueurs possèdent un roi et qu'il n'est pas sur la dernière ligne.
     if(plat.Fin() != nil){
-        tour_effeectue=true
+        tour_effectue=true
         fin_de_partie=true
     }
     //On crée le while pour vérifier que le tour est effectué (créé dans des cas où le joueur veut avoir accès à sa réserve mais qu'elle est vide), on redemandera alors le choix du début
@@ -139,16 +139,16 @@ while !fin_de_partie {
             repeat{
                 piece = Saisir_Piece_A_Deplacer(main : joueur.Give_Hand())
                 positionFinale = Saisir_Position_Finale()
-            } while(!plat.Est_Deplacement_Possible(piece,positionFinale))
+            } while(!plat.Est_Deplacement_Possible(piece:piece,pos:positionFinale))
             //Un deplacement n'est pas possible si la piece sort du plateau, si une piece nous appartenant est à cette place ou si ce deplacement n'est pas autorisé par les caractéristiques de la piece
             
-            if (adversaire.Give_Hand.Avoir_Piece(positionFinale)){
+            if (adversaire.Give_Hand.Avoir_Piece(pos:positionFinale)){
                 //capturer une piece
-                piece_a_capturer = adversaire.Get_Piece(positionFinale)
+                piece_a_capturer = adversaire.Get_Piece(pos:positionFinale)
                 
                 //Suppression dans le jeu adverse
                 var tmp2: Hand = adversaire.Give_Hand()
-                tmp.Supprimer_Piece(piece : piece_a_capturer)
+                tmp2.Supprimer_Piece(piece : piece_a_capturer)
                 adversaire.Set_Reserve(reserve : tmp2)
                 
                 
@@ -167,9 +167,9 @@ while !fin_de_partie {
             
             
             piece.Deplacer_Piece(posFin:positionFinale)
-            if estKodama(piece:piece){
+            if piece.Est_Kodama(){
                 if (piece.Est_Au_Fond()){
-                    piece.transformer_KodamaSamourai()
+                    piece.Transformer_Kodama_Samourai()
                 }
             }
             tour_effectue=true
@@ -179,9 +179,9 @@ while !fin_de_partie {
         else if action=="Parachuter"{
             if (!joueur.GiveReserve.est_vide()){
                 repeat{
-                    piece = saisir_piece_a_parachuter(reserve : joueur.Give_Reserve)
-                    positionFinale = saisir_position_finale()
-                } while(!est_vide(positionFinale))
+                    piece = Saisir_Piece_A_Parachuter(reserve : joueur.Give_Reserve)
+                    positionFinale = Saisir_Position_Finale()
+                } while(!plat.Est_Case_Vide(pos:positionFinale))
                 //Un parachutage est possible uniquement si la case est vide
                 //Ajout a notre main
                 var tmp3 : Hand = joueur.Give_Hand()

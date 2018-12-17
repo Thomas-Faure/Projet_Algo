@@ -65,7 +65,7 @@ func Ajouter_Piece_Test()->Int{
         print("OK si la piece n'a pas de position")
     }
     reserve.Ajouter_Piece(piece:piece)
-    if!reserve.Est_Dans_Reserve(piece:piece){
+    if !reserve.Est_Dans_Reserve(piece:piece){
       print("Test si le programme fonctionne lorsque on ajoute une piece qui a une position: ECHEC")
       ret+=1
     }
@@ -105,7 +105,7 @@ func Get_Piece_Test()->Int{
         print("OK si le type n'existe pas")
     }
     pieceResult=reserve.Get_Piece(nom:type)
-    if!(pieceResult==piece){
+    if !(pieceResult==piece){
        print("Test si le programme fonctionne lorsque demande un piece a partir d'un type existant: ECHEC")
        ret+=1
     }
@@ -134,7 +134,7 @@ func Supprimer_Piece_Test()->Int{
         print("OK si la piece n'est pas dans la reserve")
     }
     reserve.Supprimer_Piece(piece:piece_dans_reserve)
-    if!reserve.Est_Vide(){
+    if !reserve.Est_Vide(){
        print("Test si le programme fonctionne lorsque on supprime une piece qui est dans la reserve: ECHEC")
        ret+=1
     }

@@ -1,7 +1,10 @@
 //Un plateau est une collection de positions +2 joueurs
-protocol Plateau:Sequence{
-    associatedtype IteratorPosition : IteratorProtocol
-        where IteratorPosition.Element == Position
+public protocol PlateauProtocol:Sequence{
+    associatedtype Joueur : JoueurProtocol
+    associatedtype Piece : PieceProtocol
+    associatedtype Position : PositionProtocol
+    associatedtype IteratorPositionProtocol : IteratorProtocol
+        where IteratorPositionProtocol.Element == Position
     
     //init: Int*Int->Plateau
     //Initialisation d'un plateau de longeur de longeur l et de hauteur h et de deux joueurs
@@ -54,5 +57,10 @@ protocol Plateau:Sequence{
     //Regarde si la partie est finie.
     //Post: Il faut que l'un des deux joueurs n'ai plus son roi ou que le roi d'un des deux joueurs soit sur la derniere case pour retourner un joueur gagnant. Sinon on retourne Vide 
     func Fin()->Joueur?
+}
+
+public protocol IteratorPositionProtocol: IteratorProtocol{
+    associatedtype Position:PositionProtocol
+    func next()->Position?
 }
 

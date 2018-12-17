@@ -1,8 +1,12 @@
 // Une piece est definie par un TypePiece, une position et une Orientation
-protocol Piece{
+public protocol PieceProtocol{
+    
+    associatedtype TypePiece: TypePieceProtocol
+    associatedtype Position: PositionProtocol
+    associatedtype Orientation: OrientationProtocol
+    
     //init: -> Piece
     //creation d'une piece definie par son type, sa position et son orientation. On initialise cette piece a Vide.
-    
     init()
     
     //Set_Nom: Piece*TypePiece -> Piece

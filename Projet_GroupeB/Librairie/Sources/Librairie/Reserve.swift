@@ -1,12 +1,14 @@
 import Foundation
 //Reserve est une collection de Piece ce sont des pieces qui n'ont pas encore de position car elles ne sont pas sur le plateau 
-protocol Reserve:Sequence{
-    associatedtype IteratorPiece : IteratorProtocol
-        where IteratorPiece.Element == Piece
+public protocol ReserveProtocol:Sequence{
+    associatedtype TypePiece: TypePieceProtocol
+    associatedtype Piece: PieceProtocol
+    associatedtype IteratorPieceProtocol : IteratorProtocol
+        where IteratorPieceProtocol.Element == Piece
     
     // init : -> Vide
     // Creation d'une Reserve, intialisee Vide
-    init()
+    init?()
     
 
     //Est_Vide: Reserve -> Bool
@@ -45,6 +47,8 @@ protocol Reserve:Sequence{
 
     // makeIteratorTypePiece : Reserve -> IteratorPiece
     // cree un iterateur sur la collection
-    func makeIteratorPiece()->IteratorPiece
+    func makeIteratorPiece()->IteratorPieceProtocol
     
 }
+
+

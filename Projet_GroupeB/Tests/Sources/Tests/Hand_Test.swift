@@ -2,17 +2,17 @@
 func Initialiser_Debut_Test()->Int {
     var main = Hand()
     var type1 = TypePiece() //Crée un type inexistant
-    type1.Set_Nom("koropokkuru")
-    var type1 = TypePiece() //Crée un type inexistant
-    type2.Set_Nom("kitsune")
-    var type1 = TypePiece() //Crée un type inexistant
-    type3.Set_Nom("tanuki")
-    var type1 = TypePiece() //Crée un type inexistant
-    type4.Set_Nom("kodama")
+    type1.Set_Nom(nom:"koropokkuru")
+    var type2 = TypePiece() //Crée un type inexistant
+    type2.Set_Nom(nom:"kitsune")
+    var type3 = TypePiece() //Crée un type inexistant
+    type3.Set_Nom(nom:"tanuki")
+    var type4 = TypePiece() //Crée un type inexistant
+    type4.Set_Nom(nom:"kodama")
     var ret : Int = 0
    
     main.Initialiser_Debut()
-    if!((main.Est_Dans_Main(type:type1)&&(main.Est_Dans_Main(type:type2))&&(main.Est_Dans_Main(type:type3))&&(main.Est_Dans_Main(type:type1))){
+    if!((main.Est_Dans_Main(type:type1) && (main.Est_Dans_Main(type:type2)) && (main.Est_Dans_Main(type:type3)) && (main.Est_Dans_Main(type:type4))){
         print("Test si il y a toute les pieces: Echec")
         ret+=1
     }
@@ -60,7 +60,7 @@ func Avoir_Piece_Test()->Int{
     var position_inexistante = Position()
     var piece = Piece()
     main.Ajouter_Piece(piece:piece,pos:(1,1))
-    position_inexistante.Set_Position(-1,-1)
+    position_inexistante.Change_Position(pos : (-1,-1))
     var ret : Int = 0
     do {
         try main.Avoir_Piece(pos:position_inexistante)
@@ -116,7 +116,7 @@ func Ajouter_Piece_Test()->Int{
     var piece_sans_position = Piece()
     var piece_plateau = Piece()
     
-    piece_plateau.Set_Position(2,2)
+    piece_plateau.Change_Position(pos : (2,2))
     
     var ret : Int = 0
     do {
@@ -188,7 +188,7 @@ func Supprimer_Piece_Test()->Int{
     return ret
 }
 
-func Deplacer_Piece_Test()->Int{
+func Deplacer_Piece_Test()->Int {
     var main = Hand()
     var piece = Piece()
     var piece_dans_main = Piece()
@@ -221,6 +221,7 @@ func Deplacer_Piece_Test()->Int{
     }
     return ret
 }
+    
 
 
 

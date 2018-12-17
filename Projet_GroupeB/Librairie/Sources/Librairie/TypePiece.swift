@@ -1,7 +1,7 @@
 //Un typePiece est defini par son nom
-protocol TypePiece{
+public protocol TypePieceProtocol{
     //init -> TypePiece
-    //On initialise un TypePiece avec un nom et ses mouvements possibles
+    //On initialise un TypePiece a vide
     init()
     
     //Give_Nom: TypePiece -> (String | Vide)

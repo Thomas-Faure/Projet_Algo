@@ -1,7 +1,10 @@
 import Foundation
 // Un joueur est definie par un nom, sa main et sa reserve
-protocol Joueur {
-
+public protocol JoueurProtocol {
+    
+    associatedtype Hand: HandProtocol
+    associatedtype Reserve: ReserveProtocol
+    
     // init:  String -> Joueur
     // création d'un joueur, un joueur est définie par un nom, une main, une reserve et une orientation. A l'initialisation sa reverve est vide et sa main est composé de 4 pieces.
     // a l'init son nom n'est pas vide, il s'appellera joueur en valeur par defaut

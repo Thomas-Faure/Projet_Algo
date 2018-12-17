@@ -1,5 +1,5 @@
-func Give_Joueur1_Test(){
-  var plat = Plateau()
+func Give_Joueur1_Test()->Int{
+    var plat = Plateau(l:3,h:4)
   var joueur = Joueur()
   var ret:Int = 0
   plat.Set_Joueur1(joueur:joueur)
@@ -13,8 +13,8 @@ func Give_Joueur1_Test(){
   return ret
 }
 
-func Give_Joueur2_Test(){
-  var plat = Plateau()
+func Give_Joueur2_Test()->Int{
+  var plat = Plateau(l:3,h:4)
   var ret:Int = 0
   var joueur = Joueur()
   plat.Set_Joueur2(joueur:joueur)
@@ -28,8 +28,8 @@ func Give_Joueur2_Test(){
   return ret
 }
 
-func Set_Joueur1_Test(){
-   var plat = Plateau()
+func Set_Joueur1_Test()->Int{
+   var plat = Plateau(l:3,h:4)
    var joueur = Joueur()
    var ret:Int = 0
    do{
@@ -51,8 +51,8 @@ func Set_Joueur1_Test(){
    return ret
 }
 
-func Set_Joueur2_Test(){
-   var plat = Plateau()
+func Set_Joueur2_Test()->Int{
+   var plat = Plateau(l:3,h:4)
    var joueur = Joueur()
    var ret:Int = 0
    do{
@@ -74,13 +74,13 @@ func Set_Joueur2_Test(){
    return ret
 }
 
-func Est_Case_Vide_Test(){
-	var plat=Plateau()
+func Est_Case_Vide_Test()->Int{
+	var plat=Plateau(l:3,h:4)
 	var piece=Piece()
 	var main=Main()
 	var joueur=Joueur()
 	var ret:Int = 0
-	piece.Set_Position(pos:(1,1)
+	piece.Set_Position(pos:(1,1))
         main.Ajouter_Piece(piece:piece)
 	joueur.Set_Hand(newHand:main)
 	plateau.Set_Joueur1(joueur:joueur)
@@ -93,7 +93,7 @@ func Est_Case_Vide_Test(){
 	catch{
 		print("Ok si la position n'est pas sur le plateau")
 	}
-	if!(plat.Est_Case_Vide(pos:(1,1))){
+	if !(plat.Est_Case_Vide(pos:(1,1))) {
 		print("Erreur pour Est_Case_Vide()")
 		ret+=1
 	}
@@ -103,14 +103,14 @@ func Est_Case_Vide_Test(){
 	return ret
 }
 	
-func Piece_Position_Test(){
+func Piece_Position_Test()->Int{
 	var pieceResult = Piece()
-	var plat=Plateau()
+	var plat=Plateau(l:3,h:4)
 	var piece=Piece()
 	var main=Main()
 	var joueur=Joueur()
 	var ret:Int = 0
-	piece.Set_Position(pos:(1,1)
+	piece.Set_Position(pos:(1,1))
         main.Ajouter_Piece(piece:piece)
 	joueur.Set_Hand(newHand:main)
 	plateau.Set_Joueur1(joueur:joueur)
@@ -124,7 +124,7 @@ func Piece_Position_Test(){
 		print("Ok si la position n'est pas sur le plateau")
 	}
 	pieceResult=plat.Piece_Position(pos:(1,1))		   
-	if!(pieceResult==piece){
+	if !(pieceResult==piece){
 		print("Erreur pour Piece_Position()")
 		ret+=1
 	}
@@ -134,7 +134,7 @@ func Piece_Position_Test(){
 	return ret
 }
 	
-var nb_erreur : Int =0
+var nb_erreur : Int = 0
 nb_erreur+=Give_Joueur1_Test()
 nb_erreur+=Give_Joueur2_Test()
 nb_erreur+=Set_Joueur1_Test()
