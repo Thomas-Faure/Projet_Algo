@@ -2,8 +2,8 @@ public class PositionClass : PositionProtocol{
   public typealias Position = PositionClass
   public var position = (0,0)
   public required init(x : Int,y :Int){
-    position.0=x
-    position.1=y
+    position.0 = x
+    position.1 = y
   }
   public func Change_Position(posfin:Position?)->Self{
   if let b = posfin {
