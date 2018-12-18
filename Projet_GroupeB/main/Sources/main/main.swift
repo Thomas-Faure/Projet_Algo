@@ -211,8 +211,3 @@ exit()
 
 
 */
-var test = PositionClass(x: 1, y: 1)
-var test2 = PositionClass(x: 2, y: 2)
-print(test.position.0)
-test = test.Change_Position(posfin: test2)
-print(test.position.0)
