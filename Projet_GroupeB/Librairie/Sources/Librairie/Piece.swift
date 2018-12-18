@@ -29,7 +29,6 @@ public class PieceClass : PieceProtocol {
     return self
   }
   public func Give_Type()->TypePieceA?{
-
     return self.typePiece
   }
   public func Give_Position()->PositionA?{

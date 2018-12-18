@@ -5,8 +5,6 @@ public class TypePieceClass : TypePieceProtocol{
     public required init(){
         nom = ""
     }
-
-
     public func Give_Nom()->String{
         return nom
     }

@@ -9,6 +9,7 @@ public class PlateauClass : PlateauProtocol{
     var h : Int
     var joueur1 : Joueur?
     var joueur2 : Joueur?
+    var position : [Position]
     //init: Int*Int->Plateau
     //Initialisation d'un plateau de longeur de longeur l et de hauteur h et de deux joueurs
     //Pre: l>0 & h>0
