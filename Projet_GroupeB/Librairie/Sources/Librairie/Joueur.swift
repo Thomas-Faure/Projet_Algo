@@ -7,6 +7,7 @@ public class JoueurClass : JoueurProtocol {
     public var reserve : Reserve?
     public var hand : Hand?
     public var nom : String
+
     // init:  String -> Joueur
     // création d'un joueur, un joueur est définie par un nom, une main, une reserve et une orientation. A l'initialisation sa reverve est vide et sa main est composé de 4 pieces.
     // a l'init son nom n'est pas vide, il s'appellera joueur en valeur par defaut
@@ -39,6 +40,7 @@ public class JoueurClass : JoueurProtocol {
     // Change le nom d'un joueur
     //Pre: Le nom ne doit pas etre vide.
     //Post: On change le nom du joueur. Si le nom est vide on ne fait rien
+    @discardableResult
     public func Set_Name(nom:String)->Self{
       self.nom = nom
       return self
@@ -47,6 +49,7 @@ public class JoueurClass : JoueurProtocol {
     // Set_Hand: Joueur*Hand -> Joueur
     // Change la main d'un joueur
     //Post: La main du joueur est changee
+    @discardableResult
     public func Set_Hand(newHand:Hand)->Self{
       self.hand = newHand
       return self
@@ -55,6 +58,7 @@ public class JoueurClass : JoueurProtocol {
     // Set_Reserve: Joueur*(Reserve|Vide) -> Joueur
     // Change la reserve d'un joueur
     //Post: La reserve du joueur est changee
+    @discardableResult
     public func Set_Reserve(newReserve:Reserve?)->Self{
       self.reserve = newReserve
       return self
