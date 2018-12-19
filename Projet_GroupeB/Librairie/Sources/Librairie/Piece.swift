@@ -16,10 +16,12 @@ public class PieceClass : PieceProtocol {
       self.kodama = false
 
   }
+  @discardableResult
   public func Set_Type(newType : TypePieceA?)->Self{
     self.typePiece = newType
     return self
   }
+  @discardableResult
   public func Set_Position(newPos : PositionA?)->Self{
     self.position = newPos
     return self

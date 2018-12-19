@@ -35,10 +35,12 @@ public protocol JoueurProtocol {
     // Set_Hand: Joueur*Hand -> Joueur
     // Change la main d'un joueur
     //Post: La main du joueur est changee
+    @discardableResult
     mutating func Set_Hand(newHand:Hand)->Self
 
     // Set_Reserve: Joueur*(Reserve|Vide) -> Joueur
     // Change la reserve d'un joueur
     //Post: La reserve du joueur est changee
+    @discardableResult
     mutating func Set_Reserve(newReserve:Reserve?)->Self
 }
