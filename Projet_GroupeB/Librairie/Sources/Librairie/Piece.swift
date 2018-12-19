@@ -4,6 +4,7 @@ public class PieceClass : PieceProtocol {
   public typealias OrientationA = OrientationClass
 
   public var kodama : Bool
+  public var kodama_samurai : Bool
   public var roi : Bool
   public var orient : OrientationA?
   public var position : PositionA?
@@ -14,6 +15,7 @@ public class PieceClass : PieceProtocol {
       self.typePiece = nil
       self.roi = false
       self.kodama = false
+      self.kodama_samurai = false
 
   }
   @discardableResult
@@ -26,6 +28,7 @@ public class PieceClass : PieceProtocol {
     self.position = newPos
     return self
   }
+  @discardableResult
   public func Set_Orientation(newOrient : OrientationA?)->Self{
     self.orient = newOrient
     return self
@@ -36,6 +39,12 @@ public class PieceClass : PieceProtocol {
   public func Give_Position()->PositionA?{
     return self.position
   }
+  //fonction ajouté
+  @discardableResult
+  public func set_Kodama()->Self{
+    self.kodama = true
+    return self
+  }
   public func Give_Orientation()->OrientationA?{
     return self.orient
   }
@@ -43,24 +52,32 @@ public class PieceClass : PieceProtocol {
     return false
   }
   public func Est_Kodama()->Bool{
-    return !self.kodama
+    return self.kodama
   }
   public func Est_Kodama_Samurai()->Bool{
-    return self.kodama
+    return self.kodama_samurai
   }
   public func Est_Roi()->Bool {
     return self.roi
   }
   public func Transformer_Kodama_Samurai()->Self{
-    self.kodama=true
+    if(self.Est_Kodama()){
+      self.kodama_samurai = true
+    }
     return self
   }
   public func Transformer_Kodama()->Self{
-    self.kodama=false
+    if(self.Est_Kodama() && self.Est_Kodama_Samurai()){
+      self.kodama_samurai = false
+    }
     return self
   }
+  @discardableResult
   public func Deplacer_Piece(PosFin:PositionA)->Self{
-    self.position=PosFin
+    //on verifie qu'on soit bien sur le plateau
+    if(PosFin.position.0 >= 0 && PosFin.position.0 <= 3 && PosFin.position.1 >= 0 && PosFin.position.1 <= 3){
+        self.position=PosFin
+    }
     return self
   }
 }

@@ -86,14 +86,16 @@ public class ReserveClass : ReserveProtocol{
     if(!self.Est_Vide()){
       var count = 0
       if var liste = self.listePiece{
-        for ele in liste{
-            if ele === piece{
+        if(piece.Give_Position() != nil){
+          for ele in liste{
+              if ele === piece{
 
-              liste.remove(at: count)
+                liste.remove(at: count)
 
-              self.listePiece=liste
-            }
-            count = count + 1
+                self.listePiece=liste
+              }
+              count = count + 1
+          }
         }
       }
     }
