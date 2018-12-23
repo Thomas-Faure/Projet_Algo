@@ -4,12 +4,33 @@ import Librairie
 
 
 var joueur = JoueurClass(nom:"test",joueur:1)
-var main = joueur.Give_Hand()
-if let mano = main{
-  for i in mano{
-    print(i)
+
+if let hand = joueur.Give_Hand(){
+  var main = hand
+  var position = PositionClass(x:1,y:1)
+  if let mp = main.Get_Piece(pos :position){
+    var piece = mp
+    print(piece)
+    piece.Transformer_Kodama_Samurai()
+    if(piece.Est_Kodama_Samurai()){
+      print("je suis un ninja")
+    }else{
+      print("je ne suis pas un ninja")
+    }
+    var position2 = PositionClass(x:1,y:2)
+    piece.Deplacer_Piece(PosFin: position2)
+    position2 = PositionClass(x:1,y:3)
+    piece.Deplacer_Piece(PosFin: position2)
+    piece.Transformer_Kodama_Samurai()
+    position2 = PositionClass(x:1,y:2)
+    piece.Deplacer_Piece(PosFin: position2)
+
+
   }
 }
+
+
+
 
 /*
 func Saisir_Position_Finale()->Position {
