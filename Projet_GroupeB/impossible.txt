@@ -1,0 +1,1 @@
+impossible de parachuter une carte, on ne peut dans aucune facon savoir si la position souhaité est prise ou non, il aurait fallu verifier cela dans le main

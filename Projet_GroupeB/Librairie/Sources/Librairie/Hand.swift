@@ -46,7 +46,7 @@ public class HandClass : HandProtocol{
         tanuki.Set_Type(newType : typePiece)
         tanuki.Set_Orientation(newOrient : orientation)
 
-        position = Position(x: 1, y: 2)
+        position = Position(x: 1, y: 1)
         typePiece.Set_Nom(nom: "kodama")
         let kodama = Piece()
         kodama.set_Kodama()
@@ -117,9 +117,13 @@ public class HandClass : HandProtocol{
       var avoirPiece = false
       if let liste = self.liste{
         for element in liste{
-            if(element.Give_Position() === pos){
+          if let givePos = element.Give_Position(){
+
+            if(givePos.position.0 == pos.position.0 && givePos.position.1 == pos.position.1){
               avoirPiece = true
             }
+          }
+
         }
       }
       return avoirPiece
@@ -131,15 +135,23 @@ public class HandClass : HandProtocol{
     //Post: Retourne vrai si il possede une piece faux sinon
     public func Get_Piece(pos:Position) -> Piece?{
       var piece : Piece?
+      print("chercher")
       if(self.Avoir_Piece(pos: pos)){
         if let liste = self.liste{
           for element in liste{
-              if(element.Give_Position() === pos){
+            if let givePos = element.Give_Position(){
+              if(givePos.position.0 == pos.position.0 && givePos.position.1 == pos.position.1){
+                print("find")
                 piece = element
+              }else{
+
               }
+            }
+
           }
         }
       }else{
+        print("aucune piece")
         piece = nil
       }
       return piece
