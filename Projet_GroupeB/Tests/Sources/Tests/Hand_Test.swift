@@ -1,4 +1,5 @@
-
+import Foundation
+import Librairie
 func Initialiser_Debut_Test()->Int {
     var main = Hand()
     var type1 = TypePiece() //Crée un type inexistant
@@ -10,7 +11,7 @@ func Initialiser_Debut_Test()->Int {
     var type4 = TypePiece() //Crée un type inexistant
     type4.Set_Nom(nom:"kodama")
     var ret : Int = 0
-   
+
     main.Initialiser_Debut()
     if!((main.Est_Dans_Main(type:type1) && (main.Est_Dans_Main(type:type2)) && (main.Est_Dans_Main(type:type3)) && (main.Est_Dans_Main(type:type4))){
         print("Test si il y a toute les pieces: Echec")
@@ -32,17 +33,10 @@ func Est_Dans_Main_Test()->Int {
     type_piece.Set_Nom(nom:"kodama")
     piece.Set_Type(type:type_piece)
     main.Ajouter_Piece(piece:piece,pos:(1,1))
-    
+
     var ret : Int = 0
-    
-    do {
-        try main.Est_Dans_Main(type:type_piece_inexistant)
-        print("Test type piece inexistant a echoue")
-        ret+=1
-    }
-    catch {
-        print("OK si type inexistant")
-    }
+
+
     if !main.Est_Dans_Main(type:type_piece){
         print("Test type piece si le type existe : ECHEC")
         ret+=1
@@ -62,14 +56,7 @@ func Avoir_Piece_Test()->Int{
     main.Ajouter_Piece(piece:piece,pos:(1,1))
     position_inexistante.Change_Position(pos : (-1,-1))
     var ret : Int = 0
-    do {
-        try main.Avoir_Piece(pos:position_inexistante)
-        print("Test type piece inexistant a echoue")
-        ret+=1
-    }
-    catch {
-        print("OK si type inexistant")
-    }
+
     if !main.Avoir_Piece(pos:(1,1)){
         print("Test avoir piece si il y a une piece a cette position : ECHEC")
         ret+=1
@@ -88,16 +75,7 @@ func Get_Piece_Test()->Int{
     main.Ajouter_Piece(piece:piece,(1,1))
 
 
-    
-    do {
-        try pieceResult=main.Get_Piece(pos:(-1,-1)){
-        print("Test si le programme fonction lorsque la position ne fait pas partie du plateau: ECHEC")
-        ret+=1
-        }
-    }
-    catch {
-        print("OK si la position n'est pas sur le plateau")
-    }
+
     pieceResult=main.Get_Piece(pos:(1,1))
     if !(pieceResult == piece) {
           print("Test si le programme fonctionne lorsque la position est bonne: ECHEC")
@@ -109,15 +87,15 @@ func Get_Piece_Test()->Int{
     }
     return ret
 }
-    
+
 
 func Ajouter_Piece_Test()->Int{
     var main = Hand()
     var piece_sans_position = Piece()
     var piece_plateau = Piece()
-    
+
     piece_plateau.Change_Position(pos : (2,2))
-    
+
     var ret : Int = 0
     do {
         try {
@@ -157,7 +135,7 @@ func Ajouter_Piece_Test()->Int{
     else{
         print("OK si on ajoute une piece dans la main")
     }
-    
+
     return ret
 }
 
@@ -172,7 +150,7 @@ func Supprimer_Piece_Test()->Int{
     do {
         try main.Supprimer_Piece(piece:piece_plateau,pos:(1,1))
         print("Test si une piece qui n'est pas dans la main peut etre supprimer de la main a echoue")
-        ret+=1   
+        ret+=1
     }
     catch {
         print("OK si on essaye de supprimer une piece qui n'est pas dans la main")
@@ -210,7 +188,7 @@ func Deplacer_Piece_Test()->Int {
     catch {
         print("OK la piece n'est pas dans la main")
     }
-    
+
     main.Deplacer_Piece(piece:piece_dans_main,pos:(1,2))
     if !main.Avoir_Piece(1,2)){
         print("Test si deplacer une piece fonctionne : ECHEC")
@@ -221,7 +199,7 @@ func Deplacer_Piece_Test()->Int {
     }
     return ret
 }
-    
+
 
 
 
@@ -236,4 +214,3 @@ nb_erreur+=Ajouter_Piece_Test()
 nb_erreur+=Supprimer_Piece_Test()
 nb_erreur+=Get_Piece_Test()
 nb_erreur+=Deplacer_Piece_Test()
-

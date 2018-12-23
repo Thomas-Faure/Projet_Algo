@@ -1,3 +1,6 @@
+enum MyErrorJoueur: Error {
+    case runtimeError(String)
+}
 public class JoueurClass : JoueurProtocol {
 
 
@@ -6,12 +9,18 @@ public class JoueurClass : JoueurProtocol {
 
     public var reserve : Reserve?
     public var hand : Hand?
-    public var nom : String
+    public var nom : String = "joueur"
 
     // init:  String -> Joueur
     // création d'un joueur, un joueur est définie par un nom, une main, une reserve et une orientation. A l'initialisation sa reverve est vide et sa main est composé de 4 pieces.
     // a l'init son nom n'est pas vide, il s'appellera joueur en valeur par defaut
-    public required init(nom:String){
+
+    //ajout du groupe A , connaitre le joueur 1 ou le joueur 2
+    public required init(nom:String,joueur: Int){
+      self.reserve = nil
+      let hand = Hand()
+      hand.Initialiser_Debut(joueur: joueur)
+      self.hand=hand
       self.nom = nom
     }
 
@@ -41,8 +50,12 @@ public class JoueurClass : JoueurProtocol {
     //Pre: Le nom ne doit pas etre vide.
     //Post: On change le nom du joueur. Si le nom est vide on ne fait rien
     @discardableResult
-    public func Set_Name(nom:String)->Self{
-      self.nom = nom
+    public func Set_Name(nom:String)throws->Self{
+      if(nom.count > 0){
+        self.nom = nom
+      }else{
+        throw MyErrorJoueur.runtimeError("le nom est vide")
+      }
       return self
     }
 

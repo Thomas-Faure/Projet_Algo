@@ -1,3 +1,6 @@
+enum MyErrorPiece: Error {
+    case runtimeError(String)
+}
 public class PieceClass : PieceProtocol {
   public typealias TypePieceA = TypePieceClass
   public typealias PositionA = PositionClass
@@ -20,17 +23,31 @@ public class PieceClass : PieceProtocol {
   }
   @discardableResult
   public func Set_Type(newType : TypePieceA?)->Self{
-    self.typePiece = newType
+    if let nType = newType{
+      self.typePiece = nType
+    }else{
+      //indiquer une erreur ?
+    }
+
     return self
   }
   @discardableResult
   public func Set_Position(newPos : PositionA?)->Self{
-    self.position = newPos
+    if let nPos = newPos{
+      if(nPos.position.0 >= 0 && nPos.position.0 <= 3 && nPos.position.1 >= 0 && nPos.position.1 <= 3){
+        self.position = nPos
+      }
+    }else{
+    // indiquer une erreur ?
+    }
     return self
   }
   @discardableResult
   public func Set_Orientation(newOrient : OrientationA?)->Self{
-    self.orient = newOrient
+    if let orient = newOrient{
+      self.orient = orient
+    }
+
     return self
   }
   public func Give_Type()->TypePieceA?{
@@ -77,6 +94,8 @@ public class PieceClass : PieceProtocol {
     //on verifie qu'on soit bien sur le plateau
     if(PosFin.position.0 >= 0 && PosFin.position.0 <= 3 && PosFin.position.1 >= 0 && PosFin.position.1 <= 3){
         self.position=PosFin
+    }else{
+      //mettre l'erreur
     }
     return self
   }

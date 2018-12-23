@@ -2,9 +2,16 @@ import Foundation
 import Librairie
 
 
+
+var joueur = JoueurClass(nom:"test",joueur:1)
+var main = joueur.Give_Hand()
+if let mano = main{
+  for i in mano{
+    print(i)
+  }
+}
+
 /*
-
-
 func Saisir_Position_Finale()->Position {
     var pos = Position()
     var x : Int
@@ -207,7 +214,4 @@ while !fin_de_partie {
 let joueur_gagnant=plat.fin()
 let annonce = "Le joueur" + joueur_gagnant.GiveName() + "a gagné"
 print(annonce)
-exit()
-
-
-*/
+exit()*/
