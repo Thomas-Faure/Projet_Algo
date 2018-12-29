@@ -98,6 +98,7 @@ public class PieceClass : PieceProtocol {
   public func Est_Roi()->Bool {
     return self.roi
   }
+  @discardableResult
   public func Transformer_Kodama_Samurai()->Self{
     if(self.Est_Kodama()){
       if let orientPiece = self.Give_Orientation(){
@@ -125,6 +126,7 @@ public class PieceClass : PieceProtocol {
     }
     return self
   }
+  @discardableResult
   public func Transformer_Kodama()->Self{
     if(self.Est_Kodama() && self.Est_Kodama_Samurai()){
       self.kodama_samurai = false

@@ -60,23 +60,27 @@ public class PlateauClass : PlateauProtocol{
     //Pre: Position est dans le plateau (ne depasse pas la hauteur ou la largeur)
     //Post: Retourne Vrai si il n'y a pas de piece a cette position, faux si la case est occupee. Si jamais la position entree en parametre n'est pas sur le plateau on retourne une erreur.
     public func Est_Case_Vide(pos:Position)->Bool{
-      if let pieceJoueur1 = self.Give_Joueur1.Give_Hand(){
-        for piece in pieceJoueur1{
-          if (piece.Give_Position() === pos){
-            return false
+      if let pieceJoueur1 = self.Give_Joueur1(){
+        if let givej1 = pieceJoueur1.Give_Hand(){
+          for piece in givej1{
+            if (piece.Give_Position() === pos){
+              return false
+            }
           }
         }
       }
-      
 
-      if let pieceJoueur2 = self.Give_Joueur2.Give_Hand(){
-        for piece in pieceJoueur2{
-          if(piece.Give_Position === pos){
-            return false
+
+      if let pieceJoueur2 = self.Give_Joueur2(){
+        if let givej2 = pieceJoueur2.Give_Hand(){
+          for piece in givej2{
+            if(piece.Give_Position() === pos){
+              return false
+            }
           }
         }
       }
-      
+
 
       return true
 

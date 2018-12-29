@@ -164,7 +164,8 @@ public class HandClass : HandProtocol{
     //Pre: La piece n’a pas encore de position
     //Pre: La position doit etre sur le plateau
     //Post: La piece a été ajouté dans la main du joueur a la position donnee. Si jamais il y a deja une piece sur cette position ou si la piece a deja une position ou si elle n’est pas sur le plateau on ne fait rien
-    public func Ajouter_Piece(piece:Piece,pos:Position)throws->Self{
+    @discardableResult
+    public func Ajouter_Piece(piece:Piece,pos:Position)->Self{
       if(piece.Give_Position() == nil){
           if(!self.Avoir_Piece(pos:pos)){
             if(pos.position.0 >= 0 && pos.position.0 <= 3 && pos.position.1 >= 0 && pos.position.1 <= 3){
@@ -175,15 +176,15 @@ public class HandClass : HandProtocol{
                   self.liste = liste
                 }
             }else{
-              throw MyErrorHand.runtimeError("depasse le plateau")
+            //  throw MyErrorHand.runtimeError("depasse le plateau")
             }
 
           }else{
-            throw MyErrorHand.runtimeError("la piece a deja une position")
+          //  throw MyErrorHand.runtimeError("la piece a deja une position")
           }
 
       }else{
-          throw MyErrorHand.runtimeError("la piece a deja une position")
+      //    throw MyErrorHand.runtimeError("la piece a deja une position")
       }
       return self
     }
@@ -192,7 +193,8 @@ public class HandClass : HandProtocol{
     //Supprime une piece de la main
     //Pre: La piece doit faire partie de la main du joueur
     //Post: La piece a été supprimée de la main du joueur. Si jamais elle n’en fait pas partie on ne fait rien
-    public func Supprimer_Piece(piece:Piece)throws->Self{
+    @discardableResult
+    public func Supprimer_Piece(piece:Piece)->Self{
       var supprimer=false
       var count = 0
       if var liste = self.liste{
@@ -206,7 +208,7 @@ public class HandClass : HandProtocol{
               count = count + 1
           }
           if(supprimer==false){
-            throw MyErrorHand.runtimeError("la piece n'est pas dans la main")
+          //  throw MyErrorHand.runtimeError("la piece n'est pas dans la main")
           }
         }
       }
@@ -218,7 +220,7 @@ public class HandClass : HandProtocol{
     //rapport aux caracteristiques de la piece puis va deplacer la piece.
     //Pre : La piece doit faire partie de la main du joueur, la position doit être une position valable
     //Post : La piece a ete deplacee.
-    public func Deplacer_Piece(piece : Piece,position : Position)throws->Self{
+    public func Deplacer_Piece(piece : Piece,position : Position)->Self{
       //verification possession de la piece2
       var possede = false
       if let liste = self.liste{
@@ -231,7 +233,7 @@ public class HandClass : HandProtocol{
         if(possede){
           piece.Deplacer_Piece(PosFin: position)
         }else{
-          throw MyErrorHand.runtimeError("la piece n'est pas dans la main")
+          //throw MyErrorHand.runtimeError("la piece n'est pas dans la main")
         }
       }
 
