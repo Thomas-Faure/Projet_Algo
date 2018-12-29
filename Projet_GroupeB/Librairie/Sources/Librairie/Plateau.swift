@@ -9,7 +9,7 @@ public class PlateauClass : PlateauProtocol{
     var h : Int
     var joueur1 : Joueur?
     var joueur2 : Joueur?
-    var position : [Position]?
+    var position : [Position]
     //init: Int*Int->Plateau
     //Initialisation d'un plateau de longeur de longeur l et de hauteur h et de deux joueurs
     //Pre: l>0 & h>0
@@ -20,7 +20,12 @@ public class PlateauClass : PlateauProtocol{
       self.h = h
       self.joueur1 = nil
       self.joueur2 = nil
-      self.position = nil
+      self.position = []
+      for i in 0...h-1{
+        for j in 0...l-1{
+          position.append(Position(x : i,y : j))
+        }
+      }
     }
 
     //Give_Joueur1: Plateau -> Joueur
@@ -93,6 +98,30 @@ public class PlateauClass : PlateauProtocol{
     //Pre:Le deplacement est permi par le type de la piece
     //Post:Si le deplacement est permis on retourne vrai sinon on retourne faux
     public func Est_Deplacement_Possible(piece:Piece,pos:Position)->Bool{
+      if let piecePosition = self.Piece_Position(pos : pos){
+        return false
+      }
+
+      var positionDansPlateau : Bool = false
+      for p in self.position{
+        if (p === pos){
+          positionDansPlateau = true
+        }
+      }
+      if(!positionDansPlateau){
+        return false
+      }
+
+      if let orientation = piece.Give_Orientation(){
+        if let sens = orientation.recuperer_Orientation(){
+          if(sens == Orientation.N){
+            return true
+          } else {
+            return true
+          }
+        }
+      }
+
       return false
     }
 
@@ -123,7 +152,6 @@ public class PlateauClass : PlateauProtocol{
           }
         }
       }
-
 
       return nil
     }
