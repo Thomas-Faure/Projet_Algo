@@ -3,38 +3,8 @@ import Librairie
 
 
 
-var joueur = JoueurClass(nom:"test",joueur:1)
-
-if let hand = joueur.Give_Hand(){
-  var main = hand
-  var position = PositionClass(x:1,y:1)
-  if let mp = main.Get_Piece(pos :position){
-    var piece = mp
-    print(piece)
-    piece.Transformer_Kodama_Samurai()
-    if(piece.Est_Kodama_Samurai()){
-      print("je suis un ninja")
-    }else{
-      print("je ne suis pas un ninja")
-    }
-    var position2 = PositionClass(x:1,y:2)
-    piece.Deplacer_Piece(PosFin: position2)
-    position2 = PositionClass(x:1,y:3)
-    piece.Deplacer_Piece(PosFin: position2)
-    piece.Transformer_Kodama_Samurai()
-    position2 = PositionClass(x:1,y:2)
-    piece.Deplacer_Piece(PosFin: position2)
-
-
-  }
-}
-
-
-
-
-/*
-func Saisir_Position_Finale()->Position {
-    var pos = Position()
+func Saisir_Position_Finale()->PositionClass {
+    let pos = PositionClass()
     var x : Int
     var y : Int
     print("A quelle position souhaitez vous déplacer la piece ?")
@@ -42,7 +12,7 @@ func Saisir_Position_Finale()->Position {
         x = Int(readLine() ?? "") ?? -1 //Force la saisie d'un entier et met la valeur -1 si ce n'en est pas un
         y = Int(readLine() ?? "") ?? -1 //Force la saisie d'un entier et met la valeur -1 si ce n'en est pas un
     }while(x<0 || y<0)
-    pos.Change_Position(posfin:(x,y))
+    pos.Change_Position(posfin: PositionClass(x: x,y: y))
     return pos
 }
 
@@ -59,59 +29,71 @@ func Demander_Action()->String {
     }
     return ret
 }
+func Saisir_Piece_A_Deplacer(main : HandClass?)->PieceClass?{
+    if let mainn = main{
+      var piece : PieceClass?
+      let position = PositionClass()
+      var x : Int
+      var y : Int
+      print("Quelle pièce voulez vous déplacer ?")
+      repeat {
+          repeat {
+              x = Int(readLine() ?? "") ?? -1 //Force la saisie d'un entier et met la valeur -1 si ce n'en est pas un
+              y = Int(readLine() ?? "") ?? -1 //Force la saisie d'un entier et met la valeur -1 si ce n'en est pas un
+          }while(x<0 || y<0)
+          position.Change_Position(posfin: PositionClass(x: x,y: y))
+      }while(!mainn.Avoir_Piece(pos: position))
+      piece = mainn.Get_Piece(pos : position)
 
-
-func Saisir_Piece_A_Deplacer(main : Hand)->Piece{
-    var piece : Piece?
-    var position = Position()
-    var x : Int
-    var y : Int
-    print("Quelle pièce voulez vous déplacer ?")
-    repeat {
-        repeat {
-            x = Int(readLine() ?? "") ?? -1 //Force la saisie d'un entier et met la valeur -1 si ce n'en est pas un
-            y = Int(readLine() ?? "") ?? -1 //Force la saisie d'un entier et met la valeur -1 si ce n'en est pas un
-        }while(x<0 || y<0)
-        position.Change_Position(posfin:(x,y))
-    }while(!main.Avoir_Piece(pos: position))
-    piece = main.Get_Piece(pos : position)
     return piece
+    }
+    return nil
 }
 
-
-func Saisir_Piece_A_Parachuter(reserve : Reserve)->Piece{
-    var piece : Piece?
-    var type = TypePiece
-    var nom : String
+func Saisir_Piece_A_Parachuter(reserve : ReserveClass)->PieceClass?{
+    var piece : PieceClass?
+    let type = TypePieceClass()
+    var nom = ""
     print("Quelle pièce voulez vous parachuter ?")
+    var pieceComparaison = PieceClass()
     repeat {
-        nom = ReadLine
-        type.Set_Nom(nom:nom)
-    }while(!reserve.Est_Dans_Reserve(piece: nom))
+      if let str = readLine(){
+        nom=str
+      }
+      type.Set_Nom(nom:nom)
+      if let tmppiece = reserve.Get_Piece(nom : type){
+        pieceComparaison=tmppiece
+      }
+    }while(!reserve.Est_Dans_Reserve(piece: pieceComparaison))
     piece = reserve.Get_Piece(nom : type)
     return piece
 }
 
+func Changer_Noms_Joueurs(plat: inout PlateauClass){
 
-func Changer_Noms_Joueurs(plat:Plateau){
-    var joueur : Joueur
-    var l : String?
-    print("Quel est le nom du premier joueur ?")
-    l = readLine()
-    guard let l1 : String = l else {
-        joueur.Set_Name(nom:"Joueur 1")
-        plat.Set_Joueur_1(joueur:joueur)
-    }
-    joueur.Set_Name(nom:l1)
-    plat.Set_Joueur_1(joueur:joueur)
-    print("Quel est le nom du deuxième joueur ?")
-    l = readLine()
-    guard let l2 : String = l else {
-        joueur.Set_Name(nom:"Joueur 2")
-        plat.Set_Joueur_1(joueur:joueur)
-    }
-    joueur.CSet_Name(nom:l2)
-    plat.Set_Joueur_2(joueur:joueur)
+      var joueur = JoueurClass(nom:"",joueur:1)
+      var l : String?
+      print("Quel est le nom du premier joueur ?")
+      l = readLine()
+      guard let l1 = l else {
+          joueur.Set_Name(nom:"Joueur 1")
+          plat.Set_Joueur1(joueur:joueur)
+          return
+      }
+      joueur.Set_Name(nom:l1)
+      plat.Set_Joueur1(joueur:joueur)
+      joueur = JoueurClass(nom:"",joueur:2)
+      print("Quel est le nom du deuxième joueur ?")
+      l = readLine()
+      guard let l2 = l else {
+          joueur.Set_Name(nom:"Joueur 2")
+          plat.Set_Joueur2(joueur:joueur)
+          return
+      }
+      joueur.Set_Name(nom:l2)
+      plat.Set_Joueur2(joueur:joueur)
+
+
 
 }
 
@@ -122,31 +104,44 @@ func Changer_Noms_Joueurs(plat:Plateau){
 
 
 
-var plat = Plateau(l:3,h:4)        //Initialisation du plateau de largeur 3 et de hauteur 4
+var plattemp = PlateauClass(l:3,h:4)
+if var plat = plattemp{
+     //Initialisation du plateau de largeur 3 et de hauteur 4
 //Initialisation des joueurs :  A l'initialisation, les
 
 var action : String
-var piece : Piece
-var piece_a_capturer : Piece
+var piece = PieceClass()
+var piece_a_capturer : PieceClass
 var tour : Int = 1
-var positionFinale : Position
+var positionFinale = PositionClass()
 var tour_effectue : Bool
 var fin_de_partie : Bool = false
-var joueur = Joueur()
+var joueur = JoueurClass()
+var adversaire = JoueurClass()
+
 
 //Gestion de la déclaration du nom des joueurs. Si le nom reste vide on attribuera Joueur 1 et Joueur 2
-Changer_Noms_Joueurs(plat:plat)
+Changer_Noms_Joueurs(plat : &plat)
 
 while !fin_de_partie {
     tour_effectue=false
     //Changement du joueur et donc de l'adversaire à chaque tour
     if tour%2==1{
-        var joueur:Joueur = plat.Give_Joueur1()
-        var adversaire:Joueur = plat.Give_Joueur2()
+        if let j1 = plat.Give_Joueur1(){
+          joueur = j1
+        }
+        if let j2 = plat.Give_Joueur2(){
+          adversaire = j2
+        }
+
     }
     else {
-        var joueur:Joueur = plat.Give_Joueur1()
-        var adversaire:Joueur = plat.Give_Joueur2()
+      if let j1 = plat.Give_Joueur1(){
+        adversaire = j1
+      }
+      if let j2 = plat.Give_Joueur2(){
+        joueur = j2
+      }
     }
     //Vérification que la partie n'est pas finie, donc les deux joueurs possèdent un roi et qu'il n'est pas sur la dernière ligne.
     if(plat.Fin() != nil){
@@ -155,44 +150,55 @@ while !fin_de_partie {
     }
     //On crée le while pour vérifier que le tour est effectué (créé dans des cas où le joueur veut avoir accès à sa réserve mais qu'elle est vide), on redemandera alors le choix du début
     while(!tour_effectue){
-        action=demander_action()
+        action=Demander_Action()
 
         //Si le joueur veut se déplacer
         if action == "Deplacer" {
             repeat{
-                piece = Saisir_Piece_A_Deplacer(main : joueur.Give_Hand())
-                positionFinale = Saisir_Position_Finale()
+                if let giveHand = joueur.Give_Hand(){
+                  if let saisirPieceDeplacer = Saisir_Piece_A_Deplacer(main : giveHand){
+                    piece = saisirPieceDeplacer
+                  }
+                  positionFinale = Saisir_Position_Finale()
+                }
             } while(!plat.Est_Deplacement_Possible(piece:piece,pos:positionFinale))
             //Un deplacement n'est pas possible si la piece sort du plateau, si une piece nous appartenant est à cette place ou si ce deplacement n'est pas autorisé par les caractéristiques de la piece
 
-            if (adversaire.Give_Hand.Avoir_Piece(pos:positionFinale)){
-                //capturer une piece
-                piece_a_capturer = adversaire.Get_Piece(pos:positionFinale)
+            if let giveHand = adversaire.Give_Hand(){
+              if (giveHand.Avoir_Piece(pos:positionFinale)){
+                  if let PiecePositionFin = giveHand.Get_Piece(pos:positionFinale){
+                    //capturer une piece
+                    piece_a_capturer = PiecePositionFin
 
-                //Suppression dans le jeu adverse
-                var tmp2: Hand = adversaire.Give_Hand()
-                tmp2.Supprimer_Piece(piece : piece_a_capturer)
-                adversaire.Set_Reserve(reserve : tmp2)
+                    //Suppression dans le jeu adverse
+                    let tmp2 = giveHand
 
+                    tmp2.Supprimer_Piece(piece: piece_a_capturer)
+                    adversaire.Set_Hand(newHand: tmp2)
 
-                if Est_Kodama_Samourai(piece:piece_a_capturer){
+                    if piece_a_capturer.Est_Kodama_Samurai(){
 
-                    piece_a_capturer.Transformer_Kodama()
-                }
+                        piece_a_capturer.Transformer_Kodama()
+                    }
 
-                //Ajout dans notre Reserve
+                    //Ajout dans notre Reserve
 
-                var tmp : Reserve = joueur.Give_Reserve()
-                tmp.Ajouter_Piece(piece : piece_a_capturer)
-                joueur.Set_Reserve(reserve : tmp)
+                    var tmp = joueur.Give_Reserve()
+                    if let tmpp = tmp{
+                      tmpp.Ajouter_Piece(piece : piece_a_capturer)
+                      joueur.Set_Reserve(newReserve : tmpp)
+                      tmp=tmpp
+                    }
+                  }
+              }
             }
 
 
 
-            piece.Deplacer_Piece(posFin:positionFinale)
+            piece.Deplacer_Piece(PosFin:positionFinale)
             if piece.Est_Kodama(){
-                if (piece.Est_Au_Fond()){
-                    piece.Transformer_Kodama_Samourai()
+                if (piece.Piece_Au_Fond()){
+                    piece.Transformer_Kodama_Samurai()
                 }
             }
             tour_effectue=true
@@ -200,24 +206,36 @@ while !fin_de_partie {
         }
 
         else if action=="Parachuter"{
-            if (!joueur.GiveReserve.est_vide()){
-                repeat{
-                    piece = Saisir_Piece_A_Parachuter(reserve : joueur.Give_Reserve)
-                    positionFinale = Saisir_Position_Finale()
-                } while(!plat.Est_Case_Vide(pos:positionFinale))
-                //Un parachutage est possible uniquement si la case est vide
-                //Ajout a notre main
-                var tmp3 : Hand = joueur.Give_Hand()
-                tmp.Ajouter_Piece(piece : piece_a_capturer)
-                joueur.Set_Hand(newHand : tmp3)
+            if let joueurReserve = joueur.Give_Reserve(){
+              if (!joueurReserve.Est_Vide()){
+                  repeat{
+                      if let giveReserve = joueur.Give_Reserve(){
+                        if let saisirPiece = Saisir_Piece_A_Parachuter(reserve : giveReserve){
+                          piece = saisirPiece
+                        }
+                        positionFinale = Saisir_Position_Finale()
+                      }
+                  } while(!plat.Est_Case_Vide(pos:positionFinale))
+                  //Un parachutage est possible uniquement si la case est vide
+                  //Ajout a notre main
+                  var tmp3 = joueur.Give_Hand()
+                  if let tmpp = tmp3{
+                    tmpp.Ajouter_Piece(piece : piece , pos : positionFinale)
+                    joueur.Set_Hand(newHand : tmpp)
+                    tmp3=tmpp
+                  }
 
-                //On enleve de la reserve
-                var tmp4 : Reserve = joueur.Give_Reserve()
-                tmp.Supprimer_Piece(piece : piece_a_capturer)
-                joueur.Set_Reserve(reserve : tmp4)
+                  //On enleve de la reserve
+                  var tmp4 = joueur.Give_Reserve()
+                  if let tmpp = tmp4{
+                    tmpp.Supprimer_Piece(piece : piece)
+                    joueur.Set_Reserve(newReserve : tmpp)
+                    tmp4=tmpp
+                  }
 
-                tour_effectue = true
-            }
+                  tour_effectue = true
+              }
+          }
         }
     }
 
@@ -232,7 +250,11 @@ while !fin_de_partie {
     }
     tour = tour + 1
 }
-let joueur_gagnant=plat.fin()
-let annonce = "Le joueur" + joueur_gagnant.GiveName() + "a gagné"
+var joueur_gagnant = JoueurClass()
+if let fin = plat.Fin(){
+  joueur_gagnant=fin
+}
+
+let annonce = "Le joueur" + joueur_gagnant.Give_Name() + "a gagné"
 print(annonce)
-exit()*/
+}
