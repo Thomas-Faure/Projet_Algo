@@ -60,9 +60,9 @@ public class PlateauClass : PlateauProtocol{
     //Pre: Position est dans le plateau (ne depasse pas la hauteur ou la largeur)
     //Post: Retourne Vrai si il n'y a pas de piece a cette position, faux si la case est occupee. Si jamais la position entree en parametre n'est pas sur le plateau on retourne une erreur.
     public func Est_Case_Vide(pos:Position)->Bool{
-      if let pieceJoueur1 = self.Give_Joueur1(){
-        if let givej1 = pieceJoueur1.Give_Hand(){
-          for piece in givej1{
+      if let joueurUn = self.Give_Joueur1(){
+        if let pieceJoueur1 = joueurUn.Give_Hand(){
+          for piece in pieceJoueur1{
             if (piece.Give_Position() === pos){
               return false
             }
@@ -71,9 +71,9 @@ public class PlateauClass : PlateauProtocol{
       }
 
 
-      if let pieceJoueur2 = self.Give_Joueur2(){
-        if let givej2 = pieceJoueur2.Give_Hand(){
-          for piece in givej2{
+      if let joueurDeux = self.Give_Joueur2(){
+        if let pieceJoueur2 = joueurDeux.Give_Hand(){
+          for piece in pieceJoueur2{
             if(piece.Give_Position() === pos){
               return false
             }
@@ -102,6 +102,29 @@ public class PlateauClass : PlateauProtocol{
     //Pre:La position est dans le plateau
     //Post: Retourne la piece. Si jamais la position n'est pas sur la plateau ou si il n'y a pas de piece a cette position on retourne Vide.
     public func Piece_Position(pos:Position)->Piece?{
+
+      if let joueurUn = self.Give_Joueur1(){
+        if let pieceJoueur1 = joueurUn.Give_Hand(){
+          for piece in pieceJoueur1{
+            if (piece.Give_Position() === pos){
+              return piece
+            }
+          }
+        }
+      }
+
+
+      if let joueurDeux = self.Give_Joueur2(){
+        if let pieceJoueur2 = joueurDeux.Give_Hand(){
+          for piece in pieceJoueur2{
+            if(piece.Give_Position() === pos){
+              return piece
+            }
+          }
+        }
+      }
+
+
       return nil
     }
 
