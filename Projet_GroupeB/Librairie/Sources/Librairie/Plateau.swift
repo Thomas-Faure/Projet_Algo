@@ -205,7 +205,7 @@ public class PlateauClass : PlateauProtocol{
                   } else {
                     return false
                   }
-                  
+
                 } else if typePiece.Give_Nom() == "kodama samouraï" {
                   if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 ||   // En haut
                      pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // En bas à droite
@@ -262,8 +262,48 @@ public class PlateauClass : PlateauProtocol{
     //Regarde si la partie est finie.
     //Post: Il faut que l'un des deux joueurs n'ai plus son roi ou que le roi d'un des deux joueurs soit sur la derniere case pour retourner un joueur gagnant. Sinon on retourne Vide
     public func Fin()->Joueur?{
-      return nil
+      var joueur1Gagnant : Bool = true
+      var joueur2Gagnant : Bool = true
+
+      if let joueurUn = self.Give_Joueur1(){
+        if let mainJoueur1 = joueurUn.Give_Hand(){
+
+          for piece in mainJoueur1{
+            if let typePiece = piece.Give_Type(){
+              if(typePiece.Give_Nom() == "koropokkuru"){
+                joueur2Gagnant = false
+              }
+            }
+          }
+        }
+      }
+
+      if let joueurDeux = self.Give_Joueur2(){
+        if let mainJoueur2 = joueurDeux.Give_Hand(){
+
+          for piece in mainJoueur2{
+            if let typePiece = piece.Give_Type(){
+              if(typePiece.Give_Nom() == "koropokkuru"){
+                joueur2Gagnant = false
+              }
+            }
+          }
+        }
+      }
+
+      // TODO : si un des deux Roi est dans le camp ennemis sans pouvoir être capturé
+
+      if(joueur1Gagnant){
+        return self.Give_Joueur1()
+
+      } else if(joueur2Gagnant){
+        return self.Give_Joueur2
+
+      } else {
+        return nil
+      }
     }
+
     public func makeIterator()->ItPosition{
       return ItPosition(self)
     }
