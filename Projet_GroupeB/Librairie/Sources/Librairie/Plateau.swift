@@ -112,12 +112,114 @@ public class PlateauClass : PlateauProtocol{
         return false
       }
 
-      if let orientation = piece.Give_Orientation(){
-        if let sens = orientation.recuperer_Orientation(){
-          if(sens == Orientation.N){
-            return true
-          } else {
-            return true
+      if let positionActuel = piece.Give_Position(){
+        if let orientation = piece.Give_Orientation(){
+          if let sens = orientation.recuperer_Orientation(){
+            if(sens == Orientation.N){
+              if let typePiece = piece.Give_Type(){
+
+                if typePiece.Give_Nom() == "koropokkuru" {
+                  if(pos.getX() == positionActuel.getX()+1 || 
+                     pos.getY() == positionActuel.getY()+1 || 
+                     pos.getX() == positionActuel.getX()-1 || 
+                     pos.getY() == positionActuel.getY()-1){
+                    return true
+                  } else {
+                    return false
+                  }
+
+                } else if typePiece.Give_Nom() == "kitsune" {
+                  if(pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // En bas à droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()-1 || // En haut à gauche
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()-1 || // En haut à droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()+1){  // En bas à gauche
+                    return true
+                  } else {
+                    return false
+                  }
+
+                } else if typePiece.Give_Nom() == "tanuki" {
+                  if(pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY() || // À droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY() || // À gauche
+                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 || // En haut
+                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1){  // En bas
+                    return true
+                  } else {
+                    return false
+                  }
+
+                } else if typePiece.Give_Nom() == "kodama" {
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1){
+                    return true
+                  } else {
+                    return false
+                  }
+
+                } else if typePiece.Give_Nom() == "kodama samouraï" {
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 ||   // En haut
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()-1 || // En haut à droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()-1 || // En haut à gauche
+                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1 ||   // En bas
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY() ||   // À droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()){    // À gauche
+                    return true
+                  } else {
+                    return false
+                  }
+                }
+              }
+              
+            } else {
+              if let typePiece = piece.Give_Type(){
+
+                if typePiece.Give_Nom() == "koropokkuru" {
+                  if(pos.getX() == positionActuel.getX()+1 || pos.getY() == positionActuel.getY()+1 || pos.getX() == positionActuel.getX()-1 || pos.getY() == positionActuel.getY()-1){
+                    return true
+                  } else {
+                    return false
+                  }
+
+                } else if typePiece.Give_Nom() == "kitsune" {
+                  if(pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // En bas à droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()-1 || // En haut à gauche
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()-1 || // En haut à droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()+1){  // En bas à gauche
+                    return true
+                  } else {
+                    return false
+                  }
+
+                } else if typePiece.Give_Nom() == "tanuki" {
+                  if(pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY() || // À droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY() || // À gauche
+                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 || // En haut
+                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1){  // En bas
+                    return true
+                  } else {
+                    return false
+                  }
+
+                } else if typePiece.Give_Nom() == "kodama" {
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1){
+                    return true
+                  } else {
+                    return false
+                  }
+                  
+                } else if typePiece.Give_Nom() == "kodama samouraï" {
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 ||   // En haut
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // En bas à droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()+1 || // En bas à gauche
+                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1 ||   // En bas
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY() ||   // À droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()){    // À gauche
+                    return true
+                  } else {
+                    return false
+                  }
+                }
+              }
+            }
           }
         }
       }
