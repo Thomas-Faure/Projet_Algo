@@ -271,7 +271,7 @@ public class PlateauClass : PlateauProtocol{
           for piece in mainJoueur1{
             if let typePiece = piece.Give_Type(){
               if(typePiece.Give_Nom() == "koropokkuru"){
-                joueur2Gagnant = false
+                joueur1Gagnant = false
               }
             }
           }
@@ -297,7 +297,7 @@ public class PlateauClass : PlateauProtocol{
         return self.Give_Joueur1()
 
       } else if(joueur2Gagnant){
-        return self.Give_Joueur2
+        return self.Give_Joueur2()
 
       } else {
         return nil
