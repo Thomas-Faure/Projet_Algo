@@ -22,71 +22,80 @@ public class HandClass : HandProtocol{
     @discardableResult
     public func Initialiser_Debut(joueur : Int)->Self{
       if(joueur == 1){
-        var position = Position(x: 1, y: 0)
-        let typePiece = TypePiece()
+        let typePieceKoro = TypePiece()
+        typePieceKoro.Set_Nom(nom: "koropokkuru")
         let orientation = OrientationClass()
         orientation.Change_Orientation(orientfin : Orientation.N)
-        typePiece.Set_Nom(nom: "koropokkuru")
         let koropokkuru = Piece()
-        koropokkuru.Set_Position(newPos : position)
-        koropokkuru.Set_Type(newType : typePiece)
+        koropokkuru.Set_Position(newPos : Position(x: 1, y: 0))
+        koropokkuru.Set_Type(newType : typePieceKoro)
         koropokkuru.Set_Orientation(newOrient : orientation)
 
-        position = Position(x: 0, y: 0)
-        typePiece.Set_Nom(nom: "kitsune")
+
+        let typePieceKit = TypePiece()
+        typePieceKit.Set_Nom(nom: "kitsune")
         let kitsune = Piece()
-        kitsune.Set_Position(newPos : position)
-        kitsune.Set_Type(newType : typePiece)
+        kitsune.Set_Position(newPos : Position(x: 0, y: 0))
+        kitsune.Set_Type(newType : typePieceKit)
         kitsune.Set_Orientation(newOrient : orientation)
 
-        position = Position(x: 2, y: 0)
-        typePiece.Set_Nom(nom: "tanuki")
+
+        let typePieceTanu = TypePiece()
+
+        typePieceTanu.Set_Nom(nom: "tanuki")
         let tanuki = Piece()
-        tanuki.Set_Position(newPos : position)
-        tanuki.Set_Type(newType : typePiece)
+        tanuki.Set_Position(newPos : Position(x: 2, y: 0))
+        tanuki.Set_Type(newType : typePieceTanu)
         tanuki.Set_Orientation(newOrient : orientation)
 
-        position = Position(x: 1, y: 1)
-        typePiece.Set_Nom(nom: "kodama")
+
+        let typePieceKoda = TypePiece()
+        typePieceKoda.Set_Nom(nom: "kodama")
         let kodama = Piece()
         kodama.set_Kodama()
-        kodama.Set_Position(newPos : position)
-        kodama.Set_Type(newType : typePiece)
+        kodama.Set_Position(newPos : Position(x: 1, y: 1))
+        kodama.Set_Type(newType : typePieceKoda)
         kodama.Set_Orientation(newOrient : orientation)
         self.liste = [koropokkuru,kitsune,tanuki,kodama]
       }else{
-        var position = Position(x: 1, y: 3)
-        let typePiece = TypePiece()
+        let typePieceKoro = TypePiece()
+        typePieceKoro.Set_Nom(nom: "koropokkuru")
         let orientation = OrientationClass()
         orientation.Change_Orientation(orientfin : Orientation.S)
-        typePiece.Set_Nom(nom: "koropokkuru")
         let koropokkuru = Piece()
-        koropokkuru.Set_Position(newPos : position)
-        koropokkuru.Set_Type(newType : typePiece)
+        koropokkuru.Set_Position(newPos : Position(x: 1, y: 3))
+        koropokkuru.Set_Type(newType : typePieceKoro)
         koropokkuru.Set_Orientation(newOrient : orientation)
 
-        position = Position(x: 2, y: 3)
-        typePiece.Set_Nom(nom: "kitsune")
+
+        let typePieceKit = TypePiece()
+        typePieceKit.Set_Nom(nom: "kitsune")
         let kitsune = Piece()
-        kitsune.Set_Position(newPos : position)
-        kitsune.Set_Type(newType : typePiece)
+        kitsune.Set_Position(newPos : Position(x: 2, y: 3))
+        kitsune.Set_Type(newType : typePieceKit)
         kitsune.Set_Orientation(newOrient : orientation)
 
-        position = Position(x: 0, y: 3)
-        typePiece.Set_Nom(nom: "tanuki")
+
+        let typePieceTanu = TypePiece()
+
+        typePieceTanu.Set_Nom(nom: "tanuki")
         let tanuki = Piece()
-        tanuki.Set_Position(newPos : position)
-        tanuki.Set_Type(newType : typePiece)
+        tanuki.Set_Position(newPos : Position(x: 0, y: 3))
+        tanuki.Set_Type(newType : typePieceTanu)
         tanuki.Set_Orientation(newOrient : orientation)
 
-        position = Position(x: 1, y: 2)
-        typePiece.Set_Nom(nom: "kodama")
+
+        let typePieceKoda = TypePiece()
+        typePieceKoda.Set_Nom(nom: "kodama")
         let kodama = Piece()
         kodama.set_Kodama()
-        kodama.Set_Position(newPos : position)
-        kodama.Set_Type(newType : typePiece)
+        kodama.Set_Position(newPos : Position(x: 1, y: 2))
+        kodama.Set_Type(newType : typePieceKoda)
         kodama.Set_Orientation(newOrient : orientation)
         self.liste = [koropokkuru,kitsune,tanuki,kodama]
+
+
+
 
       }
 
@@ -135,13 +144,16 @@ public class HandClass : HandProtocol{
     //Post: Retourne vrai si il possede une piece faux sinon
     public func Get_Piece(pos:Position) -> Piece?{
       var piece : Piece?
-      print("chercher")
       if(self.Avoir_Piece(pos: pos)){
         if let liste = self.liste{
           for element in liste{
+            print("------")
+            print(element.Give_Type()!.Give_Nom())
+            print("------")
             if let givePos = element.Give_Position(){
               if(givePos.position.0 == pos.position.0 && givePos.position.1 == pos.position.1){
-                print("find")
+                var tettt = element.Give_Type()!;
+                print("c'est un : " + tettt.Give_Nom())
                 piece = element
               }else{
 
@@ -166,8 +178,11 @@ public class HandClass : HandProtocol{
     //Post: La piece a été ajouté dans la main du joueur a la position donnee. Si jamais il y a deja une piece sur cette position ou si la piece a deja une position ou si elle n’est pas sur le plateau on ne fait rien
     @discardableResult
     public func Ajouter_Piece(piece:Piece,pos:Position)->Self{
+      print("position")
       if(piece.Give_Position() == nil){
+        print("la piece est vide")
           if(!self.Avoir_Piece(pos:pos)){
+            print("position libre")
             if(pos.position.0 >= 0 && pos.position.0 <= 3 && pos.position.1 >= 0 && pos.position.1 <= 3){
                 let nouvellePiece = piece
                 piece.Set_Position(newPos : pos)
@@ -180,6 +195,7 @@ public class HandClass : HandProtocol{
             }
 
           }else{
+            print("position prise")
           //  throw MyErrorHand.runtimeError("la piece a deja une position")
           }
 

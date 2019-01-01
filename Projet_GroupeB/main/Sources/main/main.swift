@@ -129,6 +129,7 @@ while !fin_de_partie {
     if tour%2==1{
         if let j1 = plat.Give_Joueur1(){
           joueur = j1
+          print("tour J1")
         }
         if let j2 = plat.Give_Joueur2(){
           adversaire = j2
@@ -141,10 +142,12 @@ while !fin_de_partie {
       }
       if let j2 = plat.Give_Joueur2(){
         joueur = j2
+        print("tour j2")
       }
     }
     //Vérification que la partie n'est pas finie, donc les deux joueurs possèdent un roi et qu'il n'est pas sur la dernière ligne.
     if(plat.Fin() != nil){
+        print("fin de partie !!!")
         tour_effectue=true
         fin_de_partie=true
     }
@@ -154,6 +157,15 @@ while !fin_de_partie {
 
         //Si le joueur veut se déplacer
         if action == "Deplacer" {
+          if let liste = joueur.Give_Hand()!.liste{
+            for element in liste{
+
+                print(element.Give_Type()!.Give_Nom())
+                print(element.Give_Position()!.getX())
+                print(element.Give_Position()!.getY())
+                print("-------------------------------")
+            }
+          }
             repeat{
                 if let giveHand = joueur.Give_Hand(){
                   if let saisirPieceDeplacer = Saisir_Piece_A_Deplacer(main : giveHand){
@@ -167,6 +179,7 @@ while !fin_de_partie {
             if let giveHand = adversaire.Give_Hand(){
               if (giveHand.Avoir_Piece(pos:positionFinale)){
                   if let PiecePositionFin = giveHand.Get_Piece(pos:positionFinale){
+                    print("capture")
                     //capturer une piece
                     piece_a_capturer = PiecePositionFin
 
@@ -184,7 +197,9 @@ while !fin_de_partie {
                     //Ajout dans notre Reserve
 
                     var tmp = joueur.Give_Reserve()
+
                     if let tmpp = tmp{
+
                       tmpp.Ajouter_Piece(piece : piece_a_capturer)
                       joueur.Set_Reserve(newReserve : tmpp)
                       tmp=tmpp
@@ -206,6 +221,7 @@ while !fin_de_partie {
         }
         else if action=="Parachuter"{
             if let joueurReserve = joueur.Give_Reserve(){
+              print("on va parachuter")
               if (!joueurReserve.Est_Vide()){
                   repeat{
                       if let giveReserve = joueur.Give_Reserve(){
@@ -239,14 +255,7 @@ while !fin_de_partie {
     }
 
 
-    if tour%2==1{
-        plat.Set_Joueur1(joueur:joueur)
-        plat.Set_Joueur2(joueur:adversaire)
-    }
-    else {
-        plat.Set_Joueur2(joueur:joueur)
-        plat.Set_Joueur2(joueur:adversaire)
-    }
+  
     tour = tour + 1
 }
 var joueur_gagnant = JoueurClass()

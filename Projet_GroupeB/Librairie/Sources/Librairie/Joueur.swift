@@ -19,7 +19,7 @@ public class JoueurClass : JoueurProtocol {
     public required init(){}
     //ajout du groupe A , connaitre le joueur 1 ou le joueur 2
     public required init(nom:String,joueur: Int){
-      self.reserve = nil
+      self.reserve = Reserve()
       let hand = Hand()
       hand.Initialiser_Debut(joueur: joueur)
       self.hand=hand

@@ -38,7 +38,7 @@ public class PieceClass : PieceProtocol {
         self.position = nPos
       }
     }else{
-    // indiquer une erreur ?
+      self.position = nil
     }
     return self
   }

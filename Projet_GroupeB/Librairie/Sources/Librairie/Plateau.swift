@@ -23,7 +23,7 @@ public class PlateauClass : PlateauProtocol{
       self.position = []
       for i in 0...h-1{
         for j in 0...l-1{
-          position.append(Position(x : i,y : j))
+          position.append(Position(x : j,y : i))
         }
       }
     }
@@ -68,8 +68,10 @@ public class PlateauClass : PlateauProtocol{
       if let joueurUn = self.Give_Joueur1(){
         if let pieceJoueur1 = joueurUn.Give_Hand(){
           for piece in pieceJoueur1{
-            if (piece.Give_Position() === pos){
-              return false
+            if let givepos = piece.Give_Position(){
+              if (givepos.getX() == pos.getX() && givepos.getY() == pos.getY()){
+                return false
+              }
             }
           }
         }
@@ -104,7 +106,7 @@ public class PlateauClass : PlateauProtocol{
 
       var positionDansPlateau : Bool = false
       for p in self.position{
-        if (p === pos){
+        if (p.getX() == pos.getX() && p.getY() == pos.getY()){
           positionDansPlateau = true
         }
       }
@@ -117,11 +119,11 @@ public class PlateauClass : PlateauProtocol{
           if let sens = orientation.recuperer_Orientation(){
             if(sens == Orientation.N){
               if let typePiece = piece.Give_Type(){
-
+                print(typePiece.Give_Nom())
                 if typePiece.Give_Nom() == "koropokkuru" {
-                  if(pos.getX() == positionActuel.getX()+1 || 
-                     pos.getY() == positionActuel.getY()+1 || 
-                     pos.getX() == positionActuel.getX()-1 || 
+                  if(pos.getX() == positionActuel.getX()+1 ||
+                     pos.getY() == positionActuel.getY()+1 ||
+                     pos.getX() == positionActuel.getX()-1 ||
                      pos.getY() == positionActuel.getY()-1){
                     return true
                   } else {
@@ -139,6 +141,7 @@ public class PlateauClass : PlateauProtocol{
                   }
 
                 } else if typePiece.Give_Nom() == "tanuki" {
+
                   if(pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY() || // À droite
                      pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY() || // À gauche
                      pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 || // En haut
@@ -149,7 +152,7 @@ public class PlateauClass : PlateauProtocol{
                   }
 
                 } else if typePiece.Give_Nom() == "kodama" {
-                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1){
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1){
                     return true
                   } else {
                     return false
@@ -168,7 +171,7 @@ public class PlateauClass : PlateauProtocol{
                   }
                 }
               }
-              
+
             } else {
               if let typePiece = piece.Give_Type(){
 
@@ -200,7 +203,7 @@ public class PlateauClass : PlateauProtocol{
                   }
 
                 } else if typePiece.Give_Nom() == "kodama" {
-                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1){
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1){
                     return true
                   } else {
                     return false
@@ -271,6 +274,7 @@ public class PlateauClass : PlateauProtocol{
           for piece in mainJoueur1{
             if let typePiece = piece.Give_Type(){
               if(typePiece.Give_Nom() == "koropokkuru"){
+          
                 joueur1Gagnant = false
               }
             }
@@ -284,6 +288,7 @@ public class PlateauClass : PlateauProtocol{
           for piece in mainJoueur2{
             if let typePiece = piece.Give_Type(){
               if(typePiece.Give_Nom() == "koropokkuru"){
+
                 joueur2Gagnant = false
               }
             }

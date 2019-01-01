@@ -53,7 +53,7 @@ public class ReserveClass : ReserveProtocol{
     if let a = self.listePiece{
       for i in 0...(a.count-1){
         if let typ = a[i].Give_Type(){
-          if(typ === nom && !trouver){
+          if(typ.Give_Nom() == nom.Give_Nom() && !trouver){
             piece = a[i]
             trouver=true
           }
@@ -66,18 +66,22 @@ public class ReserveClass : ReserveProtocol{
 
   @discardableResult
   public func Ajouter_Piece(piece :Piece)->Self{ //fait
-
     if(piece.Give_Position() != nil){
       var nouvellePiece = piece
       nouvellePiece = nouvellePiece.Set_Position(newPos: nil)
+      print(nouvellePiece.Give_Position())
       if var a = self.listePiece{
         a.append(nouvellePiece)
+
         self.listePiece=a
       }else{
         self.listePiece=[nouvellePiece]
       }
     }else{
 
+    }
+    for element in listePiece! {
+        print(element)
     }
     return self
   }
@@ -89,9 +93,7 @@ public class ReserveClass : ReserveProtocol{
         if(piece.Give_Position() != nil){
           for ele in liste{
               if ele === piece{
-
                 liste.remove(at: count)
-
                 self.listePiece=liste
               }
               count = count + 1
@@ -106,7 +108,6 @@ public class ReserveClass : ReserveProtocol{
     return ItPiece(self)
 
   }
-
 }
 
 public struct ItPiece : IteratorProtocol{
