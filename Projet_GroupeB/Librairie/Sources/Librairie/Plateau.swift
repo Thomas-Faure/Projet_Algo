@@ -152,7 +152,7 @@ public class PlateauClass : PlateauProtocol{
                   }
 
                 } else if typePiece.Give_Nom() == "kodama" {
-                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1){
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1){
                     return true
                   } else {
                     return false
@@ -203,7 +203,7 @@ public class PlateauClass : PlateauProtocol{
                   }
 
                 } else if typePiece.Give_Nom() == "kodama" {
-                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1){
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1){
                     return true
                   } else {
                     return false
