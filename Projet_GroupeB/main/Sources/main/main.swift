@@ -129,7 +129,7 @@ while !fin_de_partie {
     if tour%2==1{
         if let j1 = plat.Give_Joueur1(){
           joueur = j1
-          print("tour J1")
+          print("c'est le tour du joueur 1")
         }
         if let j2 = plat.Give_Joueur2(){
           adversaire = j2
@@ -142,7 +142,7 @@ while !fin_de_partie {
       }
       if let j2 = plat.Give_Joueur2(){
         joueur = j2
-        print("tour j2")
+        print("c'est le tour du joueur 2")
       }
     }
     //Vérification que la partie n'est pas finie, donc les deux joueurs possèdent un roi et qu'il n'est pas sur la dernière ligne.
@@ -179,7 +179,7 @@ while !fin_de_partie {
             if let giveHand = adversaire.Give_Hand(){
               if (giveHand.Avoir_Piece(pos:positionFinale)){
                   if let PiecePositionFin = giveHand.Get_Piece(pos:positionFinale){
-                    print("capture")
+
                     //capturer une piece
                     piece_a_capturer = PiecePositionFin
 
@@ -221,7 +221,6 @@ while !fin_de_partie {
         }
         else if action=="Parachuter"{
             if let joueurReserve = joueur.Give_Reserve(){
-              print("on va parachuter")
               if (!joueurReserve.Est_Vide()){
                   repeat{
                       if let giveReserve = joueur.Give_Reserve(){
@@ -255,7 +254,7 @@ while !fin_de_partie {
     }
 
 
-  
+
     tour = tour + 1
 }
 var joueur_gagnant = JoueurClass()
@@ -263,6 +262,6 @@ if let fin = plat.Fin(){
   joueur_gagnant=fin
 }
 
-let annonce = "Le joueur" + joueur_gagnant.Give_Name() + "a gagné"
+let annonce = "Le joueur " + joueur_gagnant.Give_Name() + " a gagné"
 print(annonce)
 }

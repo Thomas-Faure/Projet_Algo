@@ -119,7 +119,7 @@ public class PlateauClass : PlateauProtocol{
           if let sens = orientation.recuperer_Orientation(){
             if(sens == Orientation.N){
               if let typePiece = piece.Give_Type(){
-                print(typePiece.Give_Nom())
+
                 if typePiece.Give_Nom() == "koropokkuru" {
                   if(pos.getX() == positionActuel.getX()+1 ||
                      pos.getY() == positionActuel.getY()+1 ||
@@ -274,8 +274,8 @@ public class PlateauClass : PlateauProtocol{
           for piece in mainJoueur1{
             if let typePiece = piece.Give_Type(){
               if(typePiece.Give_Nom() == "koropokkuru"){
-          
-                joueur1Gagnant = false
+
+                joueur2Gagnant = false
               }
             }
           }
@@ -289,7 +289,7 @@ public class PlateauClass : PlateauProtocol{
             if let typePiece = piece.Give_Type(){
               if(typePiece.Give_Nom() == "koropokkuru"){
 
-                joueur2Gagnant = false
+                joueur1Gagnant = false
               }
             }
           }

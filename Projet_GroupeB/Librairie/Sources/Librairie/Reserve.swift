@@ -69,7 +69,6 @@ public class ReserveClass : ReserveProtocol{
     if(piece.Give_Position() != nil){
       var nouvellePiece = piece
       nouvellePiece = nouvellePiece.Set_Position(newPos: nil)
-      print(nouvellePiece.Give_Position())
       if var a = self.listePiece{
         a.append(nouvellePiece)
 
@@ -79,9 +78,6 @@ public class ReserveClass : ReserveProtocol{
       }
     }else{
 
-    }
-    for element in listePiece! {
-        print(element)
     }
     return self
   }

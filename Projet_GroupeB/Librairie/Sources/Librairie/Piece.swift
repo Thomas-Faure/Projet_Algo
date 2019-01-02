@@ -107,7 +107,7 @@ public class PieceClass : PieceProtocol {
 
             if let pos = self.Give_Position(){
               if(pos.position.1 == 3){
-                print("transformation")
+                print("transformation en Kodama Samurai")
                 self.kodama_samurai = true
               }
             }

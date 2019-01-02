@@ -147,13 +147,9 @@ public class HandClass : HandProtocol{
       if(self.Avoir_Piece(pos: pos)){
         if let liste = self.liste{
           for element in liste{
-            print("------")
-            print(element.Give_Type()!.Give_Nom())
-            print("------")
             if let givePos = element.Give_Position(){
               if(givePos.position.0 == pos.position.0 && givePos.position.1 == pos.position.1){
                 var tettt = element.Give_Type()!;
-                print("c'est un : " + tettt.Give_Nom())
                 piece = element
               }else{
 
