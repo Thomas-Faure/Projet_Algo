@@ -265,8 +265,10 @@ public class PlateauClass : PlateauProtocol{
     //Regarde si la partie est finie.
     //Post: Il faut que l'un des deux joueurs n'ai plus son roi ou que le roi d'un des deux joueurs soit sur la derniere case pour retourner un joueur gagnant. Sinon on retourne Vide
     public func Fin()->Joueur?{
-      var joueur1Gagnant : Bool = true
-      var joueur2Gagnant : Bool = true
+      var joueur1PossedeRoi : Bool = false
+      var joueur2PossedeRoi : Bool = false
+      var roi1Gagnant : Bool = true
+      var roi2Gagnant : Bool = true
 
       if let joueurUn = self.Give_Joueur1(){
         if let mainJoueur1 = joueurUn.Give_Hand(){
@@ -275,7 +277,25 @@ public class PlateauClass : PlateauProtocol{
             if let typePiece = piece.Give_Type(){
               if(typePiece.Give_Nom() == "koropokkuru"){
 
-                joueur2Gagnant = false
+                joueur1PossedeRoi = true
+
+                if let position = piece.Give_Position(){
+                  if (position.getY() == h-1) { // Si le roi est dans le camp adverse en supposant que le joueur1 démarre en haut du plateau
+                    if let joueurDeux = self.Give_Joueur2(){
+                      if let mainJoueur2 = joueurDeux.Give_Hand(){
+                        for pieceJoueur2 in mainJoueur2 { // On regarde si une piece adverse peut capturer le roi
+                          if (Est_Deplacement_Possible(piece : pieceJoueur2, pos : position)){
+                            roi1Gagnant = false
+                          }
+                        }
+                      }
+                    }
+
+                  } else { // Si le roi n'est pas dans le camp adverse
+                    roi1Gagnant = false
+                  }
+
+                }
               }
             }
           }
@@ -289,19 +309,36 @@ public class PlateauClass : PlateauProtocol{
             if let typePiece = piece.Give_Type(){
               if(typePiece.Give_Nom() == "koropokkuru"){
 
-                joueur1Gagnant = false
+                joueur2PossedeRoi = true
+
+                if let position = piece.Give_Position(){
+                  if (position.getY() == 0) { // Si le roi est dans le camp adverse en supposant que le joueur2 démarre en bas du plateau
+                    if let joueurUn = self.Give_Joueur2(){
+                      if let mainJoueur1 = joueurUn.Give_Hand(){
+                        for pieceJoueur1 in mainJoueur1 { // On regarde si une piece adverse peut capturer le roi
+                          if (Est_Deplacement_Possible(piece : pieceJoueur1, pos : position)){
+                            roi2Gagnant = false
+                          }
+                        }
+                      }
+                    }
+
+                  } else { // Si le roi n'est pas dans le camp adverse
+                    roi2Gagnant = false
+                  }
+
+                }
               }
             }
           }
         }
       }
 
-      // TODO : si un des deux Roi est dans le camp ennemis sans pouvoir être capturé
 
-      if(joueur1Gagnant){
+      if(roi1Gagnant || !joueur2PossedeRoi){
         return self.Give_Joueur1()
 
-      } else if(joueur2Gagnant){
+      } else if(roi2Gagnant || !joueur1PossedeRoi){
         return self.Give_Joueur2()
 
       } else {
