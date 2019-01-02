@@ -23,7 +23,7 @@ public class PlateauClass : PlateauProtocol{
       self.position = []
       for i in 0...h-1{
         for j in 0...l-1{
-          position.append(Position(x : j,y : i))
+          position.append(Position(x : i,y : j))
         }
       }
     }
