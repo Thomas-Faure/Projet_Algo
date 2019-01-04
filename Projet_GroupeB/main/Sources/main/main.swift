@@ -209,6 +209,7 @@ while !fin_de_partie {
                 }
             }
             tour_effectue=true
+
         }
         else if action=="Parachuter"{
             if let joueurReserve = joueur.Give_Reserve(){

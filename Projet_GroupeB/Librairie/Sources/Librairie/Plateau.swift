@@ -151,14 +151,14 @@ public class PlateauClass : PlateauProtocol{
                     return false
                   }
 
-                } else if typePiece.Give_Nom() == "kodama" {
+                } else if typePiece.Give_Nom() == "kodama" && (piece.Est_Kodama_Samurai() == false) {
                   if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1){
                     return true
                   } else {
                     return false
                   }
 
-                } else if typePiece.Give_Nom() == "kodama samouraï" {
+                } else if typePiece.Give_Nom() == "kodama" && (piece.Est_Kodama_Samurai() == true) {
                   if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1 ||   // En haut
                      pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // En haut à droite
                      pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()+1 || // En haut à gauche
@@ -202,14 +202,14 @@ public class PlateauClass : PlateauProtocol{
                     return false
                   }
 
-                } else if typePiece.Give_Nom() == "kodama" {
+                } else if typePiece.Give_Nom() == "kodama"  && (piece.Est_Kodama_Samurai() == false) {
                   if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1){
                     return true
                   } else {
                     return false
                   }
 
-                } else if typePiece.Give_Nom() == "kodama samouraï" {
+                } else if typePiece.Give_Nom() == "kodama"  && (piece.Est_Kodama_Samurai() == true) {
                   if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 ||   // En haut
                      pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()-1 || // En bas à droite
                      pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()-1 || // En bas à gauche
@@ -226,10 +226,8 @@ public class PlateauClass : PlateauProtocol{
           }
         }
       }
-
       return false
     }
-
     //Piece_Position: Plateau*Position->(Piece|Vide)
     //Ressort un piece a partir d'une position du plateau
     //Pre:Il y a une piece sur cette position

@@ -156,15 +156,49 @@ public class PieceClass : PieceProtocol {
             }else if type.Give_Nom() == "kodama"{
               //si il est samurai il peut bouger de partout sauf dans la diagonale bas gauche et droite
               if self.Est_Kodama_Samurai(){
-                if !(PosFin.position.0 == (pos.position.0-1) && PosFin.position.1 == (pos.position.1-1)) || !(PosFin.position.0 == (pos.position.0+1) && PosFin.position.1 == (pos.position.1-1)){
+                if let orientemp = self.orient{
+                  if(orientemp.recuperer_Orientation() == Orientation.N){
+                    print("samurai N go !")
+                    if !(PosFin.position.0 == (pos.position.0-1) && PosFin.position.1 == (pos.position.1))//gauche
+                    || !(PosFin.position.0 == (pos.position.0+1) && PosFin.position.1 == (pos.position.1))//droite
+                    || !(PosFin.position.0 == (pos.position.0) && PosFin.position.1 == (pos.position.1+1))//haut
+                    || !(PosFin.position.0 == (pos.position.0) && PosFin.position.1 == (pos.position.1-1))//bas
+                    || !(PosFin.position.0 == (pos.position.0-1) && PosFin.position.1 == (pos.position.1+1))//haut gauche
+                    || !(PosFin.position.0 == (pos.position.0+1) && PosFin.position.1 == (pos.position.1+1)){//haut droit
 
-                  self.position=PosFin
+                      self.position=PosFin
+                    }
+
+                  }else{
+                    print("samurai S go !")
+                    if !(PosFin.position.0 == (pos.position.0-1) && PosFin.position.1 == (pos.position.1))//gauche
+                    || !(PosFin.position.0 == (pos.position.0+1) && PosFin.position.1 == (pos.position.1))//droite
+                    || !(PosFin.position.0 == (pos.position.0) && PosFin.position.1 == (pos.position.1+1))//haut
+                    || !(PosFin.position.0 == (pos.position.0) && PosFin.position.1 == (pos.position.1-1))//bas
+                    || !(PosFin.position.0 == (pos.position.0-1) && PosFin.position.1 == (pos.position.1-1))//bas gauche
+                    || !(PosFin.position.0 == (pos.position.0+1) && PosFin.position.1 == (pos.position.1-1)){//bas droit
+
+                      self.position=PosFin
+                    }
+
+                  }
                 }
+
               //si il est juste kodama (sans samurai) il peut bouger uniquement par le haut
               }else{
-                if PosFin.position.0 == pos.position.0 && (PosFin.position.1-1) == pos.position.1{
-                  self.position=PosFin
+                if let orientemp = self.orient{
+                  if(orientemp.recuperer_Orientation() == Orientation.N){
+                    if PosFin.position.0 == pos.position.0 && (PosFin.position.1-1) == pos.position.1{
+                      self.position=PosFin
+                    }
+                  }else{
+                    if PosFin.position.0 == pos.position.0 && (PosFin.position.1+1) == pos.position.1{
+                      self.position=PosFin
+                    }
+                  }
                 }
+
+
               }
 
             }else if type.Give_Nom() == "koropokkuru"{
