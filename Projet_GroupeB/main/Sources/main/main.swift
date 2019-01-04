@@ -100,14 +100,9 @@ func Changer_Noms_Joueurs(plat: inout PlateauClass){
 
 
 
-
-
-
-
 var plattemp = PlateauClass(l:3,h:4)
 if var plat = plattemp{
-     //Initialisation du plateau de largeur 3 et de hauteur 4
-//Initialisation des joueurs :  A l'initialisation, les
+
 
 var action : String
 var piece = PieceClass()
@@ -207,9 +202,6 @@ while !fin_de_partie {
                   }
               }
             }
-
-
-
             piece.Deplacer_Piece(PosFin:positionFinale)
             if piece.Est_Kodama(){
                 if (piece.Piece_Au_Fond()){
@@ -217,7 +209,6 @@ while !fin_de_partie {
                 }
             }
             tour_effectue=true
-
         }
         else if action=="Parachuter"{
             if let joueurReserve = joueur.Give_Reserve(){

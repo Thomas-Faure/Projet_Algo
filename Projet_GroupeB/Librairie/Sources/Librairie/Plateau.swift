@@ -152,17 +152,17 @@ public class PlateauClass : PlateauProtocol{
                   }
 
                 } else if typePiece.Give_Nom() == "kodama" {
-                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1){
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1){
                     return true
                   } else {
                     return false
                   }
 
                 } else if typePiece.Give_Nom() == "kodama samouraï" {
-                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 ||   // En haut
-                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()-1 || // En haut à droite
-                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()-1 || // En haut à gauche
-                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1 ||   // En bas
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1 ||   // En haut
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // En haut à droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()+1 || // En haut à gauche
+                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 ||   // En bas
                      pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY() ||   // À droite
                      pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()){    // À gauche
                     return true
@@ -203,7 +203,7 @@ public class PlateauClass : PlateauProtocol{
                   }
 
                 } else if typePiece.Give_Nom() == "kodama" {
-                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1){
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1){
                     return true
                   } else {
                     return false
@@ -211,8 +211,8 @@ public class PlateauClass : PlateauProtocol{
 
                 } else if typePiece.Give_Nom() == "kodama samouraï" {
                   if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 ||   // En haut
-                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // En bas à droite
-                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()+1 || // En bas à gauche
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()-1 || // En bas à droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()-1 || // En bas à gauche
                      pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1 ||   // En bas
                      pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY() ||   // À droite
                      pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()){    // À gauche
@@ -285,14 +285,14 @@ public class PlateauClass : PlateauProtocol{
                       if let mainJoueur2 = joueurDeux.Give_Hand(){
                         for pieceJoueur2 in mainJoueur2 { // On regarde si une piece adverse peut capturer le roi
                           if (Est_Deplacement_Possible(piece : pieceJoueur2, pos : position)){
-                            roi1Gagnant = false
+                            roi2Gagnant = false
                           }
                         }
                       }
                     }
 
                   } else { // Si le roi n'est pas dans le camp adverse
-                    roi1Gagnant = false
+                    roi2Gagnant = false
                   }
 
                 }
@@ -317,14 +317,14 @@ public class PlateauClass : PlateauProtocol{
                       if let mainJoueur1 = joueurUn.Give_Hand(){
                         for pieceJoueur1 in mainJoueur1 { // On regarde si une piece adverse peut capturer le roi
                           if (Est_Deplacement_Possible(piece : pieceJoueur1, pos : position)){
-                            roi2Gagnant = false
+                            roi1Gagnant = false
                           }
                         }
                       }
                     }
 
                   } else { // Si le roi n'est pas dans le camp adverse
-                    roi2Gagnant = false
+                    roi1Gagnant = false
                   }
 
                 }
@@ -333,8 +333,6 @@ public class PlateauClass : PlateauProtocol{
           }
         }
       }
-
-
       if(roi1Gagnant || !joueur2PossedeRoi){
         return self.Give_Joueur1()
 
