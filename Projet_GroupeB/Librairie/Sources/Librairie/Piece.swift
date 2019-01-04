@@ -136,20 +136,20 @@ public class PieceClass : PieceProtocol {
   @discardableResult
   public func Deplacer_Piece(PosFin:PositionA)->Self{
     //on verifie que la position souhaité soit bien sur le plateau
-    if(PosFin.position.0 >= 0 && PosFin.position.0 <= 3 && PosFin.position.1 >= 0 && PosFin.position.1 <= 3){
+    if(PosFin.getX() >= 0 && PosFin.getX() <= 3 && PosFin.getY() >= 0 && PosFin.getY() <= 3){
       //on doit verifier que la piece peut se déplacer présisement à cet endroit en fonction de son type
         if let pos = self.Give_Position(){
 
           if let type = self.Give_Type(){
             if type.Give_Nom() == "tanuki"{
 
-              if PosFin.position.0 == pos.position.0 && (PosFin.position.1-1) == pos.position.1{//haut
+              if PosFin.getX() == pos.getX() && (PosFin.getY()-1) == pos.getY(){//haut
                 self.position=PosFin
-              }else if PosFin.position.0 == pos.position.0 && (PosFin.position.1+1) == pos.position.1{//bas
+              }else if PosFin.getX() == pos.getX() && (PosFin.getY()+1) == pos.getY(){//bas
                 self.position=PosFin
-              }else if (PosFin.position.0-1) == pos.position.0 && PosFin.position.1 == pos.position.1{//gauche
+              }else if (PosFin.getX()-1) == pos.getX() && PosFin.getY() == pos.getY(){//gauche
                 self.position=PosFin
-              }else if (PosFin.position.0+1) == pos.position.0 && PosFin.position.1 == pos.position.1{//droite
+              }else if (PosFin.getX()+1) == pos.getX() && PosFin.getY() == pos.getY(){//droite
                 self.position=PosFin
               }
 
@@ -159,24 +159,24 @@ public class PieceClass : PieceProtocol {
                 if let orientemp = self.orient{
                   if(orientemp.recuperer_Orientation() == Orientation.N){
                     print("samurai N go !")
-                    if !(PosFin.position.0 == (pos.position.0-1) && PosFin.position.1 == (pos.position.1))//gauche
-                    || !(PosFin.position.0 == (pos.position.0+1) && PosFin.position.1 == (pos.position.1))//droite
-                    || !(PosFin.position.0 == (pos.position.0) && PosFin.position.1 == (pos.position.1+1))//haut
-                    || !(PosFin.position.0 == (pos.position.0) && PosFin.position.1 == (pos.position.1-1))//bas
-                    || !(PosFin.position.0 == (pos.position.0-1) && PosFin.position.1 == (pos.position.1+1))//haut gauche
-                    || !(PosFin.position.0 == (pos.position.0+1) && PosFin.position.1 == (pos.position.1+1)){//haut droit
+                    if !(PosFin.getX() == (pos.getX()-1) && PosFin.getY() == (pos.getY()))//gauche
+                    || !(PosFin.getX() == (pos.getX()+1) && PosFin.getY() == (pos.getY()))//droite
+                    || !(PosFin.getX() == (pos.getX()) && PosFin.getY() == (pos.getY()+1))//haut
+                    || !(PosFin.getX() == (pos.getX()) && PosFin.getY() == (pos.getY()-1))//bas
+                    || !(PosFin.getX() == (pos.getX()-1) && PosFin.getY() == (pos.getY()+1))//haut gauche
+                    || !(PosFin.getX() == (pos.getX()+1) && PosFin.getY() == (pos.getY()+1)){//haut droit
 
                       self.position=PosFin
                     }
 
                   }else{
                     print("samurai S go !")
-                    if !(PosFin.position.0 == (pos.position.0-1) && PosFin.position.1 == (pos.position.1))//gauche
-                    || !(PosFin.position.0 == (pos.position.0+1) && PosFin.position.1 == (pos.position.1))//droite
-                    || !(PosFin.position.0 == (pos.position.0) && PosFin.position.1 == (pos.position.1+1))//haut
-                    || !(PosFin.position.0 == (pos.position.0) && PosFin.position.1 == (pos.position.1-1))//bas
-                    || !(PosFin.position.0 == (pos.position.0-1) && PosFin.position.1 == (pos.position.1-1))//bas gauche
-                    || !(PosFin.position.0 == (pos.position.0+1) && PosFin.position.1 == (pos.position.1-1)){//bas droit
+                    if !(PosFin.getX() == (pos.getX()-1) && PosFin.getY() == (pos.getY()))//gauche
+                    || !(PosFin.getX() == (pos.getX()+1) && PosFin.getY() == (pos.getY()))//droite
+                    || !(PosFin.getX() == (pos.getX()) && PosFin.getY() == (pos.getY()+1))//haut
+                    || !(PosFin.getX() == (pos.getX()) && PosFin.getY() == (pos.getY()-1))//bas
+                    || !(PosFin.getX() == (pos.getX()-1) && PosFin.getY() == (pos.getY()-1))//bas gauche
+                    || !(PosFin.getX() == (pos.getX()+1) && PosFin.getY() == (pos.getY()-1)){//bas droit
 
                       self.position=PosFin
                     }
@@ -188,11 +188,11 @@ public class PieceClass : PieceProtocol {
               }else{
                 if let orientemp = self.orient{
                   if(orientemp.recuperer_Orientation() == Orientation.N){
-                    if PosFin.position.0 == pos.position.0 && (PosFin.position.1-1) == pos.position.1{
+                    if PosFin.getX() == pos.getX() && (PosFin.getY()-1) == pos.getY(){
                       self.position=PosFin
                     }
                   }else{
-                    if PosFin.position.0 == pos.position.0 && (PosFin.position.1+1) == pos.position.1{
+                    if PosFin.getX() == pos.getX() && (PosFin.getY()+1) == pos.getY(){
                       self.position=PosFin
                     }
                   }
@@ -202,33 +202,33 @@ public class PieceClass : PieceProtocol {
               }
 
             }else if type.Give_Nom() == "koropokkuru"{
-              if PosFin.position.0 == pos.position.0 && (PosFin.position.1-1) == pos.position.1{//haut
+              if PosFin.getX() == pos.getX() && (PosFin.getY()-1) == pos.getY(){//haut
                 self.position=PosFin
-              }else if PosFin.position.0 == pos.position.0 && (PosFin.position.1+1) == pos.position.1{//bas
+              }else if PosFin.getX() == pos.getX() && (PosFin.getY()+1) == pos.getY(){//bas
                 self.position=PosFin
-              }else if (PosFin.position.0-1) == pos.position.0 && PosFin.position.1 == pos.position.1{//gauche
+              }else if (PosFin.getX()-1) == pos.getX() && PosFin.getY() == pos.getY(){//gauche
                 self.position=PosFin
-              }else if (PosFin.position.0+1) == pos.position.0 && PosFin.position.1 == pos.position.1{//droite
+              }else if (PosFin.getX()+1) == pos.getX() && PosFin.getY() == pos.getY(){//droite
                 self.position=PosFin
               }
-              else if (PosFin.position.0+1) == pos.position.0 && (PosFin.position.1-1) == pos.position.1{//haut gauche
+              else if (PosFin.getX()+1) == pos.getX() && (PosFin.getY()-1) == pos.getY(){//haut gauche
                 self.position=PosFin
-              }else if (PosFin.position.0+1) == pos.position.0 && (PosFin.position.1+1) == pos.position.1{//bas gauche
+              }else if (PosFin.getX()+1) == pos.getX() && (PosFin.getY()+1) == pos.getY(){//bas gauche
                 self.position=PosFin
-              }else if (PosFin.position.0-1) == pos.position.0 && (PosFin.position.1-1) == pos.position.1{//haut droit
+              }else if (PosFin.getX()-1) == pos.getX() && (PosFin.getY()-1) == pos.getY(){//haut droit
                 self.position=PosFin
-              }else if (PosFin.position.0-1) == pos.position.0 && (PosFin.position.1+1) == pos.position.1{//bas droit
+              }else if (PosFin.getX()-1) == pos.getX() && (PosFin.getY()+1) == pos.getY(){//bas droit
                 self.position=PosFin
               }
 
             }else if type.Give_Nom() == "kitsune"{
-              if (PosFin.position.0+1) == pos.position.0 && (PosFin.position.1-1) == pos.position.1{//haut gauche
+              if (PosFin.getX()+1) == pos.getX() && (PosFin.getY()-1) == pos.getY(){//haut gauche
                 self.position=PosFin
-              }else if (PosFin.position.0+1) == pos.position.0 && (PosFin.position.1+1) == pos.position.1{//bas gauche
+              }else if (PosFin.getX()+1) == pos.getX() && (PosFin.getY()+1) == pos.getY(){//bas gauche
                 self.position=PosFin
-              }else if (PosFin.position.0-1) == pos.position.0 && (PosFin.position.1-1) == pos.position.1{//haut droit
+              }else if (PosFin.getX()-1) == pos.getX() && (PosFin.getY()-1) == pos.getY(){//haut droit
                 self.position=PosFin
-              }else if (PosFin.position.0-1) == pos.position.0 && (PosFin.position.1+1) == pos.position.1{//bas droit
+              }else if (PosFin.getX()-1) == pos.getX() && (PosFin.getY()+1) == pos.getY(){//bas droit
                 self.position=PosFin
               }
 
