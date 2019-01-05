@@ -278,7 +278,7 @@ public class PlateauClass : PlateauProtocol{
                 joueur1PossedeRoi = true
 
                 if let position = piece.Give_Position(){
-                  if (position.getY() == h-1) { // Si le roi est dans le camp adverse en supposant que le joueur1 démarre en haut du plateau
+                  if (position.getY() == 0) { // Si le roi est dans le camp adverse en supposant que le joueur1 démarre en bas plateau
                     if let joueurDeux = self.Give_Joueur2(){
                       if let mainJoueur2 = joueurDeux.Give_Hand(){
                         for pieceJoueur2 in mainJoueur2 { // On regarde si une piece adverse peut capturer le roi
@@ -310,7 +310,7 @@ public class PlateauClass : PlateauProtocol{
                 joueur2PossedeRoi = true
 
                 if let position = piece.Give_Position(){
-                  if (position.getY() == 0) { // Si le roi est dans le camp adverse en supposant que le joueur2 démarre en bas du plateau
+                  if (position.getY() == h-1) { // Si le roi est dans le camp adverse en supposant que le joueur2 démarre en haut du plateau
                     if let joueurUn = self.Give_Joueur2(){
                       if let mainJoueur1 = joueurUn.Give_Hand(){
                         for pieceJoueur1 in mainJoueur1 { // On regarde si une piece adverse peut capturer le roi
