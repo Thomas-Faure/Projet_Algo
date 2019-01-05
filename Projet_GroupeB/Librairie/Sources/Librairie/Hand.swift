@@ -245,7 +245,6 @@ public class HandClass : HandProtocol{
         if(possede){
           piece.Deplacer_Piece(PosFin: position)
         }else{
-          //throw MyErrorHand.runtimeError("la piece n'est pas dans la main")
         }
       }
 

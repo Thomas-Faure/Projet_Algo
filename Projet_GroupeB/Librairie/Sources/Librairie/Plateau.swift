@@ -81,8 +81,10 @@ public class PlateauClass : PlateauProtocol{
       if let joueurDeux = self.Give_Joueur2(){
         if let pieceJoueur2 = joueurDeux.Give_Hand(){
           for piece in pieceJoueur2{
-            if(piece.Give_Position() === pos){
-              return false
+            if let givepos = piece.Give_Position(){
+              if(givepos.getX() == pos.getX() && givepos.getY() == pos.getY()){
+                return false
+              }
             }
           }
         }
@@ -112,6 +114,40 @@ public class PlateauClass : PlateauProtocol{
       }
       if(!positionDansPlateau){
         return false
+      }
+      //verifier si la piece ne vas pas sur la position d'une piece d'un même joueur
+      var PiecePos = piece.Give_Position()
+      if let ppos = PiecePos{
+        if let givej1 = self.Give_Joueur1(){
+          if let giveHand=givej1.Give_Hand(){
+            if(giveHand.Avoir_Piece(pos: ppos)){
+              if let joueurUn = self.Give_Joueur1(){
+                if let pieceJoueur1 = joueurUn.Give_Hand(){
+                  for piece in pieceJoueur1{
+                    if let givepos = piece.Give_Position(){
+                      if (givepos.getX() == pos.getX() && givepos.getY() == pos.getY()){
+                        return false
+                      }
+                    }
+                  }
+                }
+              }
+            }else{
+
+              if let joueurDeux = self.Give_Joueur2(){
+                if let pieceJoueur2 = joueurDeux.Give_Hand(){
+                  for piece in pieceJoueur2{
+                    if let givepos = piece.Give_Position(){
+                      if(givepos.getX() == pos.getX() && givepos.getY() == pos.getY()){
+                        return false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
 
       if let positionActuel = piece.Give_Position(){
@@ -278,21 +314,20 @@ public class PlateauClass : PlateauProtocol{
                 joueur1PossedeRoi = true
 
                 if let position = piece.Give_Position(){
-                  if (position.getY() == 0) { // Si le roi est dans le camp adverse en supposant que le joueur1 démarre en bas plateau
+                  if (position.getY() == h-1) { // Si le roi est dans le camp adverse en supposant que le joueur1 démarre en haut du plateau
                     if let joueurDeux = self.Give_Joueur2(){
                       if let mainJoueur2 = joueurDeux.Give_Hand(){
                         for pieceJoueur2 in mainJoueur2 { // On regarde si une piece adverse peut capturer le roi
                           if (Est_Deplacement_Possible(piece : pieceJoueur2, pos : position)){
-                            roi2Gagnant = false
+                            roi1Gagnant = false
                           }
                         }
                       }
                     }
 
                   } else { // Si le roi n'est pas dans le camp adverse
-                    roi2Gagnant = false
+                    roi1Gagnant = false
                   }
-
                 }
               }
             }
@@ -310,19 +345,18 @@ public class PlateauClass : PlateauProtocol{
                 joueur2PossedeRoi = true
 
                 if let position = piece.Give_Position(){
-                  if (position.getY() == h-1) { // Si le roi est dans le camp adverse en supposant que le joueur2 démarre en haut du plateau
+                  if (position.getY() == 0) { // Si le roi est dans le camp adverse en supposant que le joueur2 démarre en bas du plateau
                     if let joueurUn = self.Give_Joueur2(){
                       if let mainJoueur1 = joueurUn.Give_Hand(){
                         for pieceJoueur1 in mainJoueur1 { // On regarde si une piece adverse peut capturer le roi
                           if (Est_Deplacement_Possible(piece : pieceJoueur1, pos : position)){
-                            roi1Gagnant = false
+                            roi2Gagnant = false
                           }
                         }
                       }
                     }
-
                   } else { // Si le roi n'est pas dans le camp adverse
-                    roi1Gagnant = false
+                    roi2Gagnant = false
                   }
 
                 }

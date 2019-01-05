@@ -142,7 +142,6 @@ public class PieceClass : PieceProtocol {
 
           if let type = self.Give_Type(){
             if type.Give_Nom() == "tanuki"{
-
               if PosFin.getX() == pos.getX() && (PosFin.getY()-1) == pos.getY(){//haut
                 self.position=PosFin
               }else if PosFin.getX() == pos.getX() && (PosFin.getY()+1) == pos.getY(){//bas
@@ -158,7 +157,6 @@ public class PieceClass : PieceProtocol {
               if self.Est_Kodama_Samurai(){
                 if let orientemp = self.orient{
                   if(orientemp.recuperer_Orientation() == Orientation.N){
-                    print("samurai N go !")
                     if !(PosFin.getX() == (pos.getX()-1) && PosFin.getY() == (pos.getY()))//gauche
                     || !(PosFin.getX() == (pos.getX()+1) && PosFin.getY() == (pos.getY()))//droite
                     || !(PosFin.getX() == (pos.getX()) && PosFin.getY() == (pos.getY()+1))//haut
@@ -170,7 +168,6 @@ public class PieceClass : PieceProtocol {
                     }
 
                   }else{
-                    print("samurai S go !")
                     if !(PosFin.getX() == (pos.getX()-1) && PosFin.getY() == (pos.getY()))//gauche
                     || !(PosFin.getX() == (pos.getX()+1) && PosFin.getY() == (pos.getY()))//droite
                     || !(PosFin.getX() == (pos.getX()) && PosFin.getY() == (pos.getY()+1))//haut
