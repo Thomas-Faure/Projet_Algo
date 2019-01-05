@@ -139,7 +139,6 @@ public class PieceClass : PieceProtocol {
     if(PosFin.getX() >= 0 && PosFin.getX() <= 3 && PosFin.getY() >= 0 && PosFin.getY() <= 3){
       //on doit verifier que la piece peut se déplacer présisement à cet endroit en fonction de son type
         if let pos = self.Give_Position(){
-
           if let type = self.Give_Type(){
             if type.Give_Nom() == "tanuki"{
               if PosFin.getX() == pos.getX() && (PosFin.getY()-1) == pos.getY(){//haut

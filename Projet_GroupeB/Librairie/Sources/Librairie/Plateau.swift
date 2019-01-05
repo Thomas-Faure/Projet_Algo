@@ -116,7 +116,7 @@ public class PlateauClass : PlateauProtocol{
         return false
       }
       //verifier si la piece ne vas pas sur la position d'une piece d'un même joueur
-      var PiecePos = piece.Give_Position()
+      let PiecePos = piece.Give_Position()
       if let ppos = PiecePos{
         if let givej1 = self.Give_Joueur1(){
           if let giveHand=givej1.Give_Hand(){

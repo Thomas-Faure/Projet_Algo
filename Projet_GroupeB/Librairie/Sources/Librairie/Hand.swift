@@ -127,7 +127,6 @@ public class HandClass : HandProtocol{
       if let liste = self.liste{
         for element in liste{
           if let givePos = element.Give_Position(){
-
             if(givePos.position.0 == pos.position.0 && givePos.position.1 == pos.position.1){
               avoirPiece = true
             }
@@ -137,7 +136,6 @@ public class HandClass : HandProtocol{
       }
       return avoirPiece
     }
-
     //Get_Piece: Hand*Position -> (Piece | Vide)
     //Verifie si a une position donnee il y a une piece de la main qui occupe cette position et si c'est le cas on ressort la piece ou Vide
     //Pre: Il faut que la position soit sur le plateau
@@ -159,7 +157,6 @@ public class HandClass : HandProtocol{
           }
         }
       }else{
-        print("aucune piece")
         piece = nil
       }
       return piece
@@ -174,11 +171,9 @@ public class HandClass : HandProtocol{
     //Post: La piece a été ajouté dans la main du joueur a la position donnee. Si jamais il y a deja une piece sur cette position ou si la piece a deja une position ou si elle n’est pas sur le plateau on ne fait rien
     @discardableResult
     public func Ajouter_Piece(piece:Piece,pos:Position)->Self{
-      print("position")
+
       if(piece.Give_Position() == nil){
-        print("la piece est vide")
           if(!self.Avoir_Piece(pos:pos)){
-            print("position libre")
             if(pos.position.0 >= 0 && pos.position.0 <= 3 && pos.position.1 >= 0 && pos.position.1 <= 3){
                 let nouvellePiece = piece
                 piece.Set_Position(newPos : pos)
@@ -186,17 +181,10 @@ public class HandClass : HandProtocol{
                   liste.append(nouvellePiece)
                   self.liste = liste
                 }
-            }else{
-            //  throw MyErrorHand.runtimeError("depasse le plateau")
             }
 
-          }else{
-            print("position prise")
-          //  throw MyErrorHand.runtimeError("la piece a deja une position")
           }
 
-      }else{
-      //    throw MyErrorHand.runtimeError("la piece a deja une position")
       }
       return self
     }
@@ -220,7 +208,7 @@ public class HandClass : HandProtocol{
               count = count + 1
           }
           if(supprimer==false){
-          //  throw MyErrorHand.runtimeError("la piece n'est pas dans la main")
+            print("piece non supprimée car non présente")
           }
         }
       }

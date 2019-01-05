@@ -1,5 +1,4 @@
 public class TypePieceClass : TypePieceProtocol{
-
     var nom : String
 
     public required init(){

@@ -209,7 +209,6 @@ while !fin_de_partie {
                 }
             }
             tour_effectue=true
-
         }
         else if action=="Parachuter"{
             if let joueurReserve = joueur.Give_Reserve(){
@@ -238,15 +237,11 @@ while !fin_de_partie {
                     joueur.Set_Reserve(newReserve : tmpp)
                     tmp4=tmpp
                   }
-
                   tour_effectue = true
               }
           }
         }
     }
-
-
-
     tour = tour + 1
 }
 var joueur_gagnant = JoueurClass()
