@@ -216,6 +216,22 @@ while !fin_de_partie {
                       }
                       positionFinale = Saisir_Position_Finale()
                   } while(!plat.Est_Case_Vide(pos:positionFinale))
+
+                  //On change l'Orientation de la piece
+                  let orientIverse = OrientationClass()
+                  if let pieceOrientation = piece.Give_Orientation(){
+                    if let sens = pieceOrientation.recuperer_Orientation(){
+                      if(sens == Orientation.N){
+                        orientIverse.Change_Orientation(orientfin : Orientation.S)
+                        piece.Set_Orientation(newOrient : orientIverse)
+                      } else {
+                        orientIverse.Change_Orientation(orientfin : Orientation.N)
+                        piece.Set_Orientation(newOrient : orientIverse)
+                      }
+                    }
+                    
+                  }
+
                   //Un parachutage est possible uniquement si la case est vide
                   //Ajout a notre main
                   if let mainJoueur = joueur.Give_Hand(){
