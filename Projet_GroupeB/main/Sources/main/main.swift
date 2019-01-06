@@ -20,7 +20,7 @@ func Saisir_Position_Finale()->PositionClass {
 func Demander_Action()->String {
     print("Voulez vous vous déplacer ou parachuter une piece ? ")
     var res = readLine()
-    while res == nil || (res != "Deplacer"  && res != "Parachuter"){
+    while res == nil || (res != "deplacer"  && res != "parachuter"){
         print("Choix non possible")
         res = readLine()
     }
@@ -151,7 +151,7 @@ while !fin_de_partie {
         action=Demander_Action()
 
         //Si le joueur veut se déplacer
-        if action == "Deplacer" {
+        if action == "deplacer" {
           if let liste = joueur.Give_Hand()!.liste{
             for element in liste{
 
@@ -210,7 +210,7 @@ while !fin_de_partie {
             }
             tour_effectue=true
         }
-        else if action=="Parachuter"{
+        else if action=="parachuter"{
             if let joueurReserve = joueur.Give_Reserve(){
               if (!joueurReserve.Est_Vide()){
                   repeat{
