@@ -35,7 +35,7 @@ public class HandClass : HandProtocol{
         let typePieceKit = TypePiece()
         typePieceKit.Set_Nom(nom: "kitsune")
         let kitsune = Piece()
-        kitsune.Set_Position(newPos : Position(x: 0, y: 0))
+        kitsune.Set_Position(newPos : Position(x: 2, y: 0))
         kitsune.Set_Type(newType : typePieceKit)
         kitsune.Set_Orientation(newOrient : orientation)
 
@@ -44,7 +44,7 @@ public class HandClass : HandProtocol{
 
         typePieceTanu.Set_Nom(nom: "tanuki")
         let tanuki = Piece()
-        tanuki.Set_Position(newPos : Position(x: 2, y: 0))
+        tanuki.Set_Position(newPos : Position(x: 0, y: 0))
         tanuki.Set_Type(newType : typePieceTanu)
         tanuki.Set_Orientation(newOrient : orientation)
 
@@ -71,7 +71,7 @@ public class HandClass : HandProtocol{
         let typePieceKit = TypePiece()
         typePieceKit.Set_Nom(nom: "kitsune")
         let kitsune = Piece()
-        kitsune.Set_Position(newPos : Position(x: 2, y: 3))
+        kitsune.Set_Position(newPos : Position(x: 0, y: 3))
         kitsune.Set_Type(newType : typePieceKit)
         kitsune.Set_Orientation(newOrient : orientation)
 
@@ -80,7 +80,7 @@ public class HandClass : HandProtocol{
 
         typePieceTanu.Set_Nom(nom: "tanuki")
         let tanuki = Piece()
-        tanuki.Set_Position(newPos : Position(x: 0, y: 3))
+        tanuki.Set_Position(newPos : Position(x: 2, y: 3))
         tanuki.Set_Type(newType : typePieceTanu)
         tanuki.Set_Orientation(newOrient : orientation)
 
