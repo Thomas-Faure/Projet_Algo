@@ -162,8 +162,8 @@ while !fin_de_partie {
             }
           }
             repeat{
-                if let giveHand = joueur.Give_Hand(){
-                  if let saisirPieceDeplacer = Saisir_Piece_A_Deplacer(main : giveHand){
+                if let mainJoueur = joueur.Give_Hand(){
+                  if let saisirPieceDeplacer = Saisir_Piece_A_Deplacer(main : mainJoueur){
                     piece = saisirPieceDeplacer
                   }
                   positionFinale = Saisir_Position_Finale()
@@ -171,18 +171,18 @@ while !fin_de_partie {
             } while(!plat.Est_Deplacement_Possible(piece:piece,pos:positionFinale))
             //Un deplacement n'est pas possible si la piece sort du plateau, si une piece nous appartenant est à cette place ou si ce deplacement n'est pas autorisé par les caractéristiques de la piece
 
-            if let giveHand = adversaire.Give_Hand(){
-              if (giveHand.Avoir_Piece(pos:positionFinale)){
-                  if let PiecePositionFin = giveHand.Get_Piece(pos:positionFinale){
+            if let mainAdverse = adversaire.Give_Hand(){
+              if (mainAdverse.Avoir_Piece(pos:positionFinale)){
+                  if let PiecePositionFin = mainAdverse.Get_Piece(pos:positionFinale){
 
                     //capturer une piece
                     piece_a_capturer = PiecePositionFin
 
                     //Suppression dans le jeu adverse
-                    let tmp2 = giveHand
+                    //let tmp2 = mainAdverse
 
-                    tmp2.Supprimer_Piece(piece: piece_a_capturer)
-                    adversaire.Set_Hand(newHand: tmp2)
+                    mainAdverse.Supprimer_Piece(piece: piece_a_capturer)
+                    adversaire.Set_Hand(newHand: mainAdverse)
 
                     if piece_a_capturer.Est_Kodama_Samurai(){
 
@@ -191,13 +191,10 @@ while !fin_de_partie {
 
                     //Ajout dans notre Reserve
 
-                    var tmp = joueur.Give_Reserve()
+                    if let reserveJoueur = joueur.Give_Reserve(){
 
-                    if let tmpp = tmp{
-
-                      tmpp.Ajouter_Piece(piece : piece_a_capturer)
-                      joueur.Set_Reserve(newReserve : tmpp)
-                      tmp=tmpp
+                      reserveJoueur.Ajouter_Piece(piece : piece_a_capturer)
+                      joueur.Set_Reserve(newReserve : reserveJoueur)
                     }
                   }
               }
@@ -214,28 +211,22 @@ while !fin_de_partie {
             if let joueurReserve = joueur.Give_Reserve(){
               if (!joueurReserve.Est_Vide()){
                   repeat{
-                      if let giveReserve = joueur.Give_Reserve(){
-                        if let saisirPiece = Saisir_Piece_A_Parachuter(reserve : giveReserve){
-                          piece = saisirPiece
-                        }
-                        positionFinale = Saisir_Position_Finale()
+                      if let saisirPiece = Saisir_Piece_A_Parachuter(reserve : joueurReserve){
+                        piece = saisirPiece
                       }
+                      positionFinale = Saisir_Position_Finale()
                   } while(!plat.Est_Case_Vide(pos:positionFinale))
                   //Un parachutage est possible uniquement si la case est vide
                   //Ajout a notre main
-                  var tmp3 = joueur.Give_Hand()
-                  if let tmpp = tmp3{
-                    tmpp.Ajouter_Piece(piece : piece , pos : positionFinale)
-                    joueur.Set_Hand(newHand : tmpp)
-                    tmp3=tmpp
+                  if let mainJoueur = joueur.Give_Hand(){
+                    mainJoueur.Ajouter_Piece(piece : piece , pos : positionFinale)
+                    joueur.Set_Hand(newHand : mainJoueur)
                   }
 
                   //On enleve de la reserve
-                  var tmp4 = joueur.Give_Reserve()
-                  if let tmpp = tmp4{
-                    tmpp.Supprimer_Piece(piece : piece)
-                    joueur.Set_Reserve(newReserve : tmpp)
-                    tmp4=tmpp
+                  if let reserveJoueur = joueur.Give_Reserve(){
+                    reserveJoueur.Supprimer_Piece(piece : piece)
+                    joueur.Set_Reserve(newReserve : reserveJoueur)
                   }
                   tour_effectue = true
               }
