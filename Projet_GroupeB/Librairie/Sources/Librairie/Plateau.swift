@@ -153,7 +153,7 @@ public class PlateauClass : PlateauProtocol{
       if let positionActuel = piece.Give_Position(){
         if let orientation = piece.Give_Orientation(){
           if let sens = orientation.recuperer_Orientation(){
-            if(sens == Orientation.N){
+            if(sens == Orientation.S){
               if let typePiece = piece.Give_Type(){
 
                 if typePiece.Give_Nom() == "koropokkuru" {
@@ -195,9 +195,9 @@ public class PlateauClass : PlateauProtocol{
                   }
 
                 } else if typePiece.Give_Nom() == "kodama" && (piece.Est_Kodama_Samurai() == true) {
-                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1 ||   // En haut
-                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // En haut à droite
-                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()+1 || // En haut à gauche
+                  if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1 ||   // En bas
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // En bas à droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()+1 || // En bas à gauche
                      pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 ||   // En bas
                      pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY() ||   // À droite
                      pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()){    // À gauche
@@ -208,7 +208,7 @@ public class PlateauClass : PlateauProtocol{
                 }
               }
 
-            } else {
+            } else if(sens == Orientation.N) {
               if let typePiece = piece.Give_Type(){
 
                 if typePiece.Give_Nom() == "koropokkuru" {
@@ -247,8 +247,8 @@ public class PlateauClass : PlateauProtocol{
 
                 } else if typePiece.Give_Nom() == "kodama"  && (piece.Est_Kodama_Samurai() == true) {
                   if(pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 ||   // En haut
-                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()-1 || // En bas à droite
-                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()-1 || // En bas à gauche
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()-1 || // En haut à droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()-1 || // En haut à gauche
                      pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1 ||   // En bas
                      pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY() ||   // À droite
                      pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()){    // À gauche
@@ -258,6 +258,8 @@ public class PlateauClass : PlateauProtocol{
                   }
                 }
               }
+            } else {
+              print("La piece ne possède pas d'orientation")
             }
           }
         }
