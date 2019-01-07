@@ -68,15 +68,14 @@ public class PieceClass : PieceProtocol {
   public func Piece_Au_Fond()->Bool{
     if let orientPiece = self.Give_Orientation(){
       if let orient = orientPiece.recuperer_Orientation(){
-        if(orient == Orientation.N){
+        if(orient == Orientation.S){
 
           if let pos = self.Give_Position(){
             if(pos.position.1 == 3){
               return true
             }
           }
-
-        }else if(orient == Orientation.S){
+        }else if(orient == Orientation.N){
           if let pos = self.Give_Position(){
             if(pos.position.1 == 0){
               return true
@@ -104,7 +103,7 @@ public class PieceClass : PieceProtocol {
       if let orientPiece = self.Give_Orientation(){
         if let orient = orientPiece.recuperer_Orientation(){
           if(orient == Orientation.N){
-
+            print("N")
             if let pos = self.Give_Position(){
               if(pos.position.1 == 0){
                 print("transformation en Kodama Samurai")
@@ -113,6 +112,7 @@ public class PieceClass : PieceProtocol {
             }
 
           }else if(orient == Orientation.S){
+            print("S")
             if let pos = self.Give_Position(){
               if(pos.position.1 == 3){
                 self.kodama_samurai = true
@@ -155,7 +155,7 @@ public class PieceClass : PieceProtocol {
               //si il est samurai il peut bouger de partout sauf dans la diagonale bas gauche et droite
               if self.Est_Kodama_Samurai(){
                 if let orientemp = self.orient{
-                  if(orientemp.recuperer_Orientation() == Orientation.N){
+                  if(orientemp.recuperer_Orientation() == Orientation.S){
                     if !(PosFin.getX() == (pos.getX()-1) && PosFin.getY() == (pos.getY()))//gauche
                     || !(PosFin.getX() == (pos.getX()+1) && PosFin.getY() == (pos.getY()))//droite
                     || !(PosFin.getX() == (pos.getX()) && PosFin.getY() == (pos.getY()+1))//bas

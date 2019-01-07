@@ -65,6 +65,15 @@ public class PlateauClass : PlateauProtocol{
     //Pre: Position est dans le plateau (ne depasse pas la hauteur ou la largeur)
     //Post: Retourne Vrai si il n'y a pas de piece a cette position, faux si la case est occupee. Si jamais la position entree en parametre n'est pas sur le plateau on retourne une erreur.
     public func Est_Case_Vide(pos:Position)->Bool{
+      var EstSurPlateau=false
+      for p in self.position{
+        if (p.getX() == pos.getX() && p.getY() == pos.getY()){
+          EstSurPlateau = true
+        }
+      }
+      if(!EstSurPlateau){
+        return false
+      }
       if let joueurUn = self.Give_Joueur1(){
         if let pieceJoueur1 = joueurUn.Give_Hand(){
           for piece in pieceJoueur1{
@@ -89,8 +98,6 @@ public class PlateauClass : PlateauProtocol{
           }
         }
       }
-
-
       return true
 
     }
@@ -165,7 +172,6 @@ public class PlateauClass : PlateauProtocol{
                   } else {
                     return false
                   }
-
                 } else if typePiece.Give_Nom() == "kitsune" {
                   if(pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // En bas à droite
                      pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()-1 || // En haut à gauche

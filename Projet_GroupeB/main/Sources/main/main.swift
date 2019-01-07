@@ -158,6 +158,7 @@ while !fin_de_partie {
                 print(element.Give_Type()!.Give_Nom())
                 print(element.Give_Position()!.getX())
                 print(element.Give_Position()!.getY())
+                print(element.Give_Orientation()!.recuperer_Orientation())
                 print("-------------------------------")
             }
           }
@@ -229,7 +230,7 @@ while !fin_de_partie {
                         piece.Set_Orientation(newOrient : orientIverse)
                       }
                     }
-                    
+
                   }
 
                   //Un parachutage est possible uniquement si la case est vide
