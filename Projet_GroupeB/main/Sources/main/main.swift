@@ -30,7 +30,7 @@ func Demander_Action()->String {
     return ret
 }
 func Saisir_Piece_A_Deplacer(main : HandClass?)->PieceClass?{
-    if let mainn = main{
+    if let main1 = main{
       var piece : PieceClass?
       let position = PositionClass()
       var x : Int
@@ -42,8 +42,8 @@ func Saisir_Piece_A_Deplacer(main : HandClass?)->PieceClass?{
               y = Int(readLine() ?? "") ?? -1 //Force la saisie d'un entier et met la valeur -1 si ce n'en est pas un
           }while(x<0 || y<0)
           position.Change_Position(posfin: PositionClass(x: x,y: y))
-      }while(!mainn.Avoir_Piece(pos: position))
-      piece = mainn.Get_Piece(pos : position)
+      }while(!main1.Avoir_Piece(pos: position))
+      piece = main1.Get_Piece(pos : position)
 
     return piece
     }
@@ -124,7 +124,7 @@ while !fin_de_partie {
     if tour%2==1{
         if let j1 = plat.Give_Joueur1(){
           joueur = j1
-          print("c'est le tour du joueur 1")
+          print("c'est le tour de "+joueur.Give_Name())
         }
         if let j2 = plat.Give_Joueur2(){
           adversaire = j2
@@ -137,9 +137,10 @@ while !fin_de_partie {
       }
       if let j2 = plat.Give_Joueur2(){
         joueur = j2
-        print("c'est le tour du joueur 2")
+        print("c'est le tour de "+joueur.Give_Name())
       }
     }
+
     //Vérification que la partie n'est pas finie, donc les deux joueurs possèdent un roi et qu'il n'est pas sur la dernière ligne.
     if(plat.Fin() != nil){
         print("fin de partie !!!")
@@ -158,9 +159,9 @@ while !fin_de_partie {
                   if let typeElement = element.Give_Type(){
                     if(typeElement.Give_Nom()=="kodama"){
                       if(element.Est_Kodama_Samurai()){
-                        print("Kodama Samurai")
+                        print("kodama Samurai")
                       }else{
-                        print("Kodama")
+                        print("kodama")
                       }
                     }else{
                     print(typeElement.Give_Nom())
@@ -175,7 +176,6 @@ while !fin_de_partie {
             }
 
             repeat{
-
                   if let saisirPieceDeplacer = Saisir_Piece_A_Deplacer(main : joueurHand){
                     piece = saisirPieceDeplacer
                   }
@@ -187,10 +187,8 @@ while !fin_de_partie {
             if let mainAdverse = adversaire.Give_Hand(){
               if (mainAdverse.Avoir_Piece(pos:positionFinale)){
                   if let PiecePositionFin = mainAdverse.Get_Piece(pos:positionFinale){
-
                     //capturer une piece
                     piece_a_capturer = PiecePositionFin
-
                     //Suppression dans le jeu adverse
                     //let tmp2 = mainAdverse
 
