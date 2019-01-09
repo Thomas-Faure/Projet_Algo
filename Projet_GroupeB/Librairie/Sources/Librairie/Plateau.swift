@@ -264,8 +264,9 @@ public class PlateauClass : PlateauProtocol{
                   }
                 }
               }
+              
             } else {
-              print("La piece ne possède pas d'orientation")
+              return false
             }
           }
         }
