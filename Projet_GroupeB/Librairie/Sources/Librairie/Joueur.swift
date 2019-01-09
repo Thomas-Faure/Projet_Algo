@@ -38,7 +38,7 @@ public class JoueurClass : JoueurProtocol {
 
     // Give_Name: Joueur -> String
     // retourne le nom d'un joueur
-    //Post : On a le nom du joueur
+    // Post : On a le nom du joueur
     public func Give_Name()->String{
       return self.nom
     }
@@ -57,7 +57,7 @@ public class JoueurClass : JoueurProtocol {
 
     // Set_Hand: Joueur*Hand -> Joueur
     // Change la main d'un joueur
-    //Post: La main du joueur est changee
+    // Post: La main du joueur est changee
     @discardableResult
     public func Set_Hand(newHand:Hand)->Self{
       self.hand = newHand

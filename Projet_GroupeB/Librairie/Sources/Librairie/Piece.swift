@@ -174,7 +174,7 @@ public class PieceClass : PieceProtocol {
   }
 
   // Transformer_Kodama: Piece -> Piece
-  // On transforme le kodama samurai・en kodama
+  // On transforme le kodama samurai en kodama
   // Pre: La piece doit etre un kodama et doit etre au fond du plateau et ne pas avoir ete parachutee directement au fond
   // Post: On transforme le kodama samourai en kodama. Si les preconditions ne sont pas remplies on ne fait rien.
   @discardableResult

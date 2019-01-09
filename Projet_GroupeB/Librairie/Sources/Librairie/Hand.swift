@@ -177,6 +177,7 @@ public class HandClass : HandProtocol{
       }
       return self
     }
+    
     // Supprimer_Piece: Hand*Piece -> Hand
     // Supprime une piece de la main
     // Pre: La piece doit faire partie de la main du joueur
