@@ -113,9 +113,7 @@ public class PlateauClass : PlateauProtocol{
     //Pre:Le deplacement est permi par le type de la piece
     //Post:Si le deplacement est permis on retourne vrai sinon on retourne faux
     public func Est_Deplacement_Possible(piece:Piece,pos:Position)->Bool{
-      if let piecePosition = self.Piece_Position(pos : pos){
-        return false
-      }
+      
 
       var positionDansPlateau : Bool = false
       for p in self.position{
@@ -126,32 +124,32 @@ public class PlateauClass : PlateauProtocol{
       if(!positionDansPlateau){
         return false
       }
+
       //verifier si la piece ne vas pas sur la position d'une piece d'un même joueur
-      let PiecePos = piece.Give_Position()
-      if let ppos = PiecePos{
-        if let givej1 = self.Give_Joueur1(){
-          if let giveHand=givej1.Give_Hand(){
-            if(giveHand.Avoir_Piece(pos: ppos)){
-              if let joueurUn = self.Give_Joueur1(){
-                if let pieceJoueur1 = joueurUn.Give_Hand(){
-                  for piece in pieceJoueur1{
-                    if let givepos = piece.Give_Position(){
-                      if (givepos.getX() == pos.getX() && givepos.getY() == pos.getY()){
-                        return false
-                      }
-                    }
+      if let piecePosition = piece.Give_Position(){
+        if let joueurUn = self.Give_Joueur1(){
+          if let mainJoueur1 = joueurUn.Give_Hand(){
+            if(mainJoueur1.Avoir_Piece(pos: piecePosition)){
+              for pieceMainJoueur1 in mainJoueur1{
+                if let positionPieceJoueur1 = pieceMainJoueur1.Give_Position(){
+                  if (positionPieceJoueur1.getX() == pos.getX() && positionPieceJoueur1.getY() == pos.getY()){
+                    return false
                   }
                 }
               }
-            }else{
-              if let joueurDeux = self.Give_Joueur2(){
-                if let pieceJoueur2 = joueurDeux.Give_Hand(){
-                  for piece in pieceJoueur2{
-                    if let givepos = piece.Give_Position(){
-                      if(givepos.getX() == pos.getX() && givepos.getY() == pos.getY()){
-                        return false
-                      }
-                    }
+            }
+          }
+        }
+      }
+
+      if let piecePosition = piece.Give_Position(){
+        if let joueurDeux = self.Give_Joueur2(){
+          if let mainJoueur2 = joueurDeux.Give_Hand(){
+            if(mainJoueur2.Avoir_Piece(pos: piecePosition)){
+              for pieceJoueur2 in mainJoueur2{
+                if let positionPieceJoueur2 = pieceJoueur2.Give_Position(){
+                  if (positionPieceJoueur2.getX() == pos.getX() && positionPieceJoueur2.getY() == pos.getY()){
+                    return false
                   }
                 }
               }
@@ -167,10 +165,14 @@ public class PlateauClass : PlateauProtocol{
               if let typePiece = piece.Give_Type(){
 
                 if typePiece.Give_Nom() == "koropokkuru" {
-                  if(pos.getX() == positionActuel.getX()+1 ||
-                     pos.getY() == positionActuel.getY()+1 ||
-                     pos.getX() == positionActuel.getX()-1 ||
-                     pos.getY() == positionActuel.getY()-1){
+                  if(pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY() || // droite
+                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1 || // bas
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY() || // gauche
+                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 || // haut
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()-1 || // haut droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()-1 || // haut gauche
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // bas droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()+1){  // bas gauche
                     return true
                   } else {
                     return false
@@ -221,7 +223,14 @@ public class PlateauClass : PlateauProtocol{
               if let typePiece = piece.Give_Type(){
 
                 if typePiece.Give_Nom() == "koropokkuru" {
-                  if(pos.getX() == positionActuel.getX()+1 || pos.getY() == positionActuel.getY()+1 || pos.getX() == positionActuel.getX()-1 || pos.getY() == positionActuel.getY()-1){
+                  if(pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY() || // droite
+                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()+1 || // bas
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY() || // gauche
+                     pos.getX() == positionActuel.getX() && pos.getY() == positionActuel.getY()-1 || // haut
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()-1 || // haut droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()-1 || // haut gauche
+                     pos.getX() == positionActuel.getX()+1 && pos.getY() == positionActuel.getY()+1 || // bas droite
+                     pos.getX() == positionActuel.getX()-1 && pos.getY() == positionActuel.getY()+1){  // bas gauche
                     return true
                   } else {
                     return false
@@ -286,8 +295,10 @@ public class PlateauClass : PlateauProtocol{
       if let joueurUn = self.Give_Joueur1(){
         if let pieceJoueur1 = joueurUn.Give_Hand(){
           for piece in pieceJoueur1{
-            if (piece.Give_Position() === pos){
-              return piece
+            if let position = piece.Give_Position(){
+              if (position.getX() == pos.getX() && position.getY() == pos.getY()){
+                return piece
+              }
             }
           }
         }
@@ -297,8 +308,10 @@ public class PlateauClass : PlateauProtocol{
       if let joueurDeux = self.Give_Joueur2(){
         if let pieceJoueur2 = joueurDeux.Give_Hand(){
           for piece in pieceJoueur2{
-            if(piece.Give_Position() === pos){
-              return piece
+            if let position = piece.Give_Position(){
+              if (position.getX() == pos.getX() && position.getY() == pos.getY()){
+                return piece
+              }
             }
           }
         }
@@ -330,9 +343,10 @@ public class PlateauClass : PlateauProtocol{
                     if let joueurDeux = self.Give_Joueur2(){
                       if let mainJoueur2 = joueurDeux.Give_Hand(){
                         for pieceJoueur2 in mainJoueur2 { // On regarde si une piece adverse peut capturer le roi
-                          if (Est_Deplacement_Possible(piece : pieceJoueur2, pos : position)){
+                          if (self.Est_Deplacement_Possible(piece : pieceJoueur2, pos : position)){
                             roi1Gagnant = false
                           }
+                          
                         }
                       }
                     }
@@ -358,7 +372,7 @@ public class PlateauClass : PlateauProtocol{
 
                 if let position = piece.Give_Position(){
                   if (position.getY() == 0) { // Si le roi est dans le camp adverse en supposant que le joueur2 démarre en bas du plateau
-                    if let joueurUn = self.Give_Joueur2(){
+                    if let joueurUn = self.Give_Joueur1(){
                       if let mainJoueur1 = joueurUn.Give_Hand(){
                         for pieceJoueur1 in mainJoueur1 { // On regarde si une piece adverse peut capturer le roi
                           if (Est_Deplacement_Possible(piece : pieceJoueur1, pos : position)){
