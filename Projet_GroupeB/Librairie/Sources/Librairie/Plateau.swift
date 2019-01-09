@@ -10,12 +10,16 @@ public class PlateauClass : PlateauProtocol{
     private var joueur1 : Joueur?
     private var joueur2 : Joueur?
     private var position : [Position]
+
     //init: Int*Int->Plateau
     //Initialisation d'un plateau de longeur de longeur l et de hauteur h et de deux joueurs
     //Pre: l>0 & h>0
     //Sinon la creation du plateau echoue
-
     public required init?(l:Int,h:Int){
+      if(l <= 0 || h <= 0){
+        return nil
+      }
+
       self.l = l
       self.h = h
       self.joueur1 = nil
@@ -272,6 +276,7 @@ public class PlateauClass : PlateauProtocol{
       }
       return false
     }
+    
     //Piece_Position: Plateau*Position->(Piece|Vide)
     //Ressort un piece a partir d'une position du plateau
     //Pre:Il y a une piece sur cette position
