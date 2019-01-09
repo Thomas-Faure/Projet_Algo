@@ -16,7 +16,7 @@ public protocol HandProtocol:Sequence{
     // Initialisation de la main avec les 4 pieces du debut
     //Post: La main est maintenant composee des 4 pieces du debut et elles sont a leur position initiale
     @discardableResult
-    func Initialiser_Debut(joueur : Int)->Self
+    func Initialiser_Debut(numJoueur : Int)->Self
 
     //Est_Dans_Main: Hand*TypePiece -> Bool
     //Regarde si il y a un type de piece dans la main
@@ -43,14 +43,14 @@ public protocol HandProtocol:Sequence{
     //Pre: La position doit etre sur le plateau
     //Post: La piece a été ajouté dans la main du joueur a la position donnee. Si jamais il y a deja une piece sur cette position ou si la piece a deja une position ou si elle n’est pas sur le plateau on ne fait rien
     @discardableResult
-    mutating func Ajouter_Piece(piece:Piece,pos:Position)throws->Self
+    mutating func Ajouter_Piece(piece:Piece,pos:Position)->Self
 
     //Supprimer_Piece: Hand*Piece -> Hand
     //Supprime une piece de la main
     //Pre: La piece doit faire partie de la main du joueur
     //Post: La piece a été supprimée de la main du joueur. Si jamais elle n’en fait pas partie on ne fait rien
     @discardableResult
-    mutating func Supprimer_Piece(piece:Piece)throws->Self
+    mutating func Supprimer_Piece(piece:Piece)->Self
 
     //Deplacer_Piece: Hand*Piece*Position -> Hand
     //Deplace une piece de la main. Elle va d'abord verifier que l'on a la piece, que le deplacement est possible par
@@ -58,7 +58,7 @@ public protocol HandProtocol:Sequence{
     //Pre : La piece doit faire partie de la main du joueur, la position doit être une position valable
     //Post : La piece a ete deplacee.
     @discardableResult
-    mutating func Deplacer_Piece(piece : Piece,position : Position)throws->Self
+    mutating func Deplacer_Piece(piece : Piece,position : Position)->Self
 
 
     // makeIteratorPiece : Hand -> IteratorPiece

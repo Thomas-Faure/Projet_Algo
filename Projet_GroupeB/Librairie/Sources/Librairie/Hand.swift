@@ -1,7 +1,3 @@
-enum MyErrorHand: Error {
-    case runtimeError(String)
-}
-
 public class HandClass : HandProtocol{
     public typealias Position = PositionClass
     public typealias TypePiece = TypePieceClass
@@ -19,8 +15,8 @@ public class HandClass : HandProtocol{
     // Post: La main est maintenant composee des 4 pieces du debut et elles sont a leur position initiale
     // modification par le groupe A, ajout d'un paramètre indiquant le joueur cible pour pouvoir bien placer les cartes.
     @discardableResult
-    public func Initialiser_Debut(joueur : Int)->Self{
-      if(joueur == 1){
+    public func Initialiser_Debut(numJoueur : Int)->Self{
+      if(numJoueur == 1){
         let typePieceKoro = TypePiece()
         typePieceKoro.Set_Nom(nom: "koropokkuru")
         let orientation = OrientationClass()
@@ -93,10 +89,6 @@ public class HandClass : HandProtocol{
         kodama.Set_Type(newType : typePieceKoda)
         kodama.Set_Orientation(newOrient : orientation)
         self.liste = [koropokkuru,kitsune,tanuki,kodama]
-
-
-
-
       }
 
       return self
@@ -169,7 +161,6 @@ public class HandClass : HandProtocol{
     // Post: La piece a été ajouté dans la main du joueur a la position donnee. Si jamais il y a deja une piece sur cette position ou si la piece a deja une position ou si elle n’est pas sur le plateau on ne fait rien
     @discardableResult
     public func Ajouter_Piece(piece:Piece,pos:Position)->Self{
-
       if(piece.Give_Position() == nil){
         if(!self.Avoir_Piece(pos:pos)){
           if(pos.getX() >= 0 && pos.getX() <= 3 && pos.getY() >= 0 && pos.getY() <= 3){
@@ -186,7 +177,6 @@ public class HandClass : HandProtocol{
       }
       return self
     }
-
     // Supprimer_Piece: Hand*Piece -> Hand
     // Supprime une piece de la main
     // Pre: La piece doit faire partie de la main du joueur
