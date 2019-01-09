@@ -6,12 +6,13 @@ public class PieceClass : PieceProtocol {
   public typealias PositionA = PositionClass
   public typealias OrientationA = OrientationClass
 
-  public var kodama : Bool
-  public var kodama_samurai : Bool
-  public var roi : Bool
-  public var orient : OrientationA?
-  public var position : PositionA?
-  public var typePiece : TypePieceA?
+  private var kodama : Bool
+  private var kodama_samurai : Bool
+  private var roi : Bool
+  private var orient : OrientationA?
+  private var position : PositionA?
+  private var typePiece : TypePieceA?
+
   public required init(){
       self.orient = nil
       self.position = nil
