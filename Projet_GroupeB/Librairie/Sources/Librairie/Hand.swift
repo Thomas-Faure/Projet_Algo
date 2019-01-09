@@ -1,6 +1,7 @@
 enum MyErrorHand: Error {
     case runtimeError(String)
 }
+
 public class HandClass : HandProtocol{
     public typealias Position = PositionClass
     public typealias TypePiece = TypePieceClass
@@ -56,7 +57,8 @@ public class HandClass : HandProtocol{
         kodama.Set_Type(newType : typePieceKoda)
         kodama.Set_Orientation(newOrient : orientation)
         self.liste = [koropokkuru,kitsune,tanuki,kodama]
-      }else{
+
+      } else {
         let typePieceKoro = TypePiece()
         typePieceKoro.Set_Nom(nom: "koropokkuru")
         let orientation = OrientationClass()
@@ -169,17 +171,17 @@ public class HandClass : HandProtocol{
     public func Ajouter_Piece(piece:Piece,pos:Position)->Self{
 
       if(piece.Give_Position() == nil){
-          if(!self.Avoir_Piece(pos:pos)){
-            if(pos.getX() >= 0 && pos.getX() <= 3 && pos.getY() >= 0 && pos.getY() <= 3){
-                let nouvellePiece = piece
-                piece.Set_Position(newPos : pos)
-                if var liste = self.liste{
-                  liste.append(nouvellePiece)
-                  self.liste = liste
-                }
+        if(!self.Avoir_Piece(pos:pos)){
+          if(pos.getX() >= 0 && pos.getX() <= 3 && pos.getY() >= 0 && pos.getY() <= 3){
+            let nouvellePiece = piece
+            piece.Set_Position(newPos : pos)
+            if var liste = self.liste{
+              liste.append(nouvellePiece)
+              self.liste = liste
             }
-
           }
+
+        }
 
       }
       return self
@@ -195,11 +197,11 @@ public class HandClass : HandProtocol{
       if var listePiece = self.liste{
         if(piece.Give_Position() != nil){
           for ele in listePiece{
-              if ele === piece{
-                listePiece.remove(at: count)
-                self.liste = listePiece
-              }
-              count = count + 1
+            if ele === piece{
+              listePiece.remove(at: count)
+              self.liste = listePiece
+            }
+            count = count + 1
           }
         }
       }
