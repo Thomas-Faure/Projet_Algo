@@ -165,8 +165,10 @@ while !fin_de_partie {
                   print(typeElement.Give_Nom())
                   }
                 }
-                print(element.Give_Position()!.getX())
-                print(element.Give_Position()!.getY())
+                if let givePos = element.Give_Position(){
+                  print(givePos.getX())
+                  print(givePos.getY())
+                }
                 print("-------------------------------")
             }
           }

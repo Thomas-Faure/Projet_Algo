@@ -9,7 +9,6 @@ public class ReserveClass : ReserveProtocol{
 
   public var listePiece : [Piece]?
 
-
   public required init(){ //fait
     listePiece = nil
   }
@@ -33,28 +32,29 @@ public class ReserveClass : ReserveProtocol{
 
 
   public func Est_Dans_Reserve(piece:Piece)->Bool{ //fait
-  var retour = false
-  if let a = self.listePiece{
-    for i in 0...(a.count-1){
-        if(a[i] === piece){
+    var retour = false
+    if let liste = self.listePiece{
+      for p in liste{
+        if(p === piece){
           retour = true
         }
       }
       return retour
+    }else{
+      return false
     }
-    return false
   }
 
 
-  public func Get_Piece(nom : TypePiece)->Piece?{ //fait
+  public func Get_Piece(nom : TypePiece)->Piece?{
     var piece : Piece?
     piece = nil
     var trouver=false
-    if let a = self.listePiece{
-      for i in 0...(a.count-1){
-        if let typ = a[i].Give_Type(){
+    if let liste = self.listePiece{
+      for p in liste{
+        if let typ = p.Give_Type(){
           if(typ.Give_Nom() == nom.Give_Nom() && !trouver){
-            piece = a[i]
+            piece = p
             trouver=true
           }
         }
@@ -65,14 +65,13 @@ public class ReserveClass : ReserveProtocol{
   }
 
   @discardableResult
-  public func Ajouter_Piece(piece :Piece)->Self{ //fait
+  public func Ajouter_Piece(piece :Piece)->Self{
     if(piece.Give_Position() != nil){
       var nouvellePiece = piece
       nouvellePiece = nouvellePiece.Set_Position(newPos: nil)
-      if var a = self.listePiece{
-        a.append(nouvellePiece)
-
-        self.listePiece=a
+      if var liste = self.listePiece{
+        liste.append(nouvellePiece)
+        self.listePiece=liste
       }else{
         self.listePiece=[nouvellePiece]
       }
@@ -82,7 +81,7 @@ public class ReserveClass : ReserveProtocol{
     return self
   }
   @discardableResult
-  public func Supprimer_Piece(piece:Piece)->Self{ //fait
+  public func Supprimer_Piece(piece:Piece)->Self{
     if(!self.Est_Vide()){
       var count = 0
       if var liste = self.listePiece{
