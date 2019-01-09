@@ -34,7 +34,7 @@ public class PieceClass : PieceProtocol {
   @discardableResult
   public func Set_Position(newPos : PositionA?)->Self{
     if let nPos = newPos{
-      if(nPos.position.0 >= 0 && nPos.position.0 <= 3 && nPos.position.1 >= 0 && nPos.position.1 <= 3){
+      if(nPos.getX() >= 0 && nPos.getX() <= 3 && nPos.getY() >= 0 && nPos.getY() <= 3){
         self.position = nPos
       }
     }else{
@@ -76,13 +76,13 @@ public class PieceClass : PieceProtocol {
         if(orient == Orientation.S){
 
           if let pos = self.Give_Position(){
-            if(pos.position.1 == 3){
+            if(pos.getY() == 3){
               return true
             }
           }
         }else if(orient == Orientation.N){
           if let pos = self.Give_Position(){
-            if(pos.position.1 == 0){
+            if(pos.getY() == 0){
               return true
             }
           }
@@ -112,18 +112,16 @@ public class PieceClass : PieceProtocol {
       if let orientPiece = self.Give_Orientation(){
         if let orient = orientPiece.recuperer_Orientation(){
           if(orient == Orientation.N){
-            print("N")
             if let pos = self.Give_Position(){
-              if(pos.position.1 == 0){
-                print("transformation en Kodama Samurai")
+              if(pos.getY() == 0){
                 self.kodama_samurai = true
               }
             }
 
           }else if(orient == Orientation.S){
-            print("S")
+
             if let pos = self.Give_Position(){
-              if(pos.position.1 == 3){
+              if(pos.getY() == 3){
                 self.kodama_samurai = true
               }
             }

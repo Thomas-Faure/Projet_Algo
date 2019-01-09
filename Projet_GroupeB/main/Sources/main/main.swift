@@ -152,7 +152,7 @@ while !fin_de_partie {
 
         //Si le joueur veut se déplacer
         if action == "deplacer" {
-          if let liste = joueur.Give_Hand()!.liste{
+          if let liste = joueur.Give_Hand()!.Give_Liste(){
             for element in liste{
                 if let typeElement = element.Give_Type(){
                   if(typeElement.Give_Nom()=="kodama"){

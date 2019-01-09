@@ -1,7 +1,7 @@
 public class PositionClass : PositionProtocol{
   public typealias Position = PositionClass
 
-  public var position = (0,0)
+  private var position = (0,0)
 
   public required init(){}
   public required init(x : Int,y :Int){
@@ -12,8 +12,8 @@ public class PositionClass : PositionProtocol{
   @discardableResult
   public func Change_Position(posfin:Position?)->Self{
     if let newPosition = posfin {
-      position.0 = newPosition.position.0
-      position.1 = newPosition.position.1
+      self.position.0 = newPosition.getX()
+      self.position.1 = newPosition.getY()
       return self
     } else {
       return self
@@ -21,10 +21,10 @@ public class PositionClass : PositionProtocol{
   }
 
   public func getX()->Int{
-    return position.0
+    return self.position.0
   }
 
   public func getY()->Int{
-    return position.1
+    return self.position.1
   }
 }

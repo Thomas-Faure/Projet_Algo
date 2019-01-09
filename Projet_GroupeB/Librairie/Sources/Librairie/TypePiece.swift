@@ -1,5 +1,5 @@
 public class TypePieceClass : TypePieceProtocol{
-    var nom : String
+    private var nom : String
 
     public required init(){
         nom = ""

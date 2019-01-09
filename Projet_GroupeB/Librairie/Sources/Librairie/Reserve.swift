@@ -7,7 +7,7 @@ public class ReserveClass : ReserveProtocol{
   public typealias Piece = PieceClass
   public typealias IteratorPieceProtocol = ItPiece
 
-  public var listePiece : [Piece]?
+  private var listePiece : [Piece]?
 
   public required init(){ //fait
     listePiece = nil
