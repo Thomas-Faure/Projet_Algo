@@ -236,11 +236,10 @@ while !fin_de_partie {
                     if let sens = pieceOrientation.recuperer_Orientation(){
                       if(sens == Orientation.N){
                         orientIverse.Change_Orientation(orientfin : Orientation.S)
-                        piece.Set_Orientation(newOrient : orientIverse)
                       } else {
                         orientIverse.Change_Orientation(orientfin : Orientation.N)
-                        piece.Set_Orientation(newOrient : orientIverse)
                       }
+                      piece.Set_Orientation(newOrient : orientIverse)
                     }
 
                   }
