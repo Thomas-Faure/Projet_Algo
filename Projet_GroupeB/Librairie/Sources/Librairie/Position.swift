@@ -11,9 +11,9 @@ public class PositionClass : PositionProtocol{
 
   @discardableResult
   public func Change_Position(posfin:Position?)->Self{
-    if let b = posfin {
-      position.0 = b.position.0
-      position.1 = b.position.1
+    if let newPosition = posfin {
+      position.0 = newPosition.position.0
+      position.1 = newPosition.position.1
       return self
     } else {
       return self
