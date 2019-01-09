@@ -111,7 +111,6 @@ public struct ItPiece : IteratorProtocol{
   private let reserve : ReserveClass
      private var courant : Int = 0
      private let keys : [Piece]?
-
      fileprivate init(_ a: ReserveClass){
         self.reserve = a
         self.keys = a.retournerListe()

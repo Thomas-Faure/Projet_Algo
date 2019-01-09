@@ -140,7 +140,6 @@ public class PlateauClass : PlateauProtocol{
                 }
               }
             }else{
-
               if let joueurDeux = self.Give_Joueur2(){
                 if let pieceJoueur2 = joueurDeux.Give_Hand(){
                   for piece in pieceJoueur2{
@@ -278,7 +277,6 @@ public class PlateauClass : PlateauProtocol{
     //Pre:La position est dans le plateau
     //Post: Retourne la piece. Si jamais la position n'est pas sur la plateau ou si il n'y a pas de piece a cette position on retourne Vide.
     public func Piece_Position(pos:Position)->Piece?{
-
       if let joueurUn = self.Give_Joueur1(){
         if let pieceJoueur1 = joueurUn.Give_Hand(){
           for piece in pieceJoueur1{

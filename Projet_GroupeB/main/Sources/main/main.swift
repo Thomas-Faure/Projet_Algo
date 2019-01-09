@@ -154,11 +154,19 @@ while !fin_de_partie {
         if action == "deplacer" {
           if let liste = joueur.Give_Hand()!.liste{
             for element in liste{
-
-                print(element.Give_Type()!.Give_Nom())
+                if let typeElement = element.Give_Type(){
+                  if(typeElement.Give_Nom()=="kodama"){
+                    if(element.Est_Kodama_Samurai()){
+                      print("Kodama Samurai")
+                    }else{
+                      print("Kodama")
+                    }
+                  }else{
+                  print(typeElement.Give_Nom())
+                  }
+                }
                 print(element.Give_Position()!.getX())
                 print(element.Give_Position()!.getY())
-                print(element.Give_Orientation()!.recuperer_Orientation())
                 print("-------------------------------")
             }
           }
