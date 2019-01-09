@@ -2,13 +2,12 @@ enum MyErrorHand: Error {
     case runtimeError(String)
 }
 public class HandClass : HandProtocol{
-
-
     public typealias Position = PositionClass
     public typealias TypePiece = TypePieceClass
     public typealias Piece = PieceClass
     public typealias IteratorPieceProtocol = ItPiece2
-    public var liste : [Piece]?
+
+    private var liste : [Piece]?
 
     public required init(){
       self.liste = nil
@@ -230,6 +229,10 @@ public class HandClass : HandProtocol{
       return self
     }
 
+    public func Give_Liste()->[Piece]?{
+      return self.liste
+    }
+
 
     // makeIteratorPiece : Hand -> IteratorPiece
     // cree un iterateur sur la collection dans l'odre (?Comment on les tries)
@@ -248,7 +251,7 @@ public struct ItPiece2 : IteratorProtocol{
      fileprivate init(_ a: HandClass){
         self.hand = a
 
-        self.keys = a.liste
+        self.keys = a.Give_Liste()
      }
      public mutating func next() -> Piece?{
        if let liste = keys{
