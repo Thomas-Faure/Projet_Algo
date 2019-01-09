@@ -7,9 +7,9 @@ public class JoueurClass : JoueurProtocol {
     public typealias Hand = HandClass
     public typealias Reserve = ReserveClass
 
-    public var reserve : Reserve?
-    public var hand : Hand?
-    public var nom : String = "joueur"
+    private var reserve : Reserve?
+    private var hand : Hand?
+    private var nom : String = "joueur"
 
     // init:  String -> Joueur
     // création d'un joueur, un joueur est définie par un nom, une main, une reserve et une orientation. A l'initialisation sa reverve est vide et sa main est composé de 4 pieces.
