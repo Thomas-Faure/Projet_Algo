@@ -152,36 +152,38 @@ while !fin_de_partie {
 
         //Si le joueur veut se déplacer
         if action == "deplacer" {
-          if let liste = joueur.Give_Hand()!.Give_Liste(){
-            for element in liste{
-                if let typeElement = element.Give_Type(){
-                  if(typeElement.Give_Nom()=="kodama"){
-                    if(element.Est_Kodama_Samurai()){
-                      print("Kodama Samurai")
+          if let joueurHand = joueur.Give_Hand(){
+            if let liste = joueurHand.Give_Liste(){
+              for element in liste{
+                  if let typeElement = element.Give_Type(){
+                    if(typeElement.Give_Nom()=="kodama"){
+                      if(element.Est_Kodama_Samurai()){
+                        print("Kodama Samurai")
+                      }else{
+                        print("Kodama")
+                      }
                     }else{
-                      print("Kodama")
+                    print(typeElement.Give_Nom())
                     }
-                  }else{
-                  print(typeElement.Give_Nom())
                   }
-                }
-                if let givePos = element.Give_Position(){
-                  print(givePos.getX())
-                  print(givePos.getY())
-                }
-                print("-------------------------------")
+                  if let givePos = element.Give_Position(){
+                    print(givePos.getX())
+                    print(givePos.getY())
+                  }
+                  print("-------------------------------")
+              }
             }
-          }
+
             repeat{
-                if let mainJoueur = joueur.Give_Hand(){
-                  if let saisirPieceDeplacer = Saisir_Piece_A_Deplacer(main : mainJoueur){
+
+                  if let saisirPieceDeplacer = Saisir_Piece_A_Deplacer(main : joueurHand){
                     piece = saisirPieceDeplacer
                   }
                   positionFinale = Saisir_Position_Finale()
-                }
+
             } while(!plat.Est_Deplacement_Possible(piece:piece,pos:positionFinale))
             //Un deplacement n'est pas possible si la piece sort du plateau, si une piece nous appartenant est à cette place ou si ce deplacement n'est pas autorisé par les caractéristiques de la piece
-
+            }
             if let mainAdverse = adversaire.Give_Hand(){
               if (mainAdverse.Avoir_Piece(pos:positionFinale)){
                   if let PiecePositionFin = mainAdverse.Get_Piece(pos:positionFinale){
