@@ -108,9 +108,9 @@ public class HandClass : HandProtocol{
     //Post: Si il y a cette piece dans la main on retourne Vrai sinon on retourne Faux
     public func Est_Dans_Main(type:TypePiece)->Bool{
       var present = false
-      if let liste = self.liste{
-        for element in liste{
-            if(element.Give_Type() === type){
+      if let listePiece = self.liste{
+        for piece in listePiece{
+            if(piece.Give_Type() === type){
               present = true
             }
         }
@@ -124,9 +124,9 @@ public class HandClass : HandProtocol{
     //Post: Retourne vrai si il possede une piece faux sinon
     public func Avoir_Piece(pos:Position)->Bool{
       var avoirPiece = false
-      if let liste = self.liste{
-        for element in liste{
-          if let givePos = element.Give_Position(){
+      if let listePiece = self.liste{
+        for piece in listePiece{
+          if let givePos = piece.Give_Position(){
             if(givePos.position.0 == pos.position.0 && givePos.position.1 == pos.position.1){
               avoirPiece = true
             }
@@ -141,25 +141,22 @@ public class HandClass : HandProtocol{
     //Pre: Il faut que la position soit sur le plateau
     //Post: Retourne vrai si il possede une piece faux sinon
     public func Get_Piece(pos:Position) -> Piece?{
-      var piece : Piece?
+      var pieceRetour : Piece?
       if(self.Avoir_Piece(pos: pos)){
-        if let liste = self.liste{
-          for element in liste{
-            if let givePos = element.Give_Position(){
+        if let listePiece = self.liste{
+          for piece in listePiece{
+            if let givePos = piece.Give_Position(){
               if(givePos.position.0 == pos.position.0 && givePos.position.1 == pos.position.1){
-                var tettt = element.Give_Type()!;
-                piece = element
-              }else{
-
+                pieceRetour = piece
               }
             }
 
           }
         }
       }else{
-        piece = nil
+        pieceRetour = nil
       }
-      return piece
+      return pieceRetour
 
     }
 
@@ -195,20 +192,15 @@ public class HandClass : HandProtocol{
     //Post: La piece a été supprimée de la main du joueur. Si jamais elle n’en fait pas partie on ne fait rien
     @discardableResult
     public func Supprimer_Piece(piece:Piece)->Self{
-      var supprimer=false
       var count = 0
-      if var liste = self.liste{
+      if var listePiece = self.liste{
         if(piece.Give_Position() != nil){
-          for ele in liste{
+          for ele in listePiece{
               if ele === piece{
-                supprimer = true
-                liste.remove(at: count)
-                self.liste=liste
+                listePiece.remove(at: count)
+                self.liste = listePiece
               }
               count = count + 1
-          }
-          if(supprimer==false){
-            print("piece non supprimée car non présente")
           }
         }
       }
@@ -223,8 +215,8 @@ public class HandClass : HandProtocol{
     public func Deplacer_Piece(piece : Piece,position : Position)->Self{
       //verification possession de la piece2
       var possede = false
-      if let liste = self.liste{
-        for element in liste{
+      if let listePiece = self.liste{
+        for element in listePiece{
             if(element === piece){
               possede = true
             }
@@ -232,7 +224,6 @@ public class HandClass : HandProtocol{
         //on possède la carte donc on continue, on va maintenant regardé si le déplacement est possible
         if(possede){
           piece.Deplacer_Piece(PosFin: position)
-        }else{
         }
       }
 
