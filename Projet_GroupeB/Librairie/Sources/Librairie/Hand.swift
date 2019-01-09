@@ -126,7 +126,7 @@ public class HandClass : HandProtocol{
       if let listePiece = self.liste{
         for piece in listePiece{
           if let givePos = piece.Give_Position(){
-            if(givePos.position.0 == pos.position.0 && givePos.position.1 == pos.position.1){
+            if(givePos.getX() == pos.getX() && givePos.getY() == pos.getY()){
               avoirPiece = true
             }
           }
@@ -145,7 +145,7 @@ public class HandClass : HandProtocol{
         if let listePiece = self.liste{
           for piece in listePiece{
             if let givePos = piece.Give_Position(){
-              if(givePos.position.0 == pos.position.0 && givePos.position.1 == pos.position.1){
+              if(givePos.getX() == pos.getX() && givePos.getY() == pos.getY()){
                 pieceRetour = piece
               }
             }
@@ -170,7 +170,7 @@ public class HandClass : HandProtocol{
 
       if(piece.Give_Position() == nil){
           if(!self.Avoir_Piece(pos:pos)){
-            if(pos.position.0 >= 0 && pos.position.0 <= 3 && pos.position.1 >= 0 && pos.position.1 <= 3){
+            if(pos.getX() >= 0 && pos.getX() <= 3 && pos.getY() >= 0 && pos.getY() <= 3){
                 let nouvellePiece = piece
                 piece.Set_Position(newPos : pos)
                 if var liste = self.liste{
