@@ -20,7 +20,9 @@ public class TypePieceClass : TypePieceProtocol{
   // Post le nom du Type a ete modifie
   @discardableResult
   public func Set_Nom(nom:String)->Self{
-    self.nom = nom
+    if(nom.count>0){
+      self.nom = nom
+    }
     return self
   }
 }

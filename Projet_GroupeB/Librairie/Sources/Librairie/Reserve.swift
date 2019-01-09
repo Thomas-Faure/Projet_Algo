@@ -15,7 +15,7 @@ public class ReserveClass : ReserveProtocol{
     listePiece = nil
   }
 
-  
+
   @discardableResult
   public func retournerListe()->[Piece]?{
     return self.listePiece
@@ -128,7 +128,7 @@ public struct ItPiece : IteratorProtocol{
   private let reserve : ReserveClass
   private var courant : Int = 0
   private let keys : [Piece]?
-  
+
   fileprivate init(_ a: ReserveClass){
     self.reserve = a
     self.keys = a.retournerListe()
@@ -139,7 +139,6 @@ public struct ItPiece : IteratorProtocol{
     if(courant == ken.count){return nil}
       let retour = ken[courant]
       courant = courant + 1
-      
       return retour
     }
     return nil

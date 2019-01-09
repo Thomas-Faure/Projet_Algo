@@ -1,7 +1,3 @@
-enum MyErrorJoueur: Error {
-    case runtimeError(String)
-}
-
 public class JoueurClass : JoueurProtocol {
 
 
@@ -21,7 +17,7 @@ public class JoueurClass : JoueurProtocol {
     public required init(nom:String,joueur: Int){
       self.reserve = Reserve()
       let hand = Hand()
-      hand.Initialiser_Debut(joueur: joueur)
+      hand.Initialiser_Debut(numJoueur: joueur)
       self.hand=hand
       self.nom = nom
     }
