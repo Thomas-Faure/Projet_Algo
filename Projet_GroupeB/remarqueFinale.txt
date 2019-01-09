@@ -1,0 +1,28 @@
+Liste de remarques :
+
+- dans le main, aucune fonction n'est comparé avec le status de vide,
+ nous avons du modifier le code du main afin de verifier le retour de chaque fonction
+
+- lors de l'initialisation d'un objet "Hand", on ne peut différencier les 2 joueurs,
+ nous avons ajouté un paramètre permettant de les différentier et du coup de pouvoir placer
+ les pièces en fonction des joueurs
+
+- les tests unitaires sont incompilable ( on nous demande des Type spécifique en paramètre de fonctions
+ mais dans les tests on nous demande des Type deja existant dans swift (Int,String etc...))
+
+- aucun affichage de l'interface utilisateur en jeu, nous en avons ajouté une afin de simplifier
+ la visualisation de la partie
+
+- il manquait des préconditions dans les fonctions qui faisaient que l'on ne pouvait pas respecter
+ entièrement les règles du jeu (elles ont été ajouté)
+
+- il manquait des Getter et des Setter dans certain types
+ 
+- dans le main, certaine fonctions avaient un nom incorrecte ce qui provoquait une erreur de compilation
+
+- certaines fonctions dans le main n'avaient pas les même paramètres que dans les spécifications
+
+- il y avait dans le main une partie ou' l'on inversait le joueur 1 et le joueur 2 à la fin de chaque tour
+ (et également en debut de chaque tour, ce qui faisait que le joueur 1 jouait à l'infini, la partie ne pouvait pas se dérouler comme on le souhaitait)
+
+
