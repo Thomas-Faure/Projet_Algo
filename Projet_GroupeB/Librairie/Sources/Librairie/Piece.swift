@@ -13,6 +13,8 @@ public class PieceClass : PieceProtocol {
   private var position : PositionA?
   private var typePiece : TypePieceA?
 
+  // init: -> Piece
+  // creation d'une piece definie par son type, sa position et son orientation. On initialise cette piece a Vide.
   public required init(){
       self.orient = nil
       self.position = nil
@@ -22,6 +24,8 @@ public class PieceClass : PieceProtocol {
       self.kodama_samurai = false
 
   }
+
+  
   @discardableResult
   public func Set_Type(newType : TypePieceA?)->Self{
     if let nType = newType{
@@ -31,6 +35,10 @@ public class PieceClass : PieceProtocol {
     return self
   }
 
+  // Set_Position: Piece*(Position|Vide) -> Piece
+  // Modifie la position d'une piece
+  // Pre: newPOS doit être sur le plateau
+  // Post: Si la position est sur le plateau on modifie sa position sinon on ne fait rien
   @discardableResult
   public func Set_Position(newPos : PositionA?)->Self{
     if let nPos = newPos{
@@ -43,6 +51,10 @@ public class PieceClass : PieceProtocol {
     return self
   }
 
+  // Set_Orientation: Piece*(Orientation|Vide) -> Piece
+  // Modifie l'orientation d'une piece
+  // Pre: newOrient doit etre une orientation existante (N/S)
+  // Post: L'orientation est changee. Si newOrient n'existe pas on ne fait rien
   @discardableResult
   public func Set_Orientation(newOrient : OrientationA?)->Self{
     if let orientation = newOrient{
@@ -52,9 +64,17 @@ public class PieceClass : PieceProtocol {
     return self
   }
 
+  // Give_Type: Piece -> TypePiece
+  // Retourne le type d'une piece
+  // Post: On a le TypePiece
   public func Give_Type()->TypePieceA?{
     return self.typePiece
   }
+
+  // Give_Position: Piece -> (Position|Vide)
+  // Retourne la position d'une piece
+  // Pre: La piece doit etre sur le plateau
+  // Post: Si la piece est sur le plateau on retourne sa position sinon on retourne Vide(Si la piece est dans la reserve par exemple)
   public func Give_Position()->PositionA?{
     return self.position
   }
@@ -66,10 +86,16 @@ public class PieceClass : PieceProtocol {
     return self
   }
 
+  // Give_Orientation: Piece -> Orientation
+  // Retourne l'orientation d'une piece
+  // Post: On a l'Orientation de la piece
   public func Give_Orientation()->OrientationA?{
     return self.orient
   }
 
+  // Piece_Au_Fond: Piece -> Bool
+  // Regarde si la piece est au fond
+  // Post: Retourne vrai si la piece est au fond, faux sinon
   public func Piece_Au_Fond()->Bool{
     if let orientPiece = self.Give_Orientation(){
       if let orient = orientPiece.recuperer_Orientation(){
@@ -94,18 +120,31 @@ public class PieceClass : PieceProtocol {
     return false
   }
 
+  // Est_Kodama: Piece -> Bool
+  // Regarde si la piece est un Kodama
+  // Post: Retourne vrai si la piece est un Kodama faux sinon
   public func Est_Kodama()->Bool{
     return self.kodama
   }
 
+  // Est_Kodama_Samurai: Piece -> Bool
+  // Regarde si la piece est un Kodama samurai
+  // Post: Retourne vrai si la piece est un Kodama samurai faux sinon
   public func Est_Kodama_Samurai()->Bool{
     return self.kodama_samurai
   }
 
+  // Est_Roi: Piece -> Bool
+  // Regarde si la piece est un Roi
+  // Post: Retourne vrai si la piece est un Koropokkuru faux sinon
   public func Est_Roi()->Bool {
     return self.roi
   }
 
+  // Transformer_Kodama_Samurai: Piece -> Piece
+  // On transforme le kodama en kodama samurai
+  // Pre: La piece doit etre un kodama et doit etre au fond du plateau et ne pas avoir ete parachutee directement au fond
+  // Post: On transforme le kodama en kodama samourai Si les preconditions ne sont pas remplies on ne fait rien.
   @discardableResult
   public func Transformer_Kodama_Samurai()->Self{
     if(self.Est_Kodama()){
@@ -134,6 +173,10 @@ public class PieceClass : PieceProtocol {
     return self
   }
 
+  // Transformer_Kodama: Piece -> Piece
+  // On transforme le kodama samurai・en kodama
+  // Pre: La piece doit etre un kodama et doit etre au fond du plateau et ne pas avoir ete parachutee directement au fond
+  // Post: On transforme le kodama samourai en kodama. Si les preconditions ne sont pas remplies on ne fait rien.
   @discardableResult
   public func Transformer_Kodama()->Self{
     if(self.Est_Kodama() && self.Est_Kodama_Samurai()){
@@ -142,6 +185,10 @@ public class PieceClass : PieceProtocol {
     return self
   }
 
+  // Deplacer_Piece: Piece*Position -> Piece
+  // On deplace une piece jusqu'a une position finale.
+  // Pre: La Position finale correspond ・une position sur laquelle la piece peut se deplacer
+  // Post: La piece est deplacee. Si la piece ne peut pas se deplacer sur la position finale alors rien n'est fait
   @discardableResult
   public func Deplacer_Piece(PosFin:PositionA)->Self{
     //on verifie que la position souhaité soit bien sur le plateau

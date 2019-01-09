@@ -16,9 +16,8 @@ public class HandClass : HandProtocol{
 
     // Initialiser_Debut : Hand -> Hand
     // Initialisation de la main avec les 4 pieces du debut
-    //Post: La main est maintenant composee des 4 pieces du debut et elles sont a leur position initiale
-
-    //modification par le groupe A, ajout d'un paramètre indiquant le joueur cible pour pouvoir bien placer les cartes.
+    // Post: La main est maintenant composee des 4 pieces du debut et elles sont a leur position initiale
+    // modification par le groupe A, ajout d'un paramètre indiquant le joueur cible pour pouvoir bien placer les cartes.
     @discardableResult
     public func Initialiser_Debut(joueur : Int)->Self{
       if(joueur == 1){
@@ -103,10 +102,10 @@ public class HandClass : HandProtocol{
       return self
     }
 
-    //Est_Dans_Main: Hand*TypePiece -> Bool
-    //Regarde si il y a un type de piece dans la main
-    //Pre: Ce type existe (kodama, kitsune ...)
-    //Post: Si il y a cette piece dans la main on retourne Vrai sinon on retourne Faux
+    // Est_Dans_Main: Hand*TypePiece -> Bool
+    // Regarde si il y a un type de piece dans la main
+    // Pre: Ce type existe (kodama, kitsune ...)
+    // Post: Si il y a cette piece dans la main on retourne Vrai sinon on retourne Faux
     public func Est_Dans_Main(type:TypePiece)->Bool{
       var present = false
       if let listePiece = self.liste{
@@ -119,10 +118,10 @@ public class HandClass : HandProtocol{
       return present
     }
 
-    //Avoir_Piece: Hand*Position -> Bool
-    //Verifie si a un position donnee il y a une piece de la main qui occupe cette position
-    //Pre: La position est sur le plateau
-    //Post: Retourne vrai si il possede une piece faux sinon
+    // Avoir_Piece: Hand*Position -> Bool
+    // Verifie si a un position donnee il y a une piece de la main qui occupe cette position
+    // Pre: La position est sur le plateau
+    // Post: Retourne vrai si il possede une piece faux sinon
     public func Avoir_Piece(pos:Position)->Bool{
       var avoirPiece = false
       if let listePiece = self.liste{
@@ -137,10 +136,11 @@ public class HandClass : HandProtocol{
       }
       return avoirPiece
     }
-    //Get_Piece: Hand*Position -> (Piece | Vide)
-    //Verifie si a une position donnee il y a une piece de la main qui occupe cette position et si c'est le cas on ressort la piece ou Vide
-    //Pre: Il faut que la position soit sur le plateau
-    //Post: Retourne vrai si il possede une piece faux sinon
+
+    // Get_Piece: Hand*Position -> (Piece | Vide)
+    // Verifie si a une position donnee il y a une piece de la main qui occupe cette position et si c'est le cas on ressort la piece ou Vide
+    // Pre: Il faut que la position soit sur le plateau
+    // Post: Retourne vrai si il possede une piece faux sinon
     public func Get_Piece(pos:Position) -> Piece?{
       var pieceRetour : Piece?
       if(self.Avoir_Piece(pos: pos)){
@@ -161,12 +161,12 @@ public class HandClass : HandProtocol{
 
     }
 
-    //Ajouter_Piece: Hand*Piece*Position -> Hand
-    //Ajoute une piece de la main
-    //Pre: La position ne doit pas être occupée par une autre piece lorsque on l’ajoute
-    //Pre: La piece n’a pas encore de position
-    //Pre: La position doit etre sur le plateau
-    //Post: La piece a été ajouté dans la main du joueur a la position donnee. Si jamais il y a deja une piece sur cette position ou si la piece a deja une position ou si elle n’est pas sur le plateau on ne fait rien
+    // Ajouter_Piece: Hand*Piece*Position -> Hand
+    // Ajoute une piece de la main
+    // Pre: La position ne doit pas être occupée par une autre piece lorsque on l’ajoute
+    // Pre: La piece n’a pas encore de position
+    // Pre: La position doit etre sur le plateau
+    // Post: La piece a été ajouté dans la main du joueur a la position donnee. Si jamais il y a deja une piece sur cette position ou si la piece a deja une position ou si elle n’est pas sur le plateau on ne fait rien
     @discardableResult
     public func Ajouter_Piece(piece:Piece,pos:Position)->Self{
 
@@ -187,10 +187,10 @@ public class HandClass : HandProtocol{
       return self
     }
 
-    //Supprimer_Piece: Hand*Piece -> Hand
-    //Supprime une piece de la main
-    //Pre: La piece doit faire partie de la main du joueur
-    //Post: La piece a été supprimée de la main du joueur. Si jamais elle n’en fait pas partie on ne fait rien
+    // Supprimer_Piece: Hand*Piece -> Hand
+    // Supprime une piece de la main
+    // Pre: La piece doit faire partie de la main du joueur
+    // Post: La piece a été supprimée de la main du joueur. Si jamais elle n’en fait pas partie on ne fait rien
     @discardableResult
     public func Supprimer_Piece(piece:Piece)->Self{
       var count = 0
@@ -208,11 +208,11 @@ public class HandClass : HandProtocol{
       return self
     }
 
-    //Deplacer_Piece: Hand*Piece*Position -> Hand
-    //Deplace une piece de la main. Elle va d'abord verifier que l'on a la piece, que le deplacement est possible par
-    //rapport aux caracteristiques de la piece puis va deplacer la piece.
-    //Pre : La piece doit faire partie de la main du joueur, la position doit être une position valable
-    //Post : La piece a ete deplacee.
+    // Deplacer_Piece: Hand*Piece*Position -> Hand
+    // Deplace une piece de la main. Elle va d'abord verifier que l'on a la piece, que le deplacement est possible par
+    // rapport aux caracteristiques de la piece puis va deplacer la piece.
+    // Pre : La piece doit faire partie de la main du joueur, la position doit être une position valable
+    // Post : La piece a ete deplacee.
     public func Deplacer_Piece(piece : Piece,position : Position)->Self{
       //verification possession de la piece2
       var possede = false
