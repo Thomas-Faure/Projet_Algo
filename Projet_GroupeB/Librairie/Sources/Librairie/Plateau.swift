@@ -5,11 +5,11 @@ public class PlateauClass : PlateauProtocol{
     public typealias Position = PositionClass
     public typealias IteratorPositionProtocol = ItPosition
 
-    var l : Int
-    var h : Int
-    var joueur1 : Joueur?
-    var joueur2 : Joueur?
-    var position : [Position]
+    private var l : Int
+    private var h : Int
+    private var joueur1 : Joueur?
+    private var joueur2 : Joueur?
+    private var position : [Position]
     //init: Int*Int->Plateau
     //Initialisation d'un plateau de longeur de longeur l et de hauteur h et de deux joueurs
     //Pre: l>0 & h>0
@@ -263,7 +263,7 @@ public class PlateauClass : PlateauProtocol{
                   }
                 }
               }
-              
+
             } else {
               return false
             }
