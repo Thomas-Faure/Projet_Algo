@@ -326,8 +326,8 @@ public class PlateauClass : PlateauProtocol{
     public func Fin()->Joueur?{
       var joueur1PossedeRoi : Bool = false
       var joueur2PossedeRoi : Bool = false
-      var roi1Gagnant : Bool = true
-      var roi2Gagnant : Bool = true
+      var roi1Gagnant : Bool = false
+      var roi2Gagnant : Bool = false
 
       if let joueurUn = self.Give_Joueur1(){
         if let mainJoueur1 = joueurUn.Give_Hand(){
@@ -340,6 +340,7 @@ public class PlateauClass : PlateauProtocol{
 
                 if let position = piece.Give_Position(){
                   if (position.getY() == h-1) { // Si le roi est dans le camp adverse en supposant que le joueur1 démarre en haut du plateau
+                    roi1Gagnant = true
                     if let joueurDeux = self.Give_Joueur2(){
                       if let mainJoueur2 = joueurDeux.Give_Hand(){
                         for pieceJoueur2 in mainJoueur2 { // On regarde si une piece adverse peut capturer le roi
@@ -351,8 +352,6 @@ public class PlateauClass : PlateauProtocol{
                       }
                     }
 
-                  } else { // Si le roi n'est pas dans le camp adverse
-                    roi1Gagnant = false
                   }
                 }
               }
@@ -372,6 +371,7 @@ public class PlateauClass : PlateauProtocol{
 
                 if let position = piece.Give_Position(){
                   if (position.getY() == 0) { // Si le roi est dans le camp adverse en supposant que le joueur2 démarre en bas du plateau
+                    roi2Gagnant = true
                     if let joueurUn = self.Give_Joueur1(){
                       if let mainJoueur1 = joueurUn.Give_Hand(){
                         for pieceJoueur1 in mainJoueur1 { // On regarde si une piece adverse peut capturer le roi
@@ -381,10 +381,7 @@ public class PlateauClass : PlateauProtocol{
                         }
                       }
                     }
-                  } else { // Si le roi n'est pas dans le camp adverse
-                    roi2Gagnant = false
                   }
-
                 }
               }
             }
